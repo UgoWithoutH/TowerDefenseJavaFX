@@ -1,10 +1,10 @@
-package gameLogic;
+package game_logic;
 
 public class Vector2 {
 
         // Members
-        public float x;
-        public float y;
+        private float x;
+        private float y;
 
         // Constructors
         public Vector2() {
@@ -18,11 +18,11 @@ public class Vector2 {
         }
 
         // Compare two vectors
-        public boolean equals(gameLogic.Vector2 other) {
+        public boolean equals(game_logic.Vector2 other) {
             return (this.x == other.x && this.y == other.y);
         }
 
-        public static double distance(gameLogic.Vector2 a, gameLogic.Vector2 b) {
+        public static double distance(game_logic.Vector2 a, game_logic.Vector2 b) {
             float v0 = b.x - a.x;
             float v1 = b.y - a.y;
             return Math.sqrt(v0*v0 + v1*v1);

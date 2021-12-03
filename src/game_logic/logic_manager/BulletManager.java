@@ -1,6 +1,7 @@
-package gameLogic.logicManager;
+package game_logic.logic_manager;
 
-import gameLogic.Bullet;
+import game_logic.tower.bullet.Bullet;
+
 import java.util.List;
 
 public class BulletManager extends LogicManager{

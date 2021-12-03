@@ -1,9 +1,9 @@
-package gameLogic.logicManager;
+package game_logic.logic_manager;
 
-import gameLogic.GameLogic;
-import gameLogic.Map;
-import gameLogic.Tower;
-import gameLogic.Vector2;
+import game_logic.GameLogic;
+import game_logic.Map;
+import game_logic.tower.Tower;
+import game_logic.Vector2;
 
 import java.util.List;
 

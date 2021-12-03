@@ -1,8 +1,8 @@
-package gameLogic;
+package game_logic;
 
-import gameLogic.logicManager.BulletManager;
-import gameLogic.logicManager.EnemyManager;
-import gameLogic.logicManager.TowerManager;
+import game_logic.logic_manager.BulletManager;
+import game_logic.logic_manager.EnemyManager;
+import game_logic.logic_manager.TowerManager;
 
 import java.util.List;
 
