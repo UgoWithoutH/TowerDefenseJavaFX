@@ -2,6 +2,8 @@ package game_logic.tower;
 
 import game_logic.GameObject;
 import game_logic.Vector2;
+import game_logic.enemy.Enemy;
+import jdk.jshell.spi.ExecutionControl;
 
 public abstract class Tower extends GameObject {
     //valeurs par défault
@@ -46,4 +48,8 @@ public abstract class Tower extends GameObject {
     //cost
     public int getCost() { return cost; }
     private void setCost(int cost) { this.cost = cost; }
+
+        public void attack(Enemy m){
+            new ExecutionControl.NotImplementedException("");
+        }
 }

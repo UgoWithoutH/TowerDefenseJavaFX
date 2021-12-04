@@ -7,13 +7,16 @@ public class ArcherTower extends Tower {
     private static final BulletType DEFAULT_BULLETTYPE = BulletType.ARROW;
     private static final int DEFAULT_COST = 1000;
     private static final String DEFAULT_NAME = "archer tower";
+    private static final int DEFAULT_ATTACKRATE = 10;
 
-    public ArcherTower(String name,Vector2 position, int range,BulletType bulletType, int attackRate, int cost) {
-        super(DEFAULT_NAME,position, Tower.DEFAULT_LEVEL, Tower.DEFAULT_TOWERSTATE, DEFAULT_RANGE, DEFAULT_BULLETTYPE, attackRate, DEFAULT_COST);
+    public ArcherTower(Vector2 position) {
+        super(DEFAULT_NAME,position, Tower.DEFAULT_LEVEL, Tower.DEFAULT_TOWERSTATE, DEFAULT_RANGE, DEFAULT_BULLETTYPE, DEFAULT_ATTACKRATE, DEFAULT_COST);
     }
 
     public int calculateDamage(){
         return 50;
     }
+
+
 }
 
