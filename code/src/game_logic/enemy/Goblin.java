@@ -1,6 +1,5 @@
 package game_logic.enemy;
 
-import game_logic.GameObject;
 import game_logic.Vector2;
 
 public class Goblin extends Enemy {
