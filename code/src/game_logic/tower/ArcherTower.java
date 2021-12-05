@@ -10,7 +10,7 @@ public class ArcherTower extends Tower {
     private static final int DEFAULT_ATTACKRATE = 10;
 
     public ArcherTower(Vector2 position) {
-        super(DEFAULT_NAME,position, Tower.DEFAULT_LEVEL, Tower.DEFAULT_TOWERSTATE, DEFAULT_RANGE, DEFAULT_BULLETTYPE, DEFAULT_ATTACKRATE, DEFAULT_COST);
+        super(DEFAULT_NAME,position, DEFAULT_RANGE, DEFAULT_BULLETTYPE, DEFAULT_ATTACKRATE, DEFAULT_COST);
     }
 
     public int calculateDamage(){
