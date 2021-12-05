@@ -1,6 +1,6 @@
 package game_logic.logic_manager;
 
-import game_logic.tower.bullet.Bullet;
+import game_logic.bullet.Bullet;
 
 import java.util.List;
 

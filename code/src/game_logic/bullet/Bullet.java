@@ -1,28 +1,23 @@
-package game_logic.tower.bullet;
+package game_logic.bullet;
 
 import game_logic.GameObject;
 import game_logic.Vector2;
 import game_logic.enemy.Enemy;
-import game_logic.logic_manager.BulletManager;
+import game_logic.tower.IUpgradable;
 import game_logic.tower.Tower;
 
-public abstract class Bullet extends GameObject {// on met les attributs private je pense pour l'instant on adaptera par la suite
+public abstract class Bullet extends GameObject implements IUpgradable {
     private Vector2 direction, targetPosition,startPosition;
     private float speed;
     private int damage;
     private Enemy enemy;
-    private BulletManager bulletManager;
     private Tower tower;
 
-    public Bullet(String name, Vector2 direction, Vector2 targetPosition, Vector2 startPosition, int damage, Enemy enemy, BulletManager bulletManager, Tower tower) {
+    public Bullet(String name,Vector2 startPosition,float speed, int damage, Tower tower) {
         super(name,startPosition);
-        this.direction = direction;
-        this.targetPosition = targetPosition;
         this.startPosition = startPosition;
+        this.speed = speed;
         this.damage = damage;
-        this.enemy = enemy;
-        this.bulletManager = bulletManager;
-        this.tower = tower;
     }
 
     //speed
@@ -36,4 +31,7 @@ public abstract class Bullet extends GameObject {// on met les attributs private
     public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
     }
+
+    //tower
+    public Tower getTower() { return tower; }
 }
