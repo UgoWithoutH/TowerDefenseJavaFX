@@ -10,12 +10,6 @@ public class Coordinate {
         this.y = y;
     }
 
-
-    public Coordinate(double x , double y){
-        this.x = (int)(x / 64);
-        this.y = (int)(y / 64);
-    }
-
     public int getTileX(){
         return x;
     }
@@ -24,11 +18,11 @@ public class Coordinate {
     }
 
     public int getExactX(){
-        return x * 64 + 32;
+        return x;
     }
 
     public int getExactY(){
-        return y * 64 + 32;
+        return y;
     }
 
 

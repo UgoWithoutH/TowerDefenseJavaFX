@@ -37,6 +37,10 @@ public class Tower {
         upgradeCost += 20;
     }
 
+    public void createProjectile(Monster target){
+        projectileList.add(new Projectile(target , coords.getExactX() , coords.getExactY() , Color.BLACK));
+    }
+
 
     public int getX(){
         return coords.getExactX();
