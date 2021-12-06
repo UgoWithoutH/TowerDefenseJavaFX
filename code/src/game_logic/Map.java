@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/* @Todo
+/** @Todo
 *    importation map
 *    generation map
 *    dessinner map
@@ -52,12 +52,17 @@ public class Map {
         return map;
     }
 
-    //Charge image
+    /**
+     * Charge image
+     *
+     * */
     private Image loadTileSet(){
         return new Image(TILESET);
     }
 
-    //a deplacer dans un package import
+    /**
+     *  a deplacer dans un package import
+     */
     public static int[][] loadMap() {
 
         try {
