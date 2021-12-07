@@ -2,7 +2,6 @@ package launch;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -27,7 +26,7 @@ public class Main extends Application {
         stage.setHeight(RESOLUTION_Y);
         stage.setResizable(false);
         stage.show();
-        MenuNavigator.setStage(stage);
+        Navigator.setStage(stage);
     }
 
     /**
@@ -45,8 +44,8 @@ public class Main extends Application {
 
         MainController mainController = loader.getController();
 
-        MenuNavigator.setMainController(mainController);
-        MenuNavigator.loadVista("/FXML/mainmenu.fxml");
+        Navigator.setMainController(mainController);
+        Navigator.loadVista("/FXML/mainmenu.fxml");
 
         return mainPane;
     }
@@ -54,7 +53,7 @@ public class Main extends Application {
     /**
      * Creer une scnene et implement le css
      *
-     * @param pane mainPane
+     * @param mainPane mainPane
      */
     private Scene createScene(Pane mainPane) {
         Scene scene = new Scene(
