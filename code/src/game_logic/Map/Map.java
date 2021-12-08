@@ -134,6 +134,9 @@ public class Map extends ImageView{
                         {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
                         {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
                 };
+        System.out.println(map.length);
+        System.out.println(map[0].length);
+
         return map;
     }
 
@@ -160,12 +163,11 @@ public class Map extends ImageView{
             // setup
             ligne = br.readLine();
             String[] setup = ligne.split(" ");
-            String[][] tableau = new String[Integer.parseInt(setup[0])][Integer.parseInt(setup[1])];
+            int Y =Integer.parseInt(setup[0]);
+            int X = Integer.parseInt(setup[1]);
+            String[][] tableau = new String[Y][X];
 
-            //13 20
-            //je ne comprends pas les nombres correspondent mais si tableau definis a la main tout fonctionne parfaitement
-            System.out.println(Integer.parseInt(setup[1]));
-            int[][] tableauMap = new int[Integer.parseInt(setup[0])][Integer.parseInt(setup[1])];
+            int[][] tableauMap = new int[Y][X];
             while ((ligne = br.readLine()) != null) {
 
                 if (ligne.startsWith("#")) {
@@ -179,13 +181,11 @@ public class Map extends ImageView{
                 k++;
             }
 
-            for (int u = 0; u < tableauMap.length; u++) {
+            for (int u = 0; u < Y; u++) {
 
-                for (int i = 0; i < tableau.length; i++) {
+                for (int i = 0; i < X; i++) {
                     tableauMap[u][i] = Integer.parseInt(tableau[u][i]);
-                    System.out.print(tableauMap[u][i]);
                 }
-                System.out.println("");
             }
             br.close();
             return tableauMap;
