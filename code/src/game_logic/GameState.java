@@ -1,6 +1,5 @@
-package game_logic.engine;
+package game_logic;
 
-import game_logic.engine.characters.Monster;
 import game_logic.engine.characters.Tower;
 
 import java.io.Serializable;

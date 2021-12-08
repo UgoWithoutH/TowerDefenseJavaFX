@@ -1,4 +1,4 @@
-package game_logic.engine;
+package game_logic;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;

@@ -1,7 +1,7 @@
 package launch;
 
 
-import game_logic.engine.GameManager;
+import game_logic.GameManager;
 
 import java.io.IOException;
 

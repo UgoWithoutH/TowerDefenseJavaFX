@@ -1,27 +1,13 @@
-package game_logic.engine;
+package game_logic;
 
 import game_logic.Map.Map;
-import game_logic.engine.characters.Monster;
-import game_logic.engine.characters.Projectile;
-import game_logic.engine.characters.Tower;
 import javafx.animation.AnimationTimer;
-import javafx.animation.PathTransition;
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.util.Duration;
 import launch.Navigator;
-
-import java.util.Iterator;
 
 
 public class GameManager {

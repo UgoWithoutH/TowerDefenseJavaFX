@@ -1,11 +1,5 @@
 package game_logic.engine.characters;
 
-/**
- * Monsters are the enemies of the player. They're job is to traverse
- * the path. They are created during timed intervals and removed when
- * their healthPoints is zero or they reach the end point of the path.
- */
-
 import game_logic.engine.Coordinate;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -13,123 +7,97 @@ import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 
 public class Monster {
-    private static ArrayList<Coordinate> path;  // Used by all monsters for pathing
-    private Circle view;                        // Graphical view of monster
-    private final int radius = 10;              // Graphical size of monster
-    private int healthPoints;                   // Determines if the monster is still alive
-    private int movementSpeed;                  // Determines time to complete path
-    private int reward;                         // Monster death will trigger a resource reward
-    private int nodeDirection;                  // Used for guiding the monster on the path
-    private boolean moveX;                      // Used for monster pathing
-    private boolean isDead;                     // Flag is signal monster removal
-    private boolean pathFinished;               // Signals the monster finished the path alive.
+    private static ArrayList<Coordinate> path;
+    private Circle view;
+    private final int radius = 10;
+    private int healthPoints;
+    private int movementSpeed;
+    private int reward;
+    private int direction;
+    private boolean moveX;
+    private boolean isDead;
+    private boolean pathFinished;
 
-    /**
-     * Monster initialization
-     *
-     * @param healthPoints
-     * The health points increase as the game progresses to increase
-     * the difficulty for the player.
-     */
-    public Monster(int healthPoints){
+    public Monster(int healthPoints) {
         pathFinished = false;
         moveX = true;
-        nodeDirection = 1;
+        direction = 1;
         this.healthPoints = healthPoints;
         movementSpeed = 1;
         reward = 2;
-        view = new Circle(path.get(0).getExactX() , path.get(0).getExactY() , radius);
+        view = new Circle(path.get(0).getExactX(), path.get(0).getExactY(), radius);
         view.setFill(Color.RED);
     }
 
 
-    public int getX(){
-        return ((int)view.getCenterX());
+    public int getX() {
+        return ((int) view.getCenterX());
     }
-    public int getY(){
-        return ((int)view.getCenterY());
+
+    public int getY() {
+        return ((int) view.getCenterY());
     }
-    public int getReward(){
+
+    public int getReward() {
         return reward;
     }
-    public Circle getView(){
+
+    public Circle getView() {
         return view;
     }
-    public boolean isDead(){
+
+    public boolean isDead() {
         return isDead;
     }
 
-    public boolean isPathFinished(){
+    public boolean isPathFinished() {
         return pathFinished;
     }
 
-    /**
-     * Sets the path that all monsters will travel upon.
-     *
-     * @param pathSet
-     * The path created by the Tilemap which is used by all monsters
-     * and set during the game's initialization phase.
-     */
-    public static void setPath(ArrayList<Coordinate> pathSet){
+    public static void setPath(ArrayList<Coordinate> pathSet) {
         path = pathSet;
     }
-    
-    /**
-     * Reduces the monster's health points
-     *
-     * @param damage
-     * The damage comes from the attacking tower which signals how
-     * much health points are deduced from the monster.
-     */
-    public void takeDamage(int damage){
+
+    public void takeDamage(int damage) {
         healthPoints = healthPoints - damage;
-        if (healthPoints <= 0){
+        if (healthPoints <= 0) {
             isDead = true;
             pathFinished = false;
         }
     }
 
-    /**
-     * Updates the location of the monster along the path that is created
-     * by the TileMap in the GameManager initialize method. Movement is
-     * made exclusively on the X or Y axis until the path is complete or the
-     * monster's healthPoints reach 0.
-     */
-    public void updateLocation(int distance){
+    public void updateLocation(int distance) {
 
-        // Move along the x axis
-        if(moveX){
+        // Déplacement selon l'axe des x
+        if (moveX) {
             view.setCenterX(view.getCenterX() + distance);
-            // Reached a changing point in path , switch direction
-            if(view.getCenterX() == path.get(nodeDirection).getExactX()){
+            // Arrivé à un point de changement dans le chemin, changer de direction
+            if (view.getCenterX() == path.get(direction).getExactX()) {
                 moveX = false;
-                nodeDirection++;
-                // Traversed all changing points, path ended
-                if(nodeDirection == path.size()){
+                direction++;
+                // Traversée de tous les points de changement, fin du chemin
+                if (direction == path.size()) {
                     pathFinished = true;
                     isDead = true;
                 }
             }
         }
-        // Move along the y axis
-        else{
-            if(view.getCenterY() < path.get(nodeDirection).getExactY()) {
+        // Déplacement selon l'axe des y
+        else {
+            if (view.getCenterY() < path.get(direction).getExactY()) {
                 view.setCenterY(view.getCenterY() + distance);
-            }
-            else{
+            } else {
                 view.setCenterY(view.getCenterY() - distance);
             }
-            // Reach changing point , switch direction
-            if(view.getCenterY() == path.get(nodeDirection).getExactY()){
+            // Atteindre le point de changement, changer de direction
+            if (view.getCenterY() == path.get(direction).getExactY()) {
                 moveX = true;
-                nodeDirection++;
-                if(nodeDirection == path.size()){
+                direction++;
+                if (direction == path.size()) {
                     pathFinished = true;
                     isDead = true;
                 }
             }
         }
     }
-
-
 }

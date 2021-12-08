@@ -1,10 +1,8 @@
 package game_logic.Map;
 
-import game_logic.engine.GameManager;
 import javafx.scene.image.*;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;

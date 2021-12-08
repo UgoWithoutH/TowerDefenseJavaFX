@@ -1,7 +1,7 @@
 package launch;
 
 //import game.engine.GameManager;
-import game_logic.engine.GameManager;
+import game_logic.GameManager;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
