@@ -3,10 +3,6 @@ package game_logic.engine.characters;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-/**
- * Projectile is created when the tower attacks a monster. The GameManager
- * will create the animation using the start and end locations.
- */
 public class Projectile extends Circle {
     private Monster target;     // The target of the attack
     private final int startX;   // Starting location of the projectile
