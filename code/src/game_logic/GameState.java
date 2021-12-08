@@ -1,5 +1,6 @@
 package game_logic;
 
+import game_logic.engine.characters.Monster;
 import game_logic.engine.characters.Tower;
 
 import java.io.Serializable;
@@ -9,18 +10,18 @@ import java.util.ArrayList;
 public class GameState implements Serializable{
 
     //game state flags
-    public static final int IS_RUNNING = 1;    //game is active
-    public static final int IS_PAUSED = 2;     //game is temporarily not active
-    public static final int IS_STOPPED = 3;    //game is over and halted
+    public static final int IS_RUNNING = 1;
+    public static final int IS_PAUSED = 2;
+    public static final int IS_STOPPED = 3;
 
     private static GameState playerGame;
     private int state;
-    private int resources;                  //used for buying and upgrading tower
-    private int level;                      //represents the current wave of monsters that are being spawned
-    private int score;                      //score is calculated by awarding kill points and perfect level points
-    private int lives;;                     //numbers of monster escapes allowed before game ends
-    private ArrayList<Tower> playerTowers;  //holds all tower references on the map
-    private ArrayList<Monster> monstersAlive; //holds monster references
+    private int resources;
+    private int level;
+    private int score;
+    private int lives;
+    private ArrayList<Tower> playerTowers;
+    private ArrayList<Monster> monstersAlive;
 
 
     //CONSTRUCTORS

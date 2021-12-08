@@ -3,7 +3,6 @@ package game_logic.engine.characters;
 
 
 import game_logic.engine.Coordinate;
-import game_logic.engine.services.TowerAttackerService;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class Tower {
         upgradeTime += 3000;
         upgradeCost += 20;
     }
-    
+
     public void createProjectile(Monster target){
         projectileList.add(new Projectile(target , coords.getExactX() , coords.getExactY() , Color.BLACK));
     }
@@ -79,10 +78,6 @@ public class Tower {
 
     public int getUpgradeTime(){
         return upgradeTime;
-    }
-
-    public TowerAttackerService getTowerAttacker() {
-        return towerAttacker;
     }
 
     public ArrayList<Projectile> getProjectileList() {
