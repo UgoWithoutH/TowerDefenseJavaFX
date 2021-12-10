@@ -6,7 +6,9 @@ import game_logic.engine.characters.Tower;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
+/** TODO: 10/12/2021
+ *   patron de conception ETAT a envisager
+ */
 public class GameState implements Serializable{
 
     //game state flags

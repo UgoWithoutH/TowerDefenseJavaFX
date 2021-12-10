@@ -1,5 +1,6 @@
-package game_logic;
+package Vue;
 
+import game_logic.GameManager;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 

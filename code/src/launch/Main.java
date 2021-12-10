@@ -1,5 +1,8 @@
 package launch;
 
+import Vue.MainController;
+import Vue.MenuController;
+import Vue.Navigator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,6 +30,14 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
         Navigator.setStage(stage);
+
+        /**
+         * Si tu veux directement afficher le jeux
+         */
+
+        MenuController start = new MenuController();
+        start.startNewGame();
+
     }
 
     /**
@@ -68,6 +79,10 @@ public class Main extends Application {
     }
 
 
+    /** TODO: 10/12/2021
+     *   prevoir affichage console du jeux !!!!
+      *
+     */
     public static void main(String[] args) {
         launch(args);
 

@@ -1,22 +1,21 @@
 package game_logic;
 
+import Vue.GameController;
 import game_logic.Map.Map;
-import game_logic.Map.generationMap;
 import game_logic.Map.importMap;
-import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import launch.Navigator;
+import Vue.Navigator;
 
 
 public class GameManager {
     private Map gameMap;                       // The painted map used as the backgrounds layer
     private  GameState game;                        // Provides basic game states.
     private  Scene gameScene;                       // The main viewport
-    private  GameController gameController;         // Handles fxml attributes (buttons and labels)
+    private GameController gameController;         // Handles fxml attributes (buttons and labels)
 
 
     public void initialize() throws java.io.IOException{

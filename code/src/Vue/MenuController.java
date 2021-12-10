@@ -1,4 +1,4 @@
-package launch;
+package Vue;
 
 
 import game_logic.GameManager;

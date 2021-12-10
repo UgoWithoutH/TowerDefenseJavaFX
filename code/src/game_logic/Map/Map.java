@@ -9,9 +9,11 @@ import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 
 /** @Todo
-*    retourner path monstre
+ *     retourner path monstre
  *    acceler la generation de la map/draw
+ *    enlever ImageView pour que notre jeux puisse etre lancer en console
  */
+
 
 public class Map extends ImageView implements Update {
 
@@ -55,8 +57,48 @@ public class Map extends ImageView implements Update {
 
     }
 
-    public void draw(){
+    // TODO: 10/12/2021  
+    public void setPathMonster(){
 
+    }
+
+
+    /**
+     * Charge image
+     *
+     * */
+    private Image loadTileSet(){
+        return new Image(TILESET);
+    }
+
+
+    /**
+     * Set la valeur de la cellule
+     * @param xCord
+     * @param yCord
+     * @param updatedValue
+     */
+    public void setMapNode(int xCord , int yCord , int updatedValue){
+        map[yCord][xCord] = updatedValue;
+        this.draw();
+    }
+
+    /**
+     * Check si cellule disponible
+     * @param xCord
+     * @param yCord
+     * @return boolean
+     */
+    public boolean nodeOpen(int xCord , int yCord){
+        if(map[yCord][xCord] != 0){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void draw() {
+        
         //loads tileset
         Image tileset = loadTileSet();
 
@@ -111,29 +153,5 @@ public class Map extends ImageView implements Update {
             }
         };
         this.setImage(paintedMap);
-    }
-
-
-    /**
-     * Charge image
-     *
-     * */
-    private Image loadTileSet(){
-        return new Image(TILESET);
-    }
-
-
-    //sets the map node for the given coordinates to input value than repaints adjustment
-    public void setMapNode(int xCord , int yCord , int updatedValue){
-        map[yCord][xCord] = updatedValue;
-        this.draw();
-    }
-
-    //checks to see if the node is open
-    public boolean nodeOpen(int xCord , int yCord){
-        if(map[yCord][xCord] != 0){
-            return false;
-        }
-        return true;
     }
 }
