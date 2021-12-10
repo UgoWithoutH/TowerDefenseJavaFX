@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="BOTTOM_RIGHT" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vue.GameController">
+<GridPane alignment="BOTTOM_RIGHT" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vue.game">
     <padding><Insets bottom="50" left="25" right="50" top="100" /></padding>
    <columnConstraints>
       <ColumnConstraints />
@@ -25,7 +25,7 @@
       <Button mnemonicParsing="false" text="Buy" GridPane.rowIndex="2" />
       <Button mnemonicParsing="false" text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Button mnemonicParsing="false" text="X2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label text="Label" GridPane.rowIndex="3" />
+      <Label fx:id="textScore" GridPane.rowIndex="3" />
       <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>

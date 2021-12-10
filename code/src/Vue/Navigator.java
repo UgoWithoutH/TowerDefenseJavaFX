@@ -15,7 +15,7 @@ import java.net.URL;
 public class Navigator {
 
 
-    public static final URL GAMEUI = GameManager.class.getResource("/FXML/gameui.fxml");
+    public static final URL GAMEUI = GameManager.class.getResource("/FXML/game.fxml");
 
     /** stage for game*/
     public static Stage stage;
@@ -24,14 +24,14 @@ public class Navigator {
         stage = stage1;
     }
     /** main layout controller. */
-    private static MainController mainController;
+    private static main_vue mainController;
 
     /**
      * enregistre le Controller Main
      *
      * @param mainController Main controller
      */
-    public static void setMainController(MainController mainController) {
+    public static void setMainController(main_vue mainController) {
         Navigator.mainController = mainController;
     }
 

@@ -2,6 +2,8 @@ package game_logic;
 
 import game_logic.engine.characters.Monster;
 import game_logic.engine.characters.Tower;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +22,12 @@ public class GameState implements Serializable{
     private int state;
     private int resources;
     private int level;
-    private int score;
+
+    private IntegerProperty score = new SimpleIntegerProperty(); //property pour binding
+    public int getScore() {return score.get();}
+    public void setScore(int score) {this.score.set(score);}
+    public IntegerProperty scoreProperty() {return score;}
+
     private int lives;
     private ArrayList<Tower> playerTowers;
     private ArrayList<Monster> monstersAlive;
@@ -31,7 +38,7 @@ public class GameState implements Serializable{
         state = IS_RUNNING;
         resources = 10000;
         level = 0;
-        score = 0;
+        score.set(0); // property
         lives = 20;
         playerTowers = new ArrayList<Tower>();
         monstersAlive = new ArrayList<Monster>();
@@ -55,9 +62,6 @@ public class GameState implements Serializable{
     public void setLevel(int level){
         this.level = level;
     }
-    public void setScore(int score){
-        this.score = score;
-    }
     public void setLives(int lives){
         this.lives = lives;
     }
@@ -72,9 +76,7 @@ public class GameState implements Serializable{
     public int getLevel(){
         return level;
     }
-    public int getScore(){
-        return score;
-    }
+
     public int getLives() {
         return lives;
     }

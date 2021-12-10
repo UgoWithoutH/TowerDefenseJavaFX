@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 
-public class MainController {
+public class main_vue {
 
     /** Switch de vue par holder FXML (fx:id). */
     @FXML

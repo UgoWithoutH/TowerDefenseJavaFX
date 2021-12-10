@@ -5,7 +5,7 @@ import game_logic.GameManager;
 
 import java.io.IOException;
 
-public class MenuController {
+public class main_menu {
 
 
     public void startNewGame(){

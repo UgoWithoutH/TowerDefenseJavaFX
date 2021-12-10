@@ -1,7 +1,7 @@
 package launch;
 
-import Vue.MainController;
-import Vue.MenuController;
+import Vue.main_vue;
+import Vue.main_menu;
 import Vue.Navigator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +35,7 @@ public class Main extends Application {
          * Si tu veux directement afficher le jeux
          */
 
-        MenuController start = new MenuController();
+        main_menu start = new main_menu();
         start.startNewGame();
 
     }
@@ -49,14 +49,14 @@ public class Main extends Application {
 
         Pane mainPane = (Pane) loader.load(
                 getClass().getResourceAsStream(
-                        "/FXML/holder.fxml"
+                        "/FXML/main_vue.fxml"
                 )
         );
 
-        MainController mainController = loader.getController();
+        main_vue mainController = loader.getController();
 
         Navigator.setMainController(mainController);
-        Navigator.loadVista("/FXML/mainmenu.fxml");
+        Navigator.loadVista("/FXML/main_menu.fxml");
 
         return mainPane;
     }
