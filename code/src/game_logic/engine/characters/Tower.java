@@ -7,7 +7,12 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-
+/** TODO: 10/12/2021
+ * A verifier, mais il serait possible de mettre un patron de conception
+ * ETAT pour la gestion de nos tours http://www.goprod.bouhours.net/?page=pattern&pat_id=20
+ * je pense qu'on devra le coupler aux stratégies (pour chaque type de tours ajouter les patron ETAT)
+ *
+ */
 public class Tower {
     private static final int BUILD_TIME = 10000;
     private int attackDamage;

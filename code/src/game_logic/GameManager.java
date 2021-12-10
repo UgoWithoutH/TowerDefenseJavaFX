@@ -2,6 +2,7 @@ package game_logic;
 
 import game_logic.Map.Map;
 import game_logic.Map.generationMap;
+import game_logic.Map.importMap;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -25,7 +26,7 @@ public class GameManager {
         /**
          * Choix d'utiliser la classe generationMap ou importMap
          */
-        gameMap = new generationMap(1280 ,800);
+        gameMap = new importMap(1280 ,800);
 
         // Creates gui hierarchy
         FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);
@@ -44,6 +45,5 @@ public class GameManager {
 
         Navigator.stage.setScene(gameScene);
     }
-
 
 }
