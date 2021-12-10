@@ -1,5 +1,6 @@
 package game_logic.Map;
 
+import game_logic.Update;
 import javafx.scene.image.*;
 
 import java.io.BufferedReader;
@@ -8,13 +9,11 @@ import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 
 /** @Todo
-*    importation map
-*    generation map
-*    dessinner map
 *    retourner path monstre
+ *    acceler la generation de la map/draw
  */
 
-public class Map extends ImageView{
+public class Map extends ImageView implements Update {
 
     private final static String TILESET = "/tileset/tile.png";
 
