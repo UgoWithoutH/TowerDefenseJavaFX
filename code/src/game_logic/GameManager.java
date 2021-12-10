@@ -1,6 +1,7 @@
 package game_logic;
 
 import game_logic.Map.Map;
+import game_logic.Map.generationMap;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -12,19 +13,19 @@ import launch.Navigator;
 
 public class GameManager {
     private Map gameMap;                       // The painted map used as the backgrounds layer
-    private  Group monsterLayer;                    // Used for the monster graphics
     private  GameState game;                        // Provides basic game states.
     private  Scene gameScene;                       // The main viewport
     private  GameController gameController;         // Handles fxml attributes (buttons and labels)
-    private  AnimationTimer gameLoop;               // Used for the gui thread
 
 
     public void initialize() throws java.io.IOException{
         // Initializes the game state
         game = GameState.getNewGame();
 
-        // Generates the map with the given resolution
-        gameMap = new Map(1280 ,800);
+        /**
+         * Choix d'utiliser la classe generationMap ou importMap
+         */
+        gameMap = new generationMap(1280 ,800);
 
         // Creates gui hierarchy
         FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);

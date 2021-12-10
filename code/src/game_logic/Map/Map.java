@@ -27,7 +27,7 @@ public class Map extends ImageView{
     private final boolean OFFSET_X_FLAG;//Used for painting the edge of the tilemap to avoid ArrayOutOfBoundsException
     private final boolean OFFSET_Y_FLAG;
 
-    private int[][] map;
+    public int[][] map;
 
     public Map(int mapWidth , int mapHeight) {
         RESOLUTION_WIDTH = mapWidth;
@@ -46,7 +46,6 @@ public class Map extends ImageView{
             OFFSET_X_FLAG = true;
         }
 
-
         if(OFFSET_Y == 0){
             OFFSET_Y_FLAG = false;
         }
@@ -54,8 +53,7 @@ public class Map extends ImageView{
             OFFSET_Y_FLAG = true;
         }
 
-        map = loadMap();             //generation map
-        draw();                            //dessiner la map
+
     }
 
     public void draw(){
@@ -116,29 +114,6 @@ public class Map extends ImageView{
         this.setImage(paintedMap);
     }
 
-    private int[][] generateMapArray(){
-
-        int[][] map = new int[][]
-                {
-                        {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 5 , 1 , 1 , 1 , 1 , 1 , 1 , 1 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 2 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 5 , 1 , 1 , 6 , 0 , 0 , 2 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 2 , 0 , 0 , 2 , 0 , 0 , 2 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 2 , 0 , 0 , 2 , 0 , 0 , 2 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 2 , 0 , 0 , 2 , 0 , 0 , 2 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {1 , 1 , 1 , 1 , 1 , 1 , 3 , 0 , 0 , 4 , 1 , 1 , 3 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 },
-                        {0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-                };
-        System.out.println(map.length);
-        System.out.println(map[0].length);
-
-        return map;
-    }
 
     /**
      * Charge image
@@ -148,53 +123,6 @@ public class Map extends ImageView{
         return new Image(TILESET);
     }
 
-    /**
-     *  a deplacer dans un package import
-     */
-    public int[][] loadMap() {
-
-        try {
-            InputStream ips = this.getClass().getResourceAsStream("/Map/map.txt");
-            InputStreamReader ipsr = new InputStreamReader(ips);
-            BufferedReader br = new BufferedReader(ipsr);
-            String ligne;
-            int k = 0;
-
-            // setup
-            ligne = br.readLine();
-            String[] setup = ligne.split(" ");
-            int Y =Integer.parseInt(setup[0]);
-            int X = Integer.parseInt(setup[1]);
-            String[][] tableau = new String[Y][X];
-
-            int[][] tableauMap = new int[Y][X];
-            while ((ligne = br.readLine()) != null) {
-
-                if (ligne.startsWith("#")) {
-                    continue;
-                }
-
-                String[] resultat = ligne.split(" ");
-                for (int i = 0; i < resultat.length; i++) {
-                    tableau[k][i] = resultat[i];
-                }
-                k++;
-            }
-
-            for (int u = 0; u < Y; u++) {
-
-                for (int i = 0; i < X; i++) {
-                    tableauMap[u][i] = Integer.parseInt(tableau[u][i]);
-                }
-            }
-            br.close();
-            return tableauMap;
-
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        return null;
-    }
 
     //sets the map node for the given coordinates to input value than repaints adjustment
     public void setMapNode(int xCord , int yCord , int updatedValue){
