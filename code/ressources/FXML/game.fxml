@@ -22,7 +22,7 @@
    </rowConstraints>
    <children>
       <Button mnemonicParsing="false" text="Start" GridPane.rowIndex="1" />
-      <Button mnemonicParsing="false" text="Buy" GridPane.rowIndex="2" />
+      <Button fx:id="buytower" mnemonicParsing="false" text="Buy" GridPane.rowIndex="2" />
       <Button mnemonicParsing="false" text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Button mnemonicParsing="false" text="X2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label fx:id="textScore" GridPane.rowIndex="3" />

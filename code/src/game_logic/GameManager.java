@@ -17,10 +17,9 @@ import java.util.ArrayList;
 
 
 public class GameManager {
+
     private Map gameMap;
     public GameState game;
-    private  Scene gameScene;
-    private vue.game gameController;
     private int lives;
     private int resources;
     private int level;
@@ -43,41 +42,8 @@ public class GameManager {
         /**
          * Choix d'utiliser la classe generationMap ou importMap
          */
-        gameMap = new importMap(1280 ,800);
-
-        /**
-         * Attention pour dessiner une tower, et pour pouvoir l'utiliser aprés, il faut surtout creer l'objet TOWER
-         * et le mettre dans le arrayList<Tower>
-         */
-        Tower tr1 = new Tower(7,5);
-        gameMap.setMapNode(tr1.getTileX(), tr1.getTileY(), 7);
-        playerTowers.add(tr1);
-        DrawMap dr = new DrawMap(gameMap);
 
 
-
-
-
-        /** todo
-         *   Tout ce gros tas a déplacer dans un endroit approprié ( je ne sais pas ou mais je pense que c'est nécessaire)
-         *   Cela n'a aucun rapport avec le management de la partie (maybe dans la vue main_menu)
-         *
-         */
-        FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);
-        StackPane gamePane = new StackPane();
-        Group tilemapGroup = new Group();
-        tilemapGroup.getChildren().add(dr);
-        gamePane.getChildren().add(tilemapGroup);
-
-        // Opens stream to get controller reference
-        Node gameUI = (Node) loader.load(Navigator.GAMEUI.openStream());
-        gamePane.getChildren().add(gameUI);
-        gameScene = new Scene(gamePane);
-        gameScene.getStylesheets().add(GameManager.class.getResource("/FXML/gamestyle.css").toExternalForm());
-        gameController = loader.getController();
-        gameController.setGameManager(this);
-
-        Navigator.stage.setScene(gameScene);
     }
 
     public void initializeConsole() throws java.io.IOException{
@@ -104,6 +70,14 @@ public class GameManager {
         Tower tower1 = new Tower(10,10);
 
 
+    }
+
+    public Map getGameMap() {
+        return gameMap;
+    }
+
+    public void setGameMap(Map gameMap) {
+        this.gameMap = gameMap;
     }
 
 }

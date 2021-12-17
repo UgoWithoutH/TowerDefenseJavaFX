@@ -1,9 +1,9 @@
 package boucleJeu;
-
+import static java.lang.Thread.sleep;
 
 // TODO: 17/12/2021
 //  commpleter la Boucle de jeu (voir reccomencer)
-public class Boucle implements Thread {
+public class Boucle extends Observable implements Runnable {
     public boolean running = false;
     public int tickCount = 0;
     Thread th;
@@ -20,18 +20,21 @@ public class Boucle implements Thread {
         running = false;
     }
 
-
     @Override
     public void run() {
 
         while(running) {
-            sleep(30);
-            beep();
+            try {
+                sleep(30);
+                beep();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
 
     public void beep() {
-
+        notifier();
     }
 }
