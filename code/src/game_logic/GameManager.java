@@ -1,5 +1,6 @@
 package game_logic;
 
+import model.characters.Monster;
 import update.DrawMap;
 import model.Map.Map;
 import model.Map.importMap;
@@ -16,11 +17,23 @@ import java.util.ArrayList;
 
 
 public class GameManager {
-    private Map gameMap;                       // The painted map used as the backgrounds layer
-    public GameState game;                        // Provides basic game states.
-    private  Scene gameScene;                       // The main viewport
-    private vue.game gameController;         // Handles fxml attributes (buttons and labels)
+    private Map gameMap;
+    public GameState game;
+    private  Scene gameScene;
+    private vue.game gameController;
+    private int lives;
+    private int resources;
+    private int level;
+    private ArrayList<Tower> playerTowers;
+    private ArrayList<Monster> monstersAlive;
 
+    public GameManager(){
+        resources = 10000;
+        level = 0;
+        lives = 20;
+        playerTowers = new ArrayList<Tower>();
+        monstersAlive = new ArrayList<Monster>();
+    }
 
     public void initialize() throws java.io.IOException{
         // Initializes the game state
@@ -31,8 +44,25 @@ public class GameManager {
          * Choix d'utiliser la classe generationMap ou importMap
          */
         gameMap = new importMap(1280 ,800);
+
+        /**
+         * Attention pour dessiner une tower, et pour pouvoir l'utiliser aprés, il faut surtout creer l'objet TOWER
+         * et le mettre dans le arrayList<Tower>
+         */
+        Tower tr1 = new Tower(7,5);
+        gameMap.setMapNode(tr1.getTileX(), tr1.getTileY(), 7);
+        playerTowers.add(tr1);
         DrawMap dr = new DrawMap(gameMap);
 
+
+
+
+
+        /** todo
+         *   Tout ce gros tas a déplacer dans un endroit approprié ( je ne sais pas ou mais je pense que c'est nécessaire)
+         *   Cela n'a aucun rapport avec le management de la partie (maybe dans la vue main_menu)
+         *
+         */
         FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);
         StackPane gamePane = new StackPane();
         Group tilemapGroup = new Group();

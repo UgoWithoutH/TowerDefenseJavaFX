@@ -61,6 +61,14 @@ public class Tower {
         return coords.getExactY();
     }
 
+    public int getTileX(){
+        return coords.getTileX();
+    }
+
+    public int getTileY(){
+        return coords.getTileY();
+    }
+
     public int getAttackRange(){
         return attackRange;
     }

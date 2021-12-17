@@ -71,4 +71,5 @@ public class DrawMap extends ImageView {
     public Image loadTileSet(String tiles){
         return new Image(tiles);
     }
+
 }
