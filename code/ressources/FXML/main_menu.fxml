@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="Vue.main_menu"
+<GridPane fx:controller="vue.main_menu"
           xmlns:fx="http://javafx.com/fxml" alignment="TOP_LEFT" hgap="10" vgap="10">
           <padding><Insets top="100" right="50" bottom="10" left="25"/></padding>
 

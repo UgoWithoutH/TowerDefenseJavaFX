@@ -1,7 +1,7 @@
 package game_logic;
 
-import game_logic.engine.characters.Monster;
-import game_logic.engine.characters.Tower;
+import model.characters.Monster;
+import model.characters.Tower;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

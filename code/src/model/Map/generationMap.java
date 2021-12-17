@@ -1,4 +1,4 @@
-package game_logic.Map;
+package model.Map;
 
 public class generationMap extends Map{
 
@@ -6,7 +6,6 @@ public class generationMap extends Map{
         super(mapWidth, mapHeight);
 
         map = generateMapArray();             //generation map
-        draw();                            //dessiner la map
     }
 
     public int[][] generateMapArray(){

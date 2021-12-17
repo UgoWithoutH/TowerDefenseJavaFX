@@ -1,8 +1,8 @@
 package launch;
 
-import Vue.main_vue;
-import Vue.main_menu;
-import Vue.Navigator;
+import vue.main_vue;
+import vue.main_menu;
+import vue.Navigator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -79,12 +79,11 @@ public class Main extends Application {
     }
 
 
-    /** TODO: 10/12/2021
-     *   prevoir affichage console du jeux !!!!
-      *
-     */
     public static void main(String[] args) {
         launch(args);
-
+        /*
+        main_menu start = new main_menu();
+        start.startNewGameConsole();
+        */
     }
 }

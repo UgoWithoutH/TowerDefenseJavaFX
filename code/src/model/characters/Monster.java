@@ -1,6 +1,6 @@
-package game_logic.engine.characters;
+package model.characters;
 
-import game_logic.engine.Coordinate;
+import model.Coordinate;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 

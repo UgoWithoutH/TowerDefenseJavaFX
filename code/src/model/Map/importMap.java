@@ -1,4 +1,4 @@
-package game_logic.Map;
+package model.Map;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,7 +17,6 @@ public class importMap extends Map{
     public importMap(int mapWidth, int mapHeight) {
         super(mapWidth, mapHeight);
         map=loadMap();
-        draw();
     }
 
     /**

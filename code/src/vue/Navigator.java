@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 //import game.engine.GameManager;
 import game_logic.GameManager;

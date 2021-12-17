@@ -9,7 +9,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Model",
+			"name": "model",
 			"ownedElements": [
 				{
 					"_type": "UMLClassDiagram",
@@ -85,7 +85,7 @@
 											"top": -16,
 											"width": 73.67724609375,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from model)"
 										},
 										{
 											"_type": "LabelView",
@@ -198,7 +198,7 @@
 											"top": -464,
 											"width": 86.4169921875,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from model)"
 										},
 										{
 											"_type": "LabelView",
@@ -305,7 +305,7 @@
 											"top": 1488,
 											"width": 73.67724609375,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from model)"
 										},
 										{
 											"_type": "LabelView",
@@ -412,7 +412,7 @@
 											"top": -832,
 											"width": 73.67724609375,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from model)"
 										},
 										{
 											"_type": "LabelView",
@@ -520,7 +520,7 @@
 											"top": -368,
 											"width": 73.67724609375,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from model)"
 										},
 										{
 											"_type": "LabelView",
@@ -3379,7 +3379,7 @@
 											"top": 2384,
 											"width": 73.67724609375,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from model)"
 										},
 										{
 											"_type": "LabelView",
@@ -7216,7 +7216,7 @@
 											"top": 3344,
 											"width": 86.4169921875,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from model)"
 										},
 										{
 											"_type": "LabelView",
@@ -7792,7 +7792,7 @@
 											"top": 1334,
 											"width": 470,
 											"height": 13,
-											"text": "Update"
+											"text": "update"
 										},
 										{
 											"_type": "LabelView",
@@ -7806,7 +7806,7 @@
 											"top": -80,
 											"width": 73.67724609375,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from model)"
 										},
 										{
 											"_type": "LabelView",
@@ -7925,7 +7925,7 @@
 											"top": -272,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from Update)"
+											"text": "(from update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8123,7 +8123,7 @@
 											"top": -224,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from Update)"
+											"text": "(from update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8321,7 +8321,7 @@
 											"top": 128,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from Update)"
+											"text": "(from update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8519,7 +8519,7 @@
 											"top": 256,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from Update)"
+											"text": "(from update)"
 										},
 										{
 											"_type": "LabelView",
@@ -9780,7 +9780,7 @@
 											"top": 1476,
 											"width": 80.57080078125,
 											"height": 13,
-											"text": "Update"
+											"text": "update"
 										},
 										{
 											"_type": "LabelView",
@@ -9794,7 +9794,7 @@
 											"top": 72,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from Update)"
+											"text": "(from update)"
 										},
 										{
 											"_type": "LabelView",
@@ -11685,7 +11685,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Update",
+					"name": "update",
 					"ownedElements": [
 						{
 							"_type": "UMLClass",
@@ -11937,7 +11937,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9vZ9YZ6URGT8="
 							},
-							"name": "Update",
+							"name": "update",
 							"operations": [
 								{
 									"_type": "UMLOperation",

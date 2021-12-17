@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 import game_logic.GameManager;
 import javafx.event.EventHandler;

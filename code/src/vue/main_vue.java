@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
