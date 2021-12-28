@@ -1,5 +1,7 @@
 package game_logic;
 
+import boucleJeu.Boucle;
+import boucleJeu.Observateur;
 import model.characters.Monster;
 import update.DrawMap;
 import model.Map.Map;
@@ -16,15 +18,18 @@ import vue.Navigator;
 import java.util.ArrayList;
 
 
-public class GameManager {
+public class GameManager implements Observateur {
 
     private Map gameMap;
-    public GameState game;
+    private GameState game;
+    private GameViewLogic gameViewLogic;
+
     private int lives;
     private int resources;
     private int level;
     private ArrayList<Tower> playerTowers;
     private ArrayList<Monster> monstersAlive;
+    private Boucle boucle;
 
     public GameManager(){
         resources = 10000;
@@ -32,18 +37,21 @@ public class GameManager {
         lives = 20;
         playerTowers = new ArrayList<Tower>();
         monstersAlive = new ArrayList<Monster>();
+        boucle = new Boucle();
+        boucle.subscribe(this);
     }
 
-    public void initialize() throws java.io.IOException{
-        // Initializes the game state
+    public GameState getGame(){
+        return game;
+    }
+
+    public void initialize(GameViewLogic gameViewLogic, Map map) throws java.io.IOException{
+        this.gameViewLogic = gameViewLogic;
+        this.gameMap = map;
         game = GameState.getNewGame();
         game.setScore(200);
-
-        /**
-         * Choix d'utiliser la classe generationMap ou importMap
-         */
-
-
+        Monster.setPath(gameMap.getPath());
+        boucle.start();
     }
 
     public void initializeConsole() throws java.io.IOException{
@@ -80,4 +88,32 @@ public class GameManager {
         this.gameMap = gameMap;
     }
 
+    @Override
+    public void update(int timer) {
+        if(true) {
+            createMonster(3);
+        }
+        else if(timer <= 0){
+            game.setLevel(game.getLevel() + 1);
+            timer = 30;
+        }
+    }
+
+    private void createMonster(int health){
+        game.getMonstersAlive().add(new Monster(health));
+        gameViewLogic.createMonster(health);
+    }
+
+    private synchronized void removeMonster(Monster monster){
+        if (monster.isPathFinished()){
+            game.setLives((game.getLives()) - 1);
+        }
+        else{
+            game.setResources((game.getResources()) + monster.getReward());
+            game.setScore(game.getScore() + (monster.getReward() * game.getLevel()));
+        }
+        monster.getView().setVisible(false);
+        game.getMonstersAlive().remove(monster);
+
+    }
 }

@@ -1,5 +1,5 @@
 package boucleJeu;
 
 public interface Observateur {
-    void update();
+    void update(int timer);
 }

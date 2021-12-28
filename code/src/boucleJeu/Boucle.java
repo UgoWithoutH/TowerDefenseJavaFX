@@ -7,12 +7,9 @@ public class Boucle extends Observable implements Runnable {
     public boolean running = false;
     public int tickCount = 0;
     Thread th;
-    public Boucle(){
-        start();
-    }
 
     public void start() {
-        new Thread().start();
+        new Thread().run();
         running = true;
     }
 
@@ -22,11 +19,13 @@ public class Boucle extends Observable implements Runnable {
 
     @Override
     public void run() {
-
+        int timer = 0;
         while(running) {
+            System.out.println("aaa");
             try {
                 sleep(30);
-                beep();
+                timer++;
+                beep(timer);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -34,7 +33,7 @@ public class Boucle extends Observable implements Runnable {
     }
 
 
-    public void beep() {
-        notifier();
+    public void beep(int timer) {
+        notifier(timer);
     }
 }

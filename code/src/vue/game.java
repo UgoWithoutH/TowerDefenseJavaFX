@@ -30,9 +30,13 @@ public class game {
         });
     }
 
+    public GameManager getGameManager(){
+        return gameManager;
+    }
+
     public void setGameManager(GameManager gameManager){
         this.gameManager = gameManager;
-        textScore.textProperty().bind(gameManager.game.scoreProperty().asString());
+        textScore.textProperty().bind(gameManager.getGame().scoreProperty().asString());
     }
 
     class buyTower implements EventHandler<MouseEvent> {

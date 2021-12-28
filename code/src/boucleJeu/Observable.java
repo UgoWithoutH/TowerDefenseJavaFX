@@ -13,9 +13,9 @@ public class Observable {
         observateurs.remove(listener);
     }
 
-    public void notifier(){
+    public void notifier(int timer){
         for(var observateur : observateurs){
-            observateur.update();
+            observateur.update(timer);
         }
     }
 }

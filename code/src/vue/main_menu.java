@@ -2,6 +2,7 @@ package vue;
 
 
 import game_logic.GameManager;
+import game_logic.GameViewLogic;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -12,23 +13,22 @@ import update.DrawMap;
 
 import java.io.IOException;
 
-public class main_menu {
+public class main_menu implements GameViewLogic {
 
 
     private  Scene gameScene;
     private vue.game gameController;
+    private Group tilemapGroup;
 
 
     public void startNewGame(){
         try{
             GameManager gameManager = new GameManager();
-            gameManager.initialize();
-
-            gameManager.setGameMap(new importMap(1280 ,800));
+            gameManager.initialize(this, new importMap(1280 ,800));
             DrawMap dr = new DrawMap(gameManager.getGameMap());
             FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);
             StackPane gamePane = new StackPane();
-            Group tilemapGroup = new Group();
+            tilemapGroup = new Group();
             tilemapGroup.getChildren().add(dr);
             gamePane.getChildren().add(tilemapGroup);
 
@@ -42,6 +42,11 @@ public class main_menu {
 
             Navigator.stage.setScene(gameScene);
         }catch (IOException ex){ex.printStackTrace();}
+    }
+
+    public void createMonster(int health){
+        GameManager gameManager = gameController.getGameManager();
+        tilemapGroup.getChildren().add(gameManager.getGame().getMonstersAlive().get(gameManager.getGame().getMonstersAlive().size() - 1).getView());
     }
 
     public void startNewGameConsole(){
