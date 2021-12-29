@@ -1,39 +1,63 @@
 package boucleJeu;
+import game_logic.GameManager;
+import javafx.application.Platform;
+
 import static java.lang.Thread.sleep;
 
 // TODO: 17/12/2021
 //  commpleter la Boucle de jeu (voir reccomencer)
 public class Boucle extends Observable implements Runnable {
-    public boolean running = false;
-    public int tickCount = 0;
-    Thread th;
+    private boolean running = true;
+    private long milis  = 50;
+    private int timer = 200;
+    GameManager gameManager;
 
-    public void start() {
-        new Thread().run();
-        running = true;
+    public Boucle(GameManager gameManager){
+        this.gameManager = gameManager;
     }
 
-    public void stopBoucle() {
-        running = false;
+    public boolean isRunning() {
+        return running;
+    }
+
+    public long getMilis(){return milis;}
+
+    public void setMilis(long milis){
+        this.milis = milis;
+    }
+
+    public void start() {
+        running = true;
+        run();
+    }
+
+    public void switchRunning() {
+        if(running)
+            running = false;
+        else
+            running = true;
     }
 
     @Override
     public void run() {
-        int timer = 0;
-        while(running) {
-            System.out.println("aaa");
-            try {
-                sleep(30);
-                timer++;
-                beep(timer);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            while (running) {
+                try {
+                    sleep(milis);
+                    timer--;
+                    beep(timer);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
     }
 
-
     public void beep(int timer) {
-        notifier(timer);
+        Platform.runLater(() -> notifier(timer));
+    }
+
+    public void attack() throws InterruptedException {
+        gameManager.attacker();
+        gameManager.getGameViewLogic().createProjectiles();
+
     }
 }

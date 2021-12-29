@@ -3,12 +3,24 @@ package vue;
 
 import game_logic.GameManager;
 import game_logic.GameViewLogic;
+import javafx.animation.PathTransition;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
 import model.Map.importMap;
+import model.characters.Projectile;
+import model.characters.Tower;
 import update.DrawMap;
 
 import java.io.IOException;
@@ -19,28 +31,31 @@ public class main_menu implements GameViewLogic {
     private  Scene gameScene;
     private vue.game gameController;
     private Group tilemapGroup;
+    private GameManager gameManager;
 
 
     public void startNewGame(){
         try{
-            GameManager gameManager = new GameManager();
-            gameManager.initialize(this, new importMap(1280 ,800));
-            DrawMap dr = new DrawMap(gameManager.getGameMap());
+            gameManager = new GameManager();
+            gameManager.initialize(this, new importMap(1216 ,608));
+            gameManager.setDrawMap(new DrawMap(gameManager.getGameMap()));
             FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);
-            StackPane gamePane = new StackPane();
+            GridPane gamePane = new GridPane();
+            //gamePane.setAlignment(Pos.TOP_LEFT);
             tilemapGroup = new Group();
-            tilemapGroup.getChildren().add(dr);
-            gamePane.getChildren().add(tilemapGroup);
+            tilemapGroup.getChildren().add(gameManager.getDrawMap());
+            gamePane.add(tilemapGroup,0,0);
 
-            // Opens stream to get controller reference
             Node gameUI = (Node) loader.load(Navigator.GAMEUI.openStream());
-            gamePane.getChildren().add(gameUI);
+            gameUI.setStyle("-fx-background-color: grey;");
+            gamePane.add(gameUI,0,1);
             gameScene = new Scene(gamePane);
             gameScene.getStylesheets().add(GameManager.class.getResource("/FXML/gamestyle.css").toExternalForm());
             gameController = loader.getController();
             gameController.setGameManager(gameManager);
-
+            gameController.setScene(gameScene);
             Navigator.stage.setScene(gameScene);
+            gameManager.start();
         }catch (IOException ex){ex.printStackTrace();}
     }
 
@@ -60,6 +75,40 @@ public class main_menu implements GameViewLogic {
 
     public void exitGame(){
         System.exit(1);
+    }
+
+    public void createProjectiles(){
+        Path projectilePath;
+        PathTransition animation;
+        for(Tower tower : gameManager.getGame().getPlayerTowers()){
+            for(Projectile projectile : tower.getProjectileList()){
+                // Create animation path
+                projectilePath = new Path(new MoveTo(projectile.getStartX() , projectile.getStartY()));
+                projectilePath.getElements().add(new LineTo(projectile.getEndX() , projectile.getEndY()));
+                animation = new PathTransition(Duration.millis(300) , projectilePath , projectile);
+
+                // When the animation finishes, hide it and remove it
+                animation.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        PathTransition finishedAnimation = (PathTransition) actionEvent.getSource();
+                        Projectile finishedProjectile = (Projectile) finishedAnimation.getNode();
+
+                        // Hide and remove from gui
+                        finishedProjectile.setVisible(false);
+                        tilemapGroup.getChildren().remove(finishedProjectile);
+
+                        // Remove monster if they are dead
+                        if(finishedProjectile.getTarget().isDead()){
+                            gameManager.removeMonster(finishedProjectile.getTarget());
+                        }
+                    }
+                });
+                Platform.runLater(() -> tilemapGroup.getChildren().add(projectile));
+                animation.play();
+            }
+            tower.getProjectileList().clear();
+        }
 
     }
 }

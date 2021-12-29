@@ -1,12 +1,15 @@
 package vue;
 
+import boucleJeu.Boucle;
 import game_logic.GameManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 public class game {
 
@@ -16,18 +19,17 @@ public class game {
     @FXML
     private Button buytower;
 
+    @FXML
+    private Button pauseRestart;
+
     private GameManager gameManager;
 
-    private boolean constructTowers = true;
+    private Scene scene;
+
+    private boolean constructTowers = false;
 
     @FXML
     public void initialize(){
-        buytower.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                constructTowers = true;
-            }
-        });
     }
 
     public GameManager getGameManager(){
@@ -39,11 +41,36 @@ public class game {
         textScore.textProperty().bind(gameManager.getGame().scoreProperty().asString());
     }
 
-    class buyTower implements EventHandler<MouseEvent> {
-
-        public void handle(MouseEvent me) {
-            System.out.println(me);
-        }
+    public void setScene(Scene scene){
+        this.scene = scene;
+        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(constructTowers){
+                    gameManager.buyTower(event.getX(),event.getY());
+                    constructTowers = false;
+                }
+            }
+        });
     }
 
+    public void buyTower(ActionEvent actionEvent) {
+        constructTowers = true;
+    }
+
+    public void Speed(ActionEvent actionEvent) {
+        Boucle boucle = gameManager.getBoucle();
+        boucle.setMilis(boucle.getMilis()/2);
+    }
+
+    public void pauseOrRestart(ActionEvent actionEvent) {
+        Boucle boucle = gameManager.getBoucle();
+        if(boucle.isRunning()){
+            pauseRestart.setText("Restart");
+        }
+        else {
+            pauseRestart.setText("Stop");
+        }
+        boucle.switchRunning();
+    }
 }

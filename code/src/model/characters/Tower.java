@@ -23,6 +23,7 @@ public class Tower {
     private int sellCost;
     private ArrayList<Projectile> projectileList;
     private Coordinate coords;
+    private boolean attacker = true;
 
 
 
@@ -111,6 +112,14 @@ public class Tower {
 
     public void setAttackSpeed(double attackSpeed) {
         this.attackSpeed = attackSpeed;
+    }
+
+    public boolean isAttaker() {
+        return attacker;
+    }
+
+    public void setAttaker(boolean attaker) {
+        this.attacker = attaker;
     }
 
 }

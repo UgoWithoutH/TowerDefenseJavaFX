@@ -13,8 +13,8 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    public final static int RESOLUTION_X = 1280;
-    public final static int RESOLUTION_Y = 800;
+    public final static int RESOLUTION_X = 1216;
+    public final static int RESOLUTION_Y = 672;
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -29,14 +29,11 @@ public class Main extends Application {
         stage.setHeight(RESOLUTION_Y);
         stage.setResizable(false);
         stage.show();
+        Scene scene = new Scene(loadMainPane());
+        stage.setScene(scene);
         Navigator.setStage(stage);
-
-        /**
-         * Si tu veux directement afficher le jeux
-         */
-
-        main_menu start = new main_menu();
-        start.startNewGame();
+        //main_menu start = new main_menu();
+        //start.startNewGame();
 
     }
 

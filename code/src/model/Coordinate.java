@@ -23,11 +23,11 @@ public class Coordinate {
     }
 
     public int getExactX(){
-        return x * 64;
+        return x * 64 + 32;
     }
 
     public int getExactY(){
-        return y * 64;
+        return y * 64 + 32;
     }
 
 
