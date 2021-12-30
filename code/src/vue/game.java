@@ -22,6 +22,9 @@ public class game {
     @FXML
     private Button pauseRestart;
 
+    @FXML
+    private Label coins;
+
     private GameManager gameManager;
 
     private Scene scene;
@@ -39,6 +42,7 @@ public class game {
     public void setGameManager(GameManager gameManager){
         this.gameManager = gameManager;
         textScore.textProperty().bind(gameManager.getGame().scoreProperty().asString());
+        coins.textProperty().bind(gameManager.getGame().coinsProperty().asString());
     }
 
     public void setScene(Scene scene){
@@ -63,14 +67,33 @@ public class game {
         boucle.setMilis(boucle.getMilis()/2);
     }
 
-    public void pauseOrRestart(ActionEvent actionEvent) {
+    public synchronized void pauseOrRestart(ActionEvent actionEvent) throws InterruptedException {//test
         Boucle boucle = gameManager.getBoucle();
-        if(boucle.isRunning()){
+        Thread threadBoucle = gameManager.getBoucleThread();
+
+        if(!gameManager.freeze){
+            gameManager.freeze = true;
+        }
+        else{
+            gameManager.freeze = false;
+            synchronized (this){
+                notifyAll();
+            }
+        }
+
+        /*if (boucle.isRunning()) {
             pauseRestart.setText("Restart");
-        }
-        else {
+            boucle.setRunning(false);
+            synchronized (threadBoucle){
+                threadBoucle.wait();
+            }
+        } else {
             pauseRestart.setText("Stop");
-        }
-        boucle.switchRunning();
+            boucle.setRunning(true);
+            synchronized (threadBoucle){
+                threadBoucle.notify();
+            }
+        }*/
+        //ne marche pas
     }
 }

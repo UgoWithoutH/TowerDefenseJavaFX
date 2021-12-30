@@ -20,8 +20,12 @@ public class GameState implements Serializable{
 
     private static GameState playerGame;
     private int state;
-    private int resources;
     private int level;
+
+    private IntegerProperty coins = new SimpleIntegerProperty(); //property pour binding
+    public int getCoins() {return coins.get();}
+    public void setCoins(int coins) {this.coins.set(coins);}
+    public IntegerProperty coinsProperty() {return coins;}
 
     private IntegerProperty score = new SimpleIntegerProperty(); //property pour binding
     public int getScore() {return score.get();}
@@ -36,8 +40,8 @@ public class GameState implements Serializable{
     //CONSTRUCTORS
     private GameState(){
         state = IS_RUNNING;
-        resources = 10000;
-        level = 0;
+        setCoins(100);
+        level = 1;
         score.set(0); // property
         lives = 20;
         playerTowers = new ArrayList<Tower>();
@@ -56,9 +60,10 @@ public class GameState implements Serializable{
     }
 
     //SETTERS
-    public void setResources(int resources){
+    /*public void setResources(int resources){
         this.resources = resources;
-    }
+    }*/
+
     public void setLevel(int level){
         this.level = level;
     }
@@ -70,9 +75,10 @@ public class GameState implements Serializable{
     }
 
     //GETTERS
-    public int getResources(){
+    /*public int getResources(){
         return resources;
-    }
+    }*/
+
     public int getLevel(){
         return level;
     }

@@ -14,10 +14,7 @@ public class Boucle extends Observable implements Runnable {
 
     public Boucle(GameManager gameManager){
         this.gameManager = gameManager;
-    }
-
-    public boolean isRunning() {
-        return running;
+        subscribe(gameManager);
     }
 
     public long getMilis(){return milis;}
@@ -31,24 +28,30 @@ public class Boucle extends Observable implements Runnable {
         run();
     }
 
-    public void switchRunning() {
-        if(running)
-            running = false;
-        else
-            running = true;
-    }
+    public boolean isRunning(){return running;}
+
+    public void setRunning(boolean run){running = run;}
 
     @Override
     public void run() {
-            while (running) {
-                try {
-                    sleep(milis);
-                    timer--;
-                    beep(timer);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        while(true) {
+            if(gameManager.freeze){
+                synchronized (this){
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+            try {
+                sleep(milis);
+                timer--;
+                beep(timer);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void beep(int timer) {

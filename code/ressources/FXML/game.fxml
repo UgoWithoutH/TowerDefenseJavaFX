@@ -16,5 +16,6 @@
       <Button fx:id="pauseRestart" mnemonicParsing="false" text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#pauseOrRestart"/>
       <Button mnemonicParsing="false" text="X2" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#Speed"/>
       <Label fx:id="textScore" GridPane.rowIndex="3" />
-      <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label text="monnaie : " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="coins" GridPane.rowIndex="3"/>
 </HBox>

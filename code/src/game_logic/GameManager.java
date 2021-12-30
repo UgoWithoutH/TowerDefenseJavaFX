@@ -26,6 +26,8 @@ public class GameManager implements Observateur {
     private ArrayList<Monster> monstersAlive;
     private Boucle boucle;
     private DrawMap drawMap;
+    private Thread boucleThread;
+    public boolean freeze = false; //test
 
     public GameManager(){
         resources = 10000;
@@ -34,8 +36,9 @@ public class GameManager implements Observateur {
         playerTowers = new ArrayList<Tower>();
         monstersAlive = new ArrayList<Monster>();
         boucle = new Boucle(this);
-        boucle.subscribe(this);
     }
+
+    public Thread getBoucleThread(){return boucleThread;}
 
     public GameViewLogic getGameViewLogic() {
         return gameViewLogic;
@@ -64,15 +67,13 @@ public class GameManager implements Observateur {
     }
 
     public void start(){
-        Thread t = new Thread(boucle::start);
-        t.start();
+        boucleThread = new Thread(boucle);
+        boucleThread.start();
     }
 
     public void initializeConsole() throws java.io.IOException{
 
-        /**
-         * Choix d'utiliser la classe generationMap ou importMap
-         */
+
         try {
             gameMap = new importMap(1280, 800);
         }catch (Exception e){
@@ -88,10 +89,7 @@ public class GameManager implements Observateur {
         }catch (Exception e){
             System.out.println("erreur getPath pour les monstres map" + e);
         }
-
         Tower tower1 = new Tower(10,10);
-
-
     }
 
     public Map getGameMap() {
@@ -129,7 +127,7 @@ public class GameManager implements Observateur {
             game.setLives((game.getLives()) - 1);
         }
         else{
-            game.setResources((game.getResources()) + monster.getReward());
+            game.setCoins((game.getCoins()) + monster.getReward());
             game.setScore(game.getScore() + (monster.getReward() * game.getLevel()));
         }
         monster.getView().setVisible(false);
@@ -156,10 +154,10 @@ public class GameManager implements Observateur {
         int yTile = (int)(yCords / 64);
 
         if(gameMap.nodeOpen(xTile,yTile)){
-            if(game.getResources() > 49) {
+            if(game.getCoins() > 49) {
                 Tower tower = new Tower(xTile, yTile);
                 game.addTower(tower);
-                game.setResources(game.getResources() - 50);
+                game.setCoins(game.getCoins() - 50);
                 gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);
                 drawMap.draw(gameMap);
                 gameViewLogic.createBuildProgressBar(xCords,yCords,tower);
