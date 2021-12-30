@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  */
 public class Tower {
-    private static final int BUILD_TIME = 10000;
+    private static final int BUILD_TIME_SECONDS = 2;
     private int attackDamage;
     private double attackSpeed;
     private int attackRange;
@@ -24,6 +24,7 @@ public class Tower {
     private ArrayList<Projectile> projectileList;
     private Coordinate coords;
     private boolean attacker = true;
+    private boolean buildable = false;
 
 
 
@@ -38,9 +39,18 @@ public class Tower {
         upgradeTime = 5000;
     }
 
-    /**
-     * Upgrades the towers stats.
-     */
+    public int getBuildTimeSeconds(){
+        return BUILD_TIME_SECONDS;
+    }
+
+    public boolean isBuildable() {
+        return buildable;
+    }
+
+    public void setBuildable(boolean buildable) {
+        this.buildable = buildable;
+    }
+
     public void upgradeTower(){
         attackDamage++;
         attackSpeed = attackSpeed - 0.1;

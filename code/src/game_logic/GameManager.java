@@ -2,19 +2,13 @@ package game_logic;
 
 import boucleJeu.Boucle;
 import boucleJeu.Observateur;
-import javafx.application.Platform;
+import game_logic.action.ActionTower;
 import model.characters.Monster;
 import update.DrawMap;
 import model.Map.Map;
 import model.Map.importMap;
 import model.Coordinate;
 import model.characters.Tower;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import vue.Navigator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -163,17 +157,19 @@ public class GameManager implements Observateur {
 
         if(gameMap.nodeOpen(xTile,yTile)){
             if(game.getResources() > 49) {
-                game.addTower(new Tower(xTile, yTile));
+                Tower tower = new Tower(xTile, yTile);
+                game.addTower(tower);
                 game.setResources(game.getResources() - 50);
                 gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);
                 drawMap.draw(gameMap);
+                gameViewLogic.createBuildProgressBar(xCords,yCords,tower);
             }
         }
     }
 
     public void attacker() throws InterruptedException {
         Monster target;
-        AttackService attackService;
+        ActionTower attackService;
         for (Tower tower : game.getPlayerTowers()) {
             if (tower.isAttaker()) {
                 int towerMinXRange = tower.getX() - tower.getAttackRange();
@@ -188,11 +184,13 @@ public class GameManager implements Observateur {
                             & target.getX() < towerMaxXRange
                             & target.getY() > towerMinYRange
                             & target.getY() < towerMaxYRange) {
-                        tower.createProjectile(target);
-                        attackService = new AttackService(target, tower);
+                        attackService = new ActionTower(target, tower);
                         Thread t = new Thread(attackService::run);
                         t.start();
-                        target.takeDamage(tower.getAttackDamage());
+                        if(tower.isBuildable()) {
+                            tower.createProjectile(target);
+                            target.takeDamage(tower.getAttackDamage());
+                        }
                         break;
                     }
                 }

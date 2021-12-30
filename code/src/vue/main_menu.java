@@ -3,7 +3,10 @@ package vue;
 
 import game_logic.GameManager;
 import game_logic.GameViewLogic;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.LineTo;
@@ -109,6 +113,32 @@ public class main_menu implements GameViewLogic {
             }
             tower.getProjectileList().clear();
         }
+    }
 
+    @Override
+    public void createBuildProgressBar(double xCords, double yCords, Tower t) {
+        Group g = new Group();
+        g.setLayoutX(xCords-32);
+        g.setLayoutY(yCords-32);
+        ProgressBar bar = new ProgressBar();
+        Timeline task = new Timeline(
+                new KeyFrame(
+                        Duration.ZERO,
+                        new KeyValue(bar.progressProperty(), 0)
+                ),
+                new KeyFrame(
+                        Duration.seconds(t.getBuildTimeSeconds()),
+                        new KeyValue(bar.progressProperty(), 1)
+                )
+        );
+        task.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                bar.setVisible(false);
+            }
+        });
+        g.getChildren().add(bar);
+        tilemapGroup.getChildren().add(g);
+        task.playFromStart();
     }
 }
