@@ -6,9 +6,10 @@ import game_logic.action.ActionTower;
 import model.characters.monster.Basic;
 import model.characters.monster.Monster;
 import model.characters.monster.Speed;
+import model.characters.tower.ClassicTower;
 import update.DrawMap;
 import model.Map.Map;
-import model.characters.Tower;
+import model.characters.tower.Tower;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,9 +24,6 @@ public class GameManager implements Observateur {
     private Map gameMap;
     private GameState game;
     private GameViewLogic gameViewLogic;
-    private int lives;
-    private int resources;
-    private int level;
     private ArrayList<Tower> playerTowers;
     private ArrayList<Monster> monstersAlive;
     private Boucle boucle;
@@ -37,9 +35,6 @@ public class GameManager implements Observateur {
 
 
     public GameManager() throws FileNotFoundException {
-        resources = 10000;
-        level = 0;
-        lives = 20;
         playerTowers = new ArrayList<Tower>();
         monstersAlive = new ArrayList<Monster>();
         boucle = new Boucle(this);
@@ -161,7 +156,7 @@ public class GameManager implements Observateur {
         int yTile = (int)(yCords / 64);
 
         if(gameMap.nodeOpen(xTile,yTile)){
-            Tower tower = new Tower(xTile, yTile);
+            Tower tower = new ClassicTower(xTile, yTile);
             if(game.getCoins() >= tower.getSellCost()) {
                 game.addTower(tower);
                 game.setCoins(game.getCoins() - 50);

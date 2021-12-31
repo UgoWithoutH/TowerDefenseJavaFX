@@ -1,20 +1,16 @@
-package model.characters;
+package model.characters.tower;
 
 
 
 import model.Coordinate;
 import javafx.scene.paint.Color;
+import model.characters.Projectile;
 import model.characters.monster.Monster;
 
 import java.util.ArrayList;
 
-/** TODO: 10/12/2021
- *   A verifier, mais il serait possible de mettre un patron de conception
- *   ETAT pour la gestion de nos tours http://www.goprod.bouhours.net/?page=pattern&pat_id=20
- *   je pense qu'on devra le coupler aux stratégies (pour chaque type de tours ajouter les patron ETAT)
- *
- */
-public class Tower {
+
+public abstract class Tower {
     private static final int BUILD_TIME_SECONDS = 2;
     private int attackDamage;
     private double attackSpeed;

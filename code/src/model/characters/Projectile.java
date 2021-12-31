@@ -10,7 +10,7 @@ public class Projectile extends Circle {
     private final int startY;
 
 
-    Projectile(Monster target , int towerX , int towerY , Color color){
+    public Projectile(Monster target, int towerX, int towerY, Color color){
         super(towerX , towerY , 5 , color);
         this.target = target;
         startX = towerX;

@@ -2,6 +2,7 @@ package vue;
 
 
 import game_logic.GameManager;
+import game_logic.GameState;
 import game_logic.GameViewLogic;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -11,20 +12,18 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import model.Map.importMap;
 import model.characters.Projectile;
-import model.characters.Tower;
+import model.characters.tower.Tower;
 import update.DrawMap;
 
 import java.io.IOException;
@@ -37,10 +36,12 @@ public class main_menu implements GameViewLogic {
     private vue.game gameController;
     private Group tilemapGroup;
     private GameManager gameManager;
+    private GameState gameState;
 
 
     public void startNewGame() throws URISyntaxException {
         try{
+            gameState = new GameState();
             gameManager = new GameManager();
             gameManager.initialize(this, new importMap(1216 ,608));
             gameManager.setDrawMap(new DrawMap(gameManager.getGameMap()));
@@ -98,6 +99,7 @@ public class main_menu implements GameViewLogic {
                         // Remove monster if they are dead
                         if(finishedProjectile.getTarget().isDead()){
                             gameManager.removeMonster(finishedProjectile.getTarget());
+                            gameState.setCoins(gameState.getCoins() + finishedProjectile.getTarget().getReward());
                         }
                     }
                 });
