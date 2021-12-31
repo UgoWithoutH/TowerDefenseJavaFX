@@ -28,6 +28,7 @@ import model.characters.Tower;
 import update.DrawMap;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class main_menu implements GameViewLogic {
 
@@ -38,7 +39,7 @@ public class main_menu implements GameViewLogic {
     private GameManager gameManager;
 
 
-    public void startNewGame(){
+    public void startNewGame() throws URISyntaxException {
         try{
             gameManager = new GameManager();
             gameManager.initialize(this, new importMap(1216 ,608));

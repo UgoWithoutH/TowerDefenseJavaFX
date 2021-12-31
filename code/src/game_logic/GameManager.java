@@ -12,6 +12,7 @@ import model.characters.Tower;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -64,13 +65,13 @@ public class GameManager implements Observateur {
         return game;
     }
 
-    public void initialize(GameViewLogic gameViewLogic, Map map) throws java.io.IOException{
+    public void initialize(GameViewLogic gameViewLogic, Map map) throws java.io.IOException, URISyntaxException {
         this.gameViewLogic = gameViewLogic;
         this.gameMap = map;
         game = GameState.getNewGame();
         game.setScore(200);
         Monster.setPath(gameMap.getPath());
-        enemyFile = new Scanner(new File("C:\\Users\\matto\\Desktop\\ProjetIUT\\towerdefensejavafx\\code\\ressources\\Level\\Level1\\EnemyFile.txt"));
+        enemyFile = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
     }
 
     public void start(){
