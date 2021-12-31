@@ -3,11 +3,11 @@ package game_logic;
 import boucleJeu.Boucle;
 import boucleJeu.Observateur;
 import game_logic.action.ActionTower;
-import model.characters.Monster;
+import model.characters.monster.Basic;
+import model.characters.monster.Monster;
+import model.characters.monster.Speed;
 import update.DrawMap;
 import model.Map.Map;
-import model.Map.importMap;
-import model.Coordinate;
 import model.characters.Tower;
 
 import java.io.File;
@@ -90,8 +90,7 @@ public class GameManager implements Observateur {
     public void update(int timer) {
         try {
             if( timer%40 == 0 && enemyFile.hasNextLine()) {
-                createMonster(3);
-                enemyFile.nextLine();
+                spawnEnemy(enemyFile.nextLine());
             }
             else if(timer <= 0){
                 game.setLevel(game.getLevel() + 1);
@@ -101,23 +100,31 @@ public class GameManager implements Observateur {
             gameViewLogic.createProjectiles();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
         }
     }
 
     public void spawnEnemy(String type) throws CloneNotSupportedException {
         switch (type) {
             case "Basic":
-                //enemyList.add(ArmoredEnemy.clone(map.getStart()));
+                game.getMonstersAlive().add(new Basic(5));
+                gameViewLogic.createMonster(5);
+                break;
+            case "Speed":
+                game.getMonstersAlive().add(new Speed(3));
+                gameViewLogic.createMonster(3);
                 break;
 
             default:
-                //enemyList.add(BasicEnemy.clone(map.getStart()));
+                game.getMonstersAlive().add(new Basic(3));
+                gameViewLogic.createMonster(3);
                 break;
         }
     }
 
     private void createMonster(int health){
-        game.getMonstersAlive().add(new Monster(health));
+        game.getMonstersAlive().add(new Speed(health));
         gameViewLogic.createMonster(health);
     }
 
@@ -140,7 +147,7 @@ public class GameManager implements Observateur {
             Monster monster;
             while(monsters.hasNext()) {
                 monster = monsters.next();
-                monster.updateLocation(1);
+                monster.updateLocation(monster.getMovementSpeed());
                 if(monster.isPathFinished()){
                     removeMonster(monster);
                 }

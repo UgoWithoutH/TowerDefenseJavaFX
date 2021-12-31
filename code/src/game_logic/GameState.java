@@ -1,6 +1,6 @@
 package game_logic;
 
-import model.characters.Monster;
+import model.characters.monster.Monster;
 import model.characters.Tower;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

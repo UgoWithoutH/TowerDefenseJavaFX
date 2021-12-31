@@ -1,4 +1,4 @@
-package model.characters;
+package model.characters.monster;
 
 import model.Coordinate;
 import javafx.scene.paint.Color;
@@ -6,12 +6,12 @@ import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 
-public class Monster {
+public abstract class Monster {
     private static ArrayList<Coordinate> path;
-    private Circle view;
+    Circle view;
     private final int radius = 10;
     private int healthPoints;
-    private int movementSpeed;
+    int movementSpeed;
     private int reward;
     private int direction;
     private boolean moveX;
@@ -64,6 +64,10 @@ public class Monster {
             isDead = true;
             pathFinished = false;
         }
+    }
+
+    public int getMovementSpeed() {
+        return movementSpeed;
     }
 
     public void updateLocation(int distance) {

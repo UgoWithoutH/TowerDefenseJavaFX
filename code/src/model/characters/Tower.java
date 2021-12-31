@@ -4,6 +4,7 @@ package model.characters;
 
 import model.Coordinate;
 import javafx.scene.paint.Color;
+import model.characters.monster.Monster;
 
 import java.util.ArrayList;
 
