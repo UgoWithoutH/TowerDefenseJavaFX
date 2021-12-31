@@ -25,6 +25,7 @@ public class Map {
     public final boolean OFFSET_Y_FLAG;
 
     public int[][] map;
+    private String enemyFile = "/Level/Level1/EnemyFile.txt";
 
     public Map(int mapWidth , int mapHeight) {
         RESOLUTION_WIDTH = mapWidth;
@@ -116,5 +117,13 @@ public class Map {
             return false;
         }
         return true;
+    }
+
+    public String getEnemyFile() {
+        return enemyFile;
+    }
+
+    public void setEnemyFile(String enemyFile) {
+        this.enemyFile = enemyFile;
     }
 }

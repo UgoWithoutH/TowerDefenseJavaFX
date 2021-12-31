@@ -68,14 +68,6 @@ public class main_menu implements GameViewLogic {
         tilemapGroup.getChildren().add(gameManager.getGame().getMonstersAlive().get(gameManager.getGame().getMonstersAlive().size() - 1).getView());
     }
 
-    public void startNewGameConsole(){
-        try{
-            GameManager gameManager = new GameManager();
-            gameManager.initializeConsole();
-        }catch (IOException ex){
-            System.out.println("Erreur startNewGameConsole" + ex);
-        }
-    }
 
     public void exitGame(){
         System.exit(1);

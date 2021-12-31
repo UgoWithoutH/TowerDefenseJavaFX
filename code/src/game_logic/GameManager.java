@@ -10,8 +10,11 @@ import model.Map.importMap;
 import model.Coordinate;
 import model.characters.Tower;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 
 public class GameManager implements Observateur {
@@ -28,8 +31,11 @@ public class GameManager implements Observateur {
     private DrawMap drawMap;
     private Thread boucleThread;
     public boolean freeze = false; //test
+    private Scanner enemyFile;
 
-    public GameManager(){
+
+
+    public GameManager() throws FileNotFoundException {
         resources = 10000;
         level = 0;
         lives = 20;
@@ -64,32 +70,12 @@ public class GameManager implements Observateur {
         game = GameState.getNewGame();
         game.setScore(200);
         Monster.setPath(gameMap.getPath());
+        enemyFile = new Scanner(new File("C:\\Users\\matto\\Desktop\\ProjetIUT\\towerdefensejavafx\\code\\ressources\\Level\\Level1\\EnemyFile.txt"));
     }
 
     public void start(){
         boucleThread = new Thread(boucle);
         boucleThread.start();
-    }
-
-    public void initializeConsole() throws java.io.IOException{
-
-
-        try {
-            gameMap = new importMap(1280, 800);
-        }catch (Exception e){
-            System.out.println("erreur import map" + e);
-        }
-
-        try {
-            ArrayList<Coordinate> val = gameMap.getPath();
-            for(Coordinate elem: val)
-            {
-                System.out.println(elem.getTileX() + "  " + elem.getTileY());
-            }
-        }catch (Exception e){
-            System.out.println("erreur getPath pour les monstres map" + e);
-        }
-        Tower tower1 = new Tower(10,10);
     }
 
     public Map getGameMap() {
@@ -103,8 +89,9 @@ public class GameManager implements Observateur {
     @Override
     public void update(int timer) {
         try {
-            if(timer/5 >= 1 && timer%40 == 0) {
+            if( timer%40 == 0 && enemyFile.hasNextLine()) {
                 createMonster(3);
+                enemyFile.nextLine();
             }
             else if(timer <= 0){
                 game.setLevel(game.getLevel() + 1);
@@ -114,6 +101,18 @@ public class GameManager implements Observateur {
             gameViewLogic.createProjectiles();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void spawnEnemy(String type) throws CloneNotSupportedException {
+        switch (type) {
+            case "Basic":
+                //enemyList.add(ArmoredEnemy.clone(map.getStart()));
+                break;
+
+            default:
+                //enemyList.add(BasicEnemy.clone(map.getStart()));
+                break;
         }
     }
 
@@ -154,8 +153,8 @@ public class GameManager implements Observateur {
         int yTile = (int)(yCords / 64);
 
         if(gameMap.nodeOpen(xTile,yTile)){
-            if(game.getCoins() > 49) {
-                Tower tower = new Tower(xTile, yTile);
+            Tower tower = new Tower(xTile, yTile);
+            if(game.getCoins() >= tower.getSellCost()) {
                 game.addTower(tower);
                 game.setCoins(game.getCoins() - 50);
                 gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);

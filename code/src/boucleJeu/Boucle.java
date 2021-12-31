@@ -4,8 +4,7 @@ import javafx.application.Platform;
 
 import static java.lang.Thread.sleep;
 
-// TODO: 17/12/2021
-//  commpleter la Boucle de jeu (voir reccomencer)
+
 public class Boucle extends Observable implements Runnable {
     private boolean running = true;
     private long milis  = 50;
