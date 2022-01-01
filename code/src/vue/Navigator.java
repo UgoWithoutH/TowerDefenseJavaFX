@@ -26,17 +26,6 @@ public class Navigator {
     public static void setStage(Stage stage1){
         stage = stage1;
     }
-    /** main layout controller. */
-    public static main_vue mainController;
-
-    /**
-     * enregistre le Controller Main
-     *
-     * @param mainController Main controller
-     */
-    public static void setMainController(main_vue mainController) {
-        Navigator.mainController = mainController;
-    }
 
     /**
      * Charge la vue spécifié par le holder.FXML lors du
@@ -55,10 +44,16 @@ public class Navigator {
      */
     public static void loadVista(String fxml) {
         try {
-            mainController.setVista(FXMLLoader.load((Navigator.class.getResource(fxml))));
+            stage.setScene(new Scene(FXMLLoader.load((Navigator.class.getResource(fxml)))));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void mainMenu(){
+        Navigator.loadVista("/FXML/main_menu.fxml");
+        stage.getScene().getStylesheets().setAll(
+                Navigator.class.getResource("/FXML/menustyle.css").toExternalForm());
     }
 
 }

@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
@@ -27,7 +27,7 @@ import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import model.Map.importMap;
 import model.characters.Projectile;
-import model.characters.Tower;
+import model.characters.tower.Tower;
 import update.DrawMap;
 
 import java.io.IOException;
@@ -49,16 +49,13 @@ public class main_menu implements GameViewLogic {
             gameManager.setDrawMap(new DrawMap(gameManager.getGameMap()));
             FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);
             GridPane gamePane = new GridPane();
-            //gamePane.setAlignment(Pos.TOP_LEFT);
             tilemapGroup = new Group();
             tilemapGroup.getChildren().add(gameManager.getDrawMap());
             gamePane.add(tilemapGroup,0,0);
-
-            Node gameUI = (Node) loader.load(Navigator.GAMEUI.openStream());
-            gameUI.setStyle("-fx-background-color: grey;");
+            HBox gameUI = loader.load(Navigator.GAMEUI.openStream());
+            gamePane.getStylesheets().add(GameManager.class.getResource("/FXML/menustyle.css").toExternalForm());
             gamePane.add(gameUI,0,1);
             gameScene = new Scene(gamePane);
-            //gameScene.getStylesheets().add(GameManager.class.getResource("/FXML/gameOverStyle.css").toExternalForm());
             gameController = loader.getController();
             gameController.setGameManager(gameManager);
             gameController.setScene(gameScene);
@@ -82,23 +79,16 @@ public class main_menu implements GameViewLogic {
         PathTransition animation;
         for(Tower tower : gameManager.getGame().getPlayerTowers()){
             for(Projectile projectile : tower.getProjectileList()){
-                // Create animation path
                 projectilePath = new Path(new MoveTo(projectile.getStartX() , projectile.getStartY()));
                 projectilePath.getElements().add(new LineTo(projectile.getEndX() , projectile.getEndY()));
                 animation = new PathTransition(Duration.millis(300) , projectilePath , projectile);
-
-                // When the animation finishes, hide it and remove it
                 animation.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         PathTransition finishedAnimation = (PathTransition) actionEvent.getSource();
                         Projectile finishedProjectile = (Projectile) finishedAnimation.getNode();
-
-                        // Hide and remove from gui
                         finishedProjectile.setVisible(false);
                         tilemapGroup.getChildren().remove(finishedProjectile);
-
-                        // Remove monster if they are dead
                         if(finishedProjectile.getTarget().isDead()){
                             gameManager.removeMonster(finishedProjectile.getTarget());
                             gameManager.updateStates(finishedProjectile.getTarget());
@@ -142,23 +132,21 @@ public class main_menu implements GameViewLogic {
     @Override
     public void gameOver() {
         Label l = new Label("Game Over");
+        l.setId("gameOverLabel");
         Button accueil = new Button("Accueil");
         accueil.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    Navigator.getStage().setScene(new Scene(FXMLLoader.load((Navigator.class.getResource("/FXML/main_menu.fxml")))));
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    Navigator.mainMenu();
                 }
-            }
         });
-        VBox sp = new VBox(l,accueil);
+        VBox content = new VBox(l,accueil);
+        content.setMaxSize(300,100);
+        content.setId("contentGameOver");
+        content.setAlignment(Pos.CENTER);
+        VBox sp = new VBox(content);
         sp.setPrefSize(tilemapGroup.getBoundsInParent().getWidth(),tilemapGroup.getBoundsInParent().getHeight());
-        sp.setStyle("-fx-border-color: red;");
         sp.setAlignment(Pos.CENTER);
-        l.setPrefSize(100,100);
-        l.getStylesheets().add(GameManager.class.getResource("/FXML/gameOverStyle.css").toExternalForm());
         l.setAlignment(Pos.CENTER);
         tilemapGroup.getChildren().add(sp);
     }

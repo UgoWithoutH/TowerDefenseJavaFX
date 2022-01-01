@@ -31,10 +31,6 @@ public class game {
 
     private boolean constructTowers = false;
 
-    @FXML
-    public void initialize(){
-    }
-
     public GameManager getGameManager(){
         return gameManager;
     }
@@ -50,7 +46,7 @@ public class game {
         scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(constructTowers){
+                if(constructTowers && !gameManager.getGame().isGameOver()){
                     gameManager.buyTower(event.getX(),event.getY());
                     constructTowers = false;
                 }

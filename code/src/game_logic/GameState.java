@@ -1,7 +1,7 @@
 package game_logic;
 
 import model.characters.monster.Monster;
-import model.characters.Tower;
+import model.characters.tower.Tower;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -41,7 +41,7 @@ public class GameState implements Serializable{
     public IntegerProperty scoreProperty() {return score;}
 
     //CONSTRUCTORS
-    private GameState(){
+    public GameState(){
         state = IS_RUNNING;
         setCoins(100);
         level = 1;

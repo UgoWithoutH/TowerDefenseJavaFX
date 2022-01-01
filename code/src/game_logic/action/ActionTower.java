@@ -1,7 +1,7 @@
 package game_logic.action;
 
 import model.characters.monster.Monster;
-import model.characters.Tower;
+import model.characters.tower.Tower;
 
 import static java.lang.Thread.sleep;
 

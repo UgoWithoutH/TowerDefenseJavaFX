@@ -1,6 +1,6 @@
 package game_logic;
 
-import model.characters.Tower;
+import model.characters.tower.Tower;
 
 public interface GameViewLogic {
     void createMonster(int health);
