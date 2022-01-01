@@ -2,7 +2,7 @@
 -fx-background-color: "GRAY";
 }
 
-.button {
+.button, #contentGameOver {
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(#444444, #777777);
@@ -11,13 +11,6 @@
 }
 .button:hover {
     -fx-background-color: linear-gradient(#777777, #444444);
-}
-#contentGameOver{
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#444444, #777777);
-    -fx-border-color: white;
-    -fx-border-width: 1;
 }
 
 #tdlabel {

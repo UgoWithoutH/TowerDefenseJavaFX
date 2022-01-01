@@ -125,7 +125,7 @@ public class GameManager implements Observateur {
         monster.getView().setVisible(false);
     }
 
-    public synchronized void updateStates(Monster monster){
+    public void updateStates(Monster monster){
         if(!game.isGameOver()) {
             if (monster.isPathFinished()) {
                 game.setLives((game.getLives()) - 1);
@@ -191,7 +191,6 @@ public class GameManager implements Observateur {
     public void attacker() throws InterruptedException {
         Monster target;
         ActionTower attackService;
-        ArrayList<Monster> list = new ArrayList<>();
         for (Tower tower : game.getPlayerTowers()) {
             if (tower.isAttaker()) {
                 int towerMinXRange = tower.getX() - tower.getAttackRange();
@@ -212,7 +211,6 @@ public class GameManager implements Observateur {
                         if(tower.isBuildable()) {
                             tower.createProjectile(target);
                             target.takeDamage(tower.getAttackDamage());
-                            list.add(target);
                         }
                         break;
                     }
