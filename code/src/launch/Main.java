@@ -21,7 +21,7 @@ public class Main extends Application {
         stage.setTitle("Tower Defense");
         stage.setScene(
                 createScene(
-                        loadMainPane()
+                        loadMainPane(stage)
                 )
         );
 
@@ -29,7 +29,7 @@ public class Main extends Application {
         stage.setHeight(RESOLUTION_Y);
         stage.setResizable(false);
         stage.show();
-        Scene scene = new Scene(loadMainPane());
+        Scene scene = new Scene(loadMainPane(stage));
         stage.setScene(scene);
         Navigator.setStage(stage);
         //main_menu start = new main_menu();
@@ -41,7 +41,7 @@ public class Main extends Application {
      * Charge le Holder (vue Principale)
      * et premiere vue de l'application
      */
-    private Pane loadMainPane() throws IOException {
+    private Pane loadMainPane(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
 
         Pane mainPane = (Pane) loader.load(
@@ -53,6 +53,7 @@ public class Main extends Application {
         main_vue mainController = loader.getController();
 
         Navigator.setMainController(mainController);
+        Navigator.setStage(stage);
         Navigator.loadVista("/FXML/main_menu.fxml");
 
         return mainPane;

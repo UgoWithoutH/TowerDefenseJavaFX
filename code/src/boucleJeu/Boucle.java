@@ -1,6 +1,7 @@
 package boucleJeu;
 import game_logic.GameManager;
 import javafx.application.Platform;
+import model.characters.monster.Monster;
 
 import static java.lang.Thread.sleep;
 
@@ -34,6 +35,9 @@ public class Boucle extends Observable implements Runnable {
     @Override
     public void run() {
         while(true) {
+            if(gameManager.getGame().isGameOver()){
+                break;
+            }
             if(gameManager.freeze){
                 synchronized (this){
                     try {

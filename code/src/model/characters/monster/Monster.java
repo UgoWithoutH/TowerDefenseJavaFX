@@ -71,7 +71,7 @@ public abstract class Monster {
     }
 
     public void updateLocation(int distance) {
-
+        if(pathFinished) return;
         // Déplacement selon l'axe des x
         if (moveX) {
             view.setCenterX(view.getCenterX() + distance);

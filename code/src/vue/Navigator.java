@@ -3,6 +3,7 @@ package vue;
 //import game.engine.GameManager;
 import game_logic.GameManager;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,13 +19,15 @@ public class Navigator {
     public static final URL GAMEUI = GameManager.class.getResource("/FXML/game.fxml");
 
     /** stage for game*/
-    public static Stage stage;
+    private static Stage stage;
+
+    public static Stage getStage(){return stage;}
 
     public static void setStage(Stage stage1){
         stage = stage1;
     }
     /** main layout controller. */
-    private static main_vue mainController;
+    public static main_vue mainController;
 
     /**
      * enregistre le Controller Main

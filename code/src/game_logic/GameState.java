@@ -21,6 +21,14 @@ public class GameState implements Serializable{
     private static GameState playerGame;
     private int state;
     private int level;
+    private ArrayList<Tower> playerTowers;
+    private ArrayList<Monster> monstersAlive;
+    private boolean gameOver = false;
+
+    private IntegerProperty lives = new SimpleIntegerProperty();
+    public int getLives(){return lives.get();}
+    public void setLives(int lives){this.lives.set(lives);}
+    public IntegerProperty livesProperty() {return lives;}
 
     private IntegerProperty coins = new SimpleIntegerProperty(); //property pour binding
     public int getCoins() {return coins.get();}
@@ -32,18 +40,13 @@ public class GameState implements Serializable{
     public void setScore(int score) {this.score.set(score);}
     public IntegerProperty scoreProperty() {return score;}
 
-    private int lives;
-    private ArrayList<Tower> playerTowers;
-    private ArrayList<Monster> monstersAlive;
-
-
     //CONSTRUCTORS
     private GameState(){
         state = IS_RUNNING;
         setCoins(100);
         level = 1;
         score.set(0); // property
-        lives = 20;
+        setLives(2);
         playerTowers = new ArrayList<Tower>();
         monstersAlive = new ArrayList<Monster>();
     }
@@ -59,32 +62,19 @@ public class GameState implements Serializable{
             return playerGame;
     }
 
-    //SETTERS
-    /*public void setResources(int resources){
-        this.resources = resources;
-    }*/
 
+    public boolean isGameOver() {return gameOver;}
+    public void setGameOver(boolean gameOver) {this.gameOver = gameOver;}
     public void setLevel(int level){
         this.level = level;
-    }
-    public void setLives(int lives){
-        this.lives = lives;
     }
     public void setState(int state) {
         this.state = state;
     }
 
     //GETTERS
-    /*public int getResources(){
-        return resources;
-    }*/
-
     public int getLevel(){
         return level;
-    }
-
-    public int getLives() {
-        return lives;
     }
     public int getState() {
         return state;

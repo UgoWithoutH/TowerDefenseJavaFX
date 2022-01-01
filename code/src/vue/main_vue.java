@@ -8,7 +8,7 @@ public class main_vue {
 
     /** Switch de vue par holder FXML (fx:id). */
     @FXML
-    private StackPane vistaHolder;
+    public StackPane vistaHolder;
 
     /**
      * Remplace la vue affichée par une vue sélectionée

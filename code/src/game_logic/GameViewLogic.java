@@ -9,5 +9,7 @@ public interface GameViewLogic {
 
     void createBuildProgressBar(double xCords, double yCords, Tower t);
 
+    void gameOver();
+
     //pas terminé
 }

@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 
@@ -23,9 +24,6 @@ public class GameManager implements Observateur {
     private Map gameMap;
     private GameState game;
     private GameViewLogic gameViewLogic;
-    private int lives;
-    private int resources;
-    private int level;
     private ArrayList<Tower> playerTowers;
     private ArrayList<Monster> monstersAlive;
     private Boucle boucle;
@@ -37,9 +35,6 @@ public class GameManager implements Observateur {
 
 
     public GameManager() throws FileNotFoundException {
-        resources = 10000;
-        level = 0;
-        lives = 20;
         playerTowers = new ArrayList<Tower>();
         monstersAlive = new ArrayList<Monster>();
         boucle = new Boucle(this);
@@ -124,25 +119,27 @@ public class GameManager implements Observateur {
         }
     }
 
-    private void createMonster(int health){
-        game.getMonstersAlive().add(new Speed(health));
-        gameViewLogic.createMonster(health);
+    public void removeMonster(Monster monster){
+        game.getMonstersAlive().remove(monster);
+        monster.getView().setVisible(false);
     }
 
-    public synchronized void removeMonster(Monster monster){
-        if (monster.isPathFinished()){
-            game.setLives((game.getLives()) - 1);
+    public synchronized void updateStates(Monster monster){
+        if(!game.isGameOver()) {
+            if (monster.isPathFinished()) {
+                game.setLives((game.getLives()) - 1);
+            } else {
+                game.setCoins((game.getCoins()) + monster.getReward());
+                game.setScore(game.getScore() + (monster.getReward() * game.getLevel()));
+            }
         }
-        else{
-            game.setCoins((game.getCoins()) + monster.getReward());
-            game.setScore(game.getScore() + (monster.getReward() * game.getLevel()));
-        }
-        monster.getView().setVisible(false);
-        game.getMonstersAlive().remove(monster);
-
+        //monster.getView().setVisible(false);
+        //game.getMonstersAlive().remove(monster);
     }
 
     private void updateLocations(){
+        ArrayList<Monster> monsterEnd = new ArrayList<>();
+        ArrayList<Monster> monsterListToDelete;
         if(!game.getMonstersAlive().isEmpty()){
             Iterator<Monster> monsters = game.getMonstersAlive().iterator();
             Monster monster;
@@ -150,10 +147,28 @@ public class GameManager implements Observateur {
                 monster = monsters.next();
                 monster.updateLocation(monster.getMovementSpeed());
                 if(monster.isPathFinished()){
-                    removeMonster(monster);
+                    updateStates(monster);
+                    monsterEnd.add(monster);
+                    if(game.getLives() == 0){
+                        game.setGameOver(true);
+                        gameOver();
+                        return;
+                    }
                 }
             }
+            for(Monster m : monsterEnd){
+                game.getMonstersAlive().remove(m);
+                m.getView().setVisible(false);
+            }
         }
+    }
+
+    public void gameOver(){
+        var listMonster = game.getMonstersAlive();
+        for(Monster monster : listMonster){
+            monster.getView().setVisible(false);
+        }
+        gameViewLogic.gameOver();
     }
 
     public void buyTower(double xCords , double yCords){
@@ -175,6 +190,7 @@ public class GameManager implements Observateur {
     public void attacker() throws InterruptedException {
         Monster target;
         ActionTower attackService;
+        ArrayList<Monster> list = new ArrayList<>();
         for (Tower tower : game.getPlayerTowers()) {
             if (tower.isAttaker()) {
                 int towerMinXRange = tower.getX() - tower.getAttackRange();
@@ -195,6 +211,7 @@ public class GameManager implements Observateur {
                         if(tower.isBuildable()) {
                             tower.createProjectile(target);
                             target.takeDamage(tower.getAttackDamage());
+                            list.add(target);
                         }
                         break;
                     }

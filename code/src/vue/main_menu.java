@@ -15,9 +15,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -55,11 +58,11 @@ public class main_menu implements GameViewLogic {
             gameUI.setStyle("-fx-background-color: grey;");
             gamePane.add(gameUI,0,1);
             gameScene = new Scene(gamePane);
-            gameScene.getStylesheets().add(GameManager.class.getResource("/FXML/gamestyle.css").toExternalForm());
+            //gameScene.getStylesheets().add(GameManager.class.getResource("/FXML/gameOverStyle.css").toExternalForm());
             gameController = loader.getController();
             gameController.setGameManager(gameManager);
             gameController.setScene(gameScene);
-            Navigator.stage.setScene(gameScene);
+            Navigator.getStage().setScene(gameScene);
             gameManager.start();
         }catch (IOException ex){ex.printStackTrace();}
     }
@@ -98,6 +101,7 @@ public class main_menu implements GameViewLogic {
                         // Remove monster if they are dead
                         if(finishedProjectile.getTarget().isDead()){
                             gameManager.removeMonster(finishedProjectile.getTarget());
+                            gameManager.updateStates(finishedProjectile.getTarget());
                         }
                     }
                 });
@@ -133,5 +137,29 @@ public class main_menu implements GameViewLogic {
         g.getChildren().add(bar);
         tilemapGroup.getChildren().add(g);
         task.playFromStart();
+    }
+
+    @Override
+    public void gameOver() {
+        Label l = new Label("Game Over");
+        Button accueil = new Button("Accueil");
+        accueil.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    Navigator.getStage().setScene(new Scene(FXMLLoader.load((Navigator.class.getResource("/FXML/main_menu.fxml")))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        VBox sp = new VBox(l,accueil);
+        sp.setPrefSize(tilemapGroup.getBoundsInParent().getWidth(),tilemapGroup.getBoundsInParent().getHeight());
+        sp.setStyle("-fx-border-color: red;");
+        sp.setAlignment(Pos.CENTER);
+        l.setPrefSize(100,100);
+        l.getStylesheets().add(GameManager.class.getResource("/FXML/gameOverStyle.css").toExternalForm());
+        l.setAlignment(Pos.CENTER);
+        tilemapGroup.getChildren().add(sp);
     }
 }
