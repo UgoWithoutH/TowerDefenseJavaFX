@@ -1,15 +1,8 @@
 package launch;
 
-import vue.main_vue;
-import vue.main_menu;
 import vue.Navigator;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class Main extends Application {
 

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <HBox alignment="CENTER" spacing="5" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.game">
       <Button mnemonicParsing="false" text="Start" GridPane.rowIndex="1" />
-      <Button fx:id="buytower" mnemonicParsing="false" text="Buy" GridPane.rowIndex="2" onAction="#buyTower"/>
+      <Button fx:id="buytower" mnemonicParsing="false" GridPane.rowIndex="2" onAction="#buyTower"/>
       <Button fx:id="pauseRestart" mnemonicParsing="false" text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#pauseOrRestart"/>
       <Button mnemonicParsing="false" text="X2" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#Speed"/>
       <Label fx:id="textScore" GridPane.rowIndex="3" />

@@ -8,8 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 
 public class game {
 
@@ -30,6 +35,19 @@ public class game {
     private Scene scene;
 
     private boolean constructTowers = false;
+
+    public void initialize(){
+        try {
+            ImageView im = new ImageView(new Image(String.valueOf(getClass().getResource("/tower.PNG").toURI().toURL())));
+            im.setFitHeight(20);
+            im.setFitWidth(20);
+            buytower.setGraphic(im);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 
     public GameManager getGameManager(){
         return gameManager;
