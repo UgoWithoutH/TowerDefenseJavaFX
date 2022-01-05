@@ -30,7 +30,6 @@ public class GameManager implements Observateur {
     private Boucle boucle;
     private DrawMap drawMap;
     private Thread boucleThread;
-    public boolean freeze = false; //test
     private Scanner enemyFile;
 
 
@@ -39,6 +38,7 @@ public class GameManager implements Observateur {
         playerTowers = new ArrayList<Tower>();
         monstersAlive = new ArrayList<Monster>();
         boucle = new Boucle(this);
+        boucle.setRunning(true);
     }
 
     public Thread getBoucleThread(){return boucleThread;}
@@ -86,7 +86,7 @@ public class GameManager implements Observateur {
     @Override
     public void update(int timer) {
         try {
-            if( timer%40 == 0 && enemyFile.hasNextLine()) {
+            if(timer%40 == 0 && enemyFile.hasNextLine()) {
                 spawnEnemy(enemyFile.nextLine());
             }
             else if(timer <= 0){

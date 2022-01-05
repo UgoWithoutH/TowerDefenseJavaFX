@@ -5,12 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
 <HBox alignment="CENTER" spacing="5" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.game">
-      <Button mnemonicParsing="false" text="Start" GridPane.rowIndex="1" />
-      <Button fx:id="buytower" mnemonicParsing="false" GridPane.rowIndex="2" onAction="#buyTower"/>
-      <Button fx:id="pauseRestart" mnemonicParsing="false" text="Stop" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#pauseOrRestart"/>
-      <Button mnemonicParsing="false" text="X2" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#Speed"/>
-      <Label fx:id="textScore" GridPane.rowIndex="3" />
-      <Label text="monnaie : " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label fx:id="coins" GridPane.rowIndex="3"/>
+      <Button mnemonicParsing="false" text="Start"/>
+      <Button fx:id="buytower" mnemonicParsing="false" onAction="#buyTower"/>
+      <Button fx:id="pauseRestart" mnemonicParsing="false" text="Stop" onAction="#pauseOrRestart"/>
+      <Button fx:id="speed" mnemonicParsing="false" text="X2" onAction="#Speed"/>
+      <Label fx:id="textScore"/>
+      <Label text="monnaie : "/>
+      <Label fx:id="coins"/>
+      <Label fx:id="coeur"/>
 </HBox>

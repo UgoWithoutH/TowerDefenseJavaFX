@@ -7,15 +7,20 @@ import static java.lang.Thread.sleep;
 
 
 public class Boucle extends Observable implements Runnable {
-    private boolean running = true;
     private long milis  = 50;
     private int timer = 200;
+    private boolean running = false;
+    private boolean speed = false;
     GameManager gameManager;
 
     public Boucle(GameManager gameManager){
         this.gameManager = gameManager;
         subscribe(gameManager);
     }
+
+    public boolean isSpeed() {return speed;}
+
+    public void setSpeed(boolean speed) {this.speed = speed;    }
 
     public long getMilis(){return milis;}
 
@@ -34,18 +39,9 @@ public class Boucle extends Observable implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
+        while(isRunning()) {
             if(gameManager.getGame().isGameOver()){
                 break;
-            }
-            if(gameManager.freeze){
-                synchronized (this){
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
             try {
                 sleep(milis);

@@ -20,15 +20,16 @@ public class game {
 
     @FXML
     private Label textScore;
-
     @FXML
     private Button buytower;
-
     @FXML
     private Button pauseRestart;
-
     @FXML
     private Label coins;
+    @FXML
+    private Button speed;
+    @FXML
+    private Label coeur;
 
     private GameManager gameManager;
 
@@ -42,6 +43,10 @@ public class game {
             im.setFitHeight(20);
             im.setFitWidth(20);
             buytower.setGraphic(im);
+            ImageView imCoeur = new ImageView(new Image(String.valueOf(getClass().getResource("/coeur.PNG").toURI().toURL())));
+            imCoeur.setFitHeight(20);
+            imCoeur.setFitWidth(20);
+            coeur.setGraphic(imCoeur);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
@@ -78,36 +83,30 @@ public class game {
 
     public void Speed(ActionEvent actionEvent) {
         Boucle boucle = gameManager.getBoucle();
-        boucle.setMilis(boucle.getMilis()/2);
+        if(!boucle.isSpeed()){
+            speed.setText("Normal");
+            boucle.setSpeed(true);
+            boucle.setMilis(boucle.getMilis()/2);
+        }
+        else{
+            speed.setText("X2");
+            boucle.setSpeed(false);
+            boucle.setMilis(boucle.getMilis()*2);
+        }
     }
 
     public synchronized void pauseOrRestart(ActionEvent actionEvent) throws InterruptedException {//test
         Boucle boucle = gameManager.getBoucle();
         Thread threadBoucle = gameManager.getBoucleThread();
 
-        if(!gameManager.freeze){
-            gameManager.freeze = true;
-        }
-        else{
-            gameManager.freeze = false;
-            synchronized (this){
-                notifyAll();
-            }
-        }
-
-        /*if (boucle.isRunning()) {
+        if(gameManager.getBoucle().isRunning()){
             pauseRestart.setText("Restart");
             boucle.setRunning(false);
-            synchronized (threadBoucle){
-                threadBoucle.wait();
-            }
-        } else {
+        }
+        else{
             pauseRestart.setText("Stop");
             boucle.setRunning(true);
-            synchronized (threadBoucle){
-                threadBoucle.notify();
-            }
-        }*/
-        //ne marche pas
+            gameManager.start();
+        }
     }
 }
