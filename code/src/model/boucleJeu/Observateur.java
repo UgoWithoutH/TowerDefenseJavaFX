@@ -1,4 +1,4 @@
-package boucleJeu;
+package model.boucleJeu;
 
 public interface Observateur {
 

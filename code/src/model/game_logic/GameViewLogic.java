@@ -1,11 +1,11 @@
-package game_logic;
+package model.game_logic;
 
-import javafx.scene.Group;
-import model.characters.tower.Tower;
+import model.ScoreRanking;
 
 public interface GameViewLogic {
 
     void createMonster(int health);
     void gameOver();
+    void victory(GameState game);
 
 }

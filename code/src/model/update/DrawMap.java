@@ -1,4 +1,4 @@
-package update;
+package model.update;
 
 import model.Map.Map;
 import javafx.scene.image.*;

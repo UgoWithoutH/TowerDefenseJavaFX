@@ -2,7 +2,7 @@
 -fx-background-color: "GRAY";
 }
 
-.button, #contentGameOver {
+.button, #content {
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(#444444, #777777);
@@ -24,7 +24,7 @@
     -fx-fill: #818181;
 }
 
-#gameOverLabel{
+#labelText{
     -fx-text-fill: red;
     -fx-font-size: 50px;
 }

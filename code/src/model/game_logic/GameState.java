@@ -1,4 +1,4 @@
-package game_logic;
+package model.game_logic;
 
 import model.characters.monster.Monster;
 import model.characters.tower.Tower;
@@ -14,32 +14,31 @@ import java.util.ArrayList;
 public class GameState implements Serializable{
 
     private static GameState playerGame;
-    private int level;
     private ArrayList<Tower> playerTowers;
     private ArrayList<Monster> monstersAlive;
     private boolean running = false;
     private boolean speed = false;
-    private boolean gameOver = false;
-
+    private IntegerProperty level = new SimpleIntegerProperty();
+        public int getLevel() {return level.get();}
+        public IntegerProperty levelProperty() {return level;}
+        public void setLevel(int level) {this.level.set(level);}
     private IntegerProperty lives = new SimpleIntegerProperty();
-    public int getLives(){return lives.get();}
-    public void setLives(int lives){this.lives.set(lives);}
-    public IntegerProperty livesProperty() {return lives;}
-
-    private IntegerProperty coins = new SimpleIntegerProperty(); //property pour binding
-    public int getCoins() {return coins.get();}
-    public void setCoins(int coins) {this.coins.set(coins);}
-    public IntegerProperty coinsProperty() {return coins;}
-
-    private IntegerProperty score = new SimpleIntegerProperty(); //property pour binding
-    public int getScore() {return score.get();}
-    public void setScore(int score) {this.score.set(score);}
-    public IntegerProperty scoreProperty() {return score;}
+        public int getLives(){return lives.get();}
+        public IntegerProperty livesProperty() {return lives;}
+        public void setLives(int lives){this.lives.set(lives);}
+    private IntegerProperty coins = new SimpleIntegerProperty();
+        public int getCoins() {return coins.get();}
+        public IntegerProperty coinsProperty() {return coins;}
+        public void setCoins(int coins) {this.coins.set(coins);}
+    private IntegerProperty score = new SimpleIntegerProperty();
+        public int getScore() {return score.get();}
+        public IntegerProperty scoreProperty() {return score;}
+        public void setScore(int score) {this.score.set(score);}
 
     public GameState(){
         setCoins(100);
-        level = 1;
-        score.set(0); // property
+        setLevel(1);
+        setScore(0);
         setLives(2);
         playerTowers = new ArrayList<Tower>();
         monstersAlive = new ArrayList<Monster>();
@@ -54,22 +53,11 @@ public class GameState implements Serializable{
             return playerGame;
     }
 
-
     public boolean isSpeed() {return speed;}
     public void setSpeed(boolean speed) {this.speed = speed;}
 
     public boolean isRunning(){return running;}
     public void setRunning(boolean run){running = run;}
-
-    public boolean isGameOver() {return gameOver;}
-    public void setGameOver(boolean gameOver) {this.gameOver = gameOver;}
-
-    public void setLevel(int level){
-        this.level = level;
-    }
-    public int getLevel(){
-        return level;
-    }
 
     public ArrayList<Tower> getPlayerTowers(){
         return playerTowers;

@@ -1,7 +1,6 @@
-package boucleJeu;
-import game_logic.GameManager;
+package model.boucleJeu;
+import model.game_logic.GameManager;
 import javafx.application.Platform;
-import model.characters.monster.Monster;
 
 import static java.lang.Thread.sleep;
 
@@ -30,9 +29,6 @@ public class Boucle extends Observable implements Runnable {
     @Override
     public void run() {
         while(gameManager.getGame().isRunning()) {
-            if(gameManager.getGame().isGameOver()){
-                break;
-            }
             try {
                 sleep(milis);
                 timer--;

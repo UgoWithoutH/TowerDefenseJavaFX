@@ -1,7 +1,8 @@
 package view;
 
 //import game.engine.GameManager;
-import game_logic.GameManager;
+import model.Manager;
+import model.game_logic.GameManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,11 +21,19 @@ public class Navigator {
 
     /** stage for game*/
     private static Stage stage;
+    private static Manager manager;
 
     public static Stage getStage(){return stage;}
-
     public static void setStage(Stage stage1){
         stage = stage1;
+    }
+
+    public static Manager getManager() {
+        return manager;
+    }
+
+    public static void setManager(Manager manager) {
+        Navigator.manager = manager;
     }
 
     /**

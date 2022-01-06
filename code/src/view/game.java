@@ -1,7 +1,7 @@
 package view;
 
-import boucleJeu.Boucle;
-import game_logic.GameManager;
+import model.boucleJeu.Boucle;
+import model.game_logic.GameManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,6 +33,7 @@ public class game {
     private Scene scene;
     private boolean constructTowers = false;
 
+    @FXML
     public void initialize(){
         try {
             ImageView im = new ImageView(new Image(String.valueOf(getClass().getResource("/tower.PNG").toURI().toURL())));
@@ -65,18 +66,19 @@ public class game {
         scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(constructTowers && !gameManager.getGame().isGameOver()){
+                if(constructTowers && gameManager.getGame().isRunning()){
                     gameManager.buyTower(event.getX(),event.getY());
                     constructTowers = false;
                 }
             }
         });
     }
-
+    @FXML
     public void buyTower(ActionEvent actionEvent) {
         constructTowers = true;
     }
 
+    @FXML
     public void Speed(ActionEvent actionEvent) {
         Boucle boucle = gameManager.getBoucle();
         if(!gameManager.getGame().isSpeed()){
@@ -91,6 +93,7 @@ public class game {
         }
     }
 
+    @FXML
     public void pauseOrRestart(ActionEvent actionEvent){
 
         if(gameManager.getGame().isRunning()){

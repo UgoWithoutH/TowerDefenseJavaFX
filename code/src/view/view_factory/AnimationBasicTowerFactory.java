@@ -1,6 +1,6 @@
 package view.view_factory;
 
-import game_logic.GameManager;
+import model.game_logic.GameManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
@@ -17,11 +17,11 @@ import javafx.util.Duration;
 import model.characters.Projectile;
 import model.characters.tower.Tower;
 
-public class BasicTowerFactory implements TowerFactory{
+public class AnimationBasicTowerFactory implements AnimationTowerFactory {
     private GameManager gameManager;
     private Group tilemapGroup;
 
-    public BasicTowerFactory(GameManager gameManager){
+    public AnimationBasicTowerFactory(GameManager gameManager){
         this.gameManager = gameManager;
     }
 

@@ -1,23 +1,21 @@
-package game_logic;
+package model.game_logic;
 
-import boucleJeu.Boucle;
-import boucleJeu.Observateur;
-import game_logic.action.ActionTower;
+import model.boucleJeu.Boucle;
+import model.boucleJeu.Observateur;
+import model.game_logic.action.ActionTower;
 import model.characters.monster.Basic;
 import model.characters.monster.Monster;
 import model.characters.monster.Speed;
 import model.characters.tower.ClassicTower;
-import update.DrawMap;
+import model.update.DrawMap;
 import model.Map.Map;
 import model.characters.tower.Tower;
-import view.view_factory.BasicTowerFactory;
+import view.view_factory.AnimationBasicTowerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 
@@ -30,21 +28,20 @@ public class GameManager implements Observateur {
     private DrawMap drawMap;
     private Thread boucleThread;
     private Scanner enemyFile;
-    private BasicTowerFactory basicTowerFactory;
+    private AnimationBasicTowerFactory basicTowerFactory;
 
     public GameManager(GameViewLogic gameViewLogic, Map map) throws FileNotFoundException{
         this.gameViewLogic = gameViewLogic;
         this.gameMap = map;
         game = GameState.getNewGame();
         game.setRunning(true);
-        game.setScore(200);
         Monster.setPath(gameMap.getPath());
         enemyFile = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
         boucle = new Boucle(this);
-        basicTowerFactory = new BasicTowerFactory(this);
+        basicTowerFactory = new AnimationBasicTowerFactory(this);
     }
 
-    public BasicTowerFactory getBasicTowerFactory() {return basicTowerFactory;}
+    public AnimationBasicTowerFactory getBasicTowerFactory() {return basicTowerFactory;}
 
     public Boucle getBoucle(){ return boucle; }
 
@@ -71,6 +68,10 @@ public class GameManager implements Observateur {
     @Override
     public void update(int timer) {
         try {
+            if(!enemyFile.hasNextLine() && game.getMonstersAlive().isEmpty() && game.isRunning()){
+                victory();
+            }
+
             if(timer%40 == 0 && enemyFile.hasNextLine()) {
                 spawnEnemy(enemyFile.nextLine());
             }
@@ -111,7 +112,7 @@ public class GameManager implements Observateur {
     }
 
     public void updateStates(Monster monster){
-        if(!game.isGameOver()) {
+        if(game.isRunning()) {
             if (monster.isPathFinished()) {
                 game.setLives((game.getLives()) - 1);
             } else {
@@ -134,7 +135,6 @@ public class GameManager implements Observateur {
                     updateStates(monster);
                     monsterEnd.add(monster);
                     if(game.getLives() == 0){
-                        game.setGameOver(true);
                         gameOver();
                         return;
                     }
@@ -147,11 +147,18 @@ public class GameManager implements Observateur {
         }
     }
 
+    public void victory(){
+        game.setRunning(false);
+        gameViewLogic.victory(game);
+    }
+
     public void gameOver(){
         var listMonster = game.getMonstersAlive();
         for(Monster monster : listMonster){
             monster.getView().setVisible(false);
         }
+        game.getMonstersAlive().clear();
+        game.setRunning(false);
         gameViewLogic.gameOver();
     }
 

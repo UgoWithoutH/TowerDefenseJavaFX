@@ -1,4 +1,4 @@
-package game_logic.action;
+package model.game_logic.action;
 
 import model.characters.monster.Monster;
 import model.characters.tower.Tower;

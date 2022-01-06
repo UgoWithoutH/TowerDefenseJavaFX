@@ -1,5 +1,7 @@
 package launch;
 
+import model.Manager;
+import model.ScoreRanking;
 import view.Navigator;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -16,16 +18,12 @@ public class Main extends Application {
         stage.setHeight(RESOLUTION_Y);
         stage.setResizable(false);
         Navigator.setStage(stage);
+        Navigator.setManager(new Manager(new ScoreRanking()));
         Navigator.mainMenu();
         stage.show();
-
     }
 
     public static void main(String[] args) {
         launch(args);
-        /*
-        main_menu start = new main_menu();
-        start.startNewGameConsole();
-        */
     }
 }

@@ -1,4 +1,4 @@
-package boucleJeu;
+package model.boucleJeu;
 
 import java.util.LinkedList;
 
