@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.ImageView?>
-<HBox alignment="CENTER" spacing="5" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.game">
+<HBox alignment="CENTER" spacing="5" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game">
       <Button mnemonicParsing="false" text="Start"/>
       <Button fx:id="buytower" mnemonicParsing="false" onAction="#buyTower"/>
       <Button fx:id="pauseRestart" mnemonicParsing="false" text="Stop" onAction="#pauseOrRestart"/>

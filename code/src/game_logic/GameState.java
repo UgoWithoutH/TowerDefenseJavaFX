@@ -13,16 +13,12 @@ import java.util.ArrayList;
  */
 public class GameState implements Serializable{
 
-    //game state flags
-    public static final int IS_RUNNING = 1;
-    public static final int IS_PAUSED = 2;
-    public static final int IS_STOPPED = 3;
-
     private static GameState playerGame;
-    private int state;
     private int level;
     private ArrayList<Tower> playerTowers;
     private ArrayList<Monster> monstersAlive;
+    private boolean running = false;
+    private boolean speed = false;
     private boolean gameOver = false;
 
     private IntegerProperty lives = new SimpleIntegerProperty();
@@ -40,9 +36,7 @@ public class GameState implements Serializable{
     public void setScore(int score) {this.score.set(score);}
     public IntegerProperty scoreProperty() {return score;}
 
-    //CONSTRUCTORS
     public GameState(){
-        state = IS_RUNNING;
         setCoins(100);
         level = 1;
         score.set(0); // property
@@ -51,66 +45,38 @@ public class GameState implements Serializable{
         monstersAlive = new ArrayList<Monster>();
     }
 
-    //Overwrites current Game State
     public static GameState getNewGame(){
         playerGame = new GameState();
         return playerGame;
     }
 
-    //Throws null exception if new game is never created
     public static GameState getGame() throws NullPointerException{
             return playerGame;
     }
 
 
+    public boolean isSpeed() {return speed;}
+    public void setSpeed(boolean speed) {this.speed = speed;}
+
+    public boolean isRunning(){return running;}
+    public void setRunning(boolean run){running = run;}
+
     public boolean isGameOver() {return gameOver;}
     public void setGameOver(boolean gameOver) {this.gameOver = gameOver;}
+
     public void setLevel(int level){
         this.level = level;
     }
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    //GETTERS
     public int getLevel(){
         return level;
-    }
-    public int getState() {
-        return state;
-    }
-
-    public boolean isPaused(){
-        if(state == IS_PAUSED){
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isRunning(){
-        if(state == IS_RUNNING){
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isStopped(){
-        if(state == IS_PAUSED){
-            return true;
-        }
-        return false;
     }
 
     public ArrayList<Tower> getPlayerTowers(){
         return playerTowers;
     }
-
     public ArrayList<Monster> getMonstersAlive() {
         return monstersAlive;
     }
 
-    public void addMonster(Monster monster){monstersAlive.add(monster);}
     public void addTower(Tower tower){playerTowers.add(tower);}
-    public void removeMonster(Monster monster){monstersAlive.remove(monster);}
-    public void removeTower(Tower tower){playerTowers.remove(tower);}
 }

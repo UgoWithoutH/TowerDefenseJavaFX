@@ -9,18 +9,12 @@ import static java.lang.Thread.sleep;
 public class Boucle extends Observable implements Runnable {
     private long milis  = 50;
     private int timer = 200;
-    private boolean running = false;
-    private boolean speed = false;
     GameManager gameManager;
 
     public Boucle(GameManager gameManager){
         this.gameManager = gameManager;
         subscribe(gameManager);
     }
-
-    public boolean isSpeed() {return speed;}
-
-    public void setSpeed(boolean speed) {this.speed = speed;    }
 
     public long getMilis(){return milis;}
 
@@ -29,17 +23,13 @@ public class Boucle extends Observable implements Runnable {
     }
 
     public void start() {
-        running = true;
+        gameManager.getGame().setRunning(true);
         run();
     }
 
-    public boolean isRunning(){return running;}
-
-    public void setRunning(boolean run){running = run;}
-
     @Override
     public void run() {
-        while(isRunning()) {
+        while(gameManager.getGame().isRunning()) {
             if(gameManager.getGame().isGameOver()){
                 break;
             }
@@ -55,11 +45,5 @@ public class Boucle extends Observable implements Runnable {
 
     public void beep(int timer) {
         Platform.runLater(() -> notifier(timer));
-    }
-
-    public void attack() throws InterruptedException {
-        gameManager.attacker();
-        gameManager.getGameViewLogic().createProjectiles();
-
     }
 }

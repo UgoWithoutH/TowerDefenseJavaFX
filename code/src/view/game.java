@@ -1,4 +1,4 @@
-package vue;
+package view;
 
 import boucleJeu.Boucle;
 import game_logic.GameManager;
@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -30,11 +29,8 @@ public class game {
     private Button speed;
     @FXML
     private Label coeur;
-
     private GameManager gameManager;
-
     private Scene scene;
-
     private boolean constructTowers = false;
 
     public void initialize(){
@@ -83,29 +79,27 @@ public class game {
 
     public void Speed(ActionEvent actionEvent) {
         Boucle boucle = gameManager.getBoucle();
-        if(!boucle.isSpeed()){
+        if(!gameManager.getGame().isSpeed()){
             speed.setText("Normal");
-            boucle.setSpeed(true);
+            gameManager.getGame().setSpeed(true);
             boucle.setMilis(boucle.getMilis()/2);
         }
         else{
             speed.setText("X2");
-            boucle.setSpeed(false);
+            gameManager.getGame().setSpeed(false);
             boucle.setMilis(boucle.getMilis()*2);
         }
     }
 
-    public synchronized void pauseOrRestart(ActionEvent actionEvent) throws InterruptedException {//test
-        Boucle boucle = gameManager.getBoucle();
-        Thread threadBoucle = gameManager.getBoucleThread();
+    public void pauseOrRestart(ActionEvent actionEvent){
 
-        if(gameManager.getBoucle().isRunning()){
+        if(gameManager.getGame().isRunning()){
             pauseRestart.setText("Restart");
-            boucle.setRunning(false);
+            gameManager.getGame().setRunning(false);
         }
         else{
             pauseRestart.setText("Stop");
-            boucle.setRunning(true);
+            gameManager.getGame().setRunning(true);
             gameManager.start();
         }
     }

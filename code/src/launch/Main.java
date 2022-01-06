@@ -1,6 +1,6 @@
 package launch;
 
-import vue.Navigator;
+import view.Navigator;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

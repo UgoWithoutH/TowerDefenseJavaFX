@@ -10,6 +10,7 @@ import model.characters.tower.ClassicTower;
 import update.DrawMap;
 import model.Map.Map;
 import model.characters.tower.Tower;
+import view.view_factory.BasicTowerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,34 +26,31 @@ public class GameManager implements Observateur {
     private Map gameMap;
     private GameState game;
     private GameViewLogic gameViewLogic;
-    private ArrayList<Tower> playerTowers;
-    private ArrayList<Monster> monstersAlive;
     private Boucle boucle;
     private DrawMap drawMap;
     private Thread boucleThread;
     private Scanner enemyFile;
+    private BasicTowerFactory basicTowerFactory;
 
-
-
-    public GameManager() throws FileNotFoundException {
-        playerTowers = new ArrayList<Tower>();
-        monstersAlive = new ArrayList<Monster>();
+    public GameManager(GameViewLogic gameViewLogic, Map map) throws FileNotFoundException{
+        this.gameViewLogic = gameViewLogic;
+        this.gameMap = map;
+        game = GameState.getNewGame();
+        game.setRunning(true);
+        game.setScore(200);
+        Monster.setPath(gameMap.getPath());
+        enemyFile = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
         boucle = new Boucle(this);
-        boucle.setRunning(true);
+        basicTowerFactory = new BasicTowerFactory(this);
     }
 
-    public Thread getBoucleThread(){return boucleThread;}
-
-    public GameViewLogic getGameViewLogic() {
-        return gameViewLogic;
-    }
+    public BasicTowerFactory getBasicTowerFactory() {return basicTowerFactory;}
 
     public Boucle getBoucle(){ return boucle; }
 
     public DrawMap getDrawMap() {
         return drawMap;
     }
-
     public void setDrawMap(DrawMap drawMap) {
         this.drawMap = drawMap;
     }
@@ -61,26 +59,13 @@ public class GameManager implements Observateur {
         return game;
     }
 
-    public void initialize(GameViewLogic gameViewLogic, Map map) throws java.io.IOException, URISyntaxException {
-        this.gameViewLogic = gameViewLogic;
-        this.gameMap = map;
-        game = GameState.getNewGame();
-        game.setScore(200);
-        Monster.setPath(gameMap.getPath());
-        enemyFile = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
+    public Map getGameMap() {
+        return gameMap;
     }
 
     public void start(){
         boucleThread = new Thread(boucle);
         boucleThread.start();
-    }
-
-    public Map getGameMap() {
-        return gameMap;
-    }
-
-    public void setGameMap(Map gameMap) {
-        this.gameMap = gameMap;
     }
 
     @Override
@@ -94,7 +79,7 @@ public class GameManager implements Observateur {
             }
             updateLocations();
             attacker();
-            gameViewLogic.createProjectiles();
+            basicTowerFactory.createProjectiles();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (CloneNotSupportedException e) {
@@ -134,8 +119,6 @@ public class GameManager implements Observateur {
                 game.setScore(game.getScore() + (monster.getReward() * game.getLevel()));
             }
         }
-        //monster.getView().setVisible(false);
-        //game.getMonstersAlive().remove(monster);
     }
 
     private void updateLocations(){
@@ -183,7 +166,7 @@ public class GameManager implements Observateur {
                 game.setCoins(game.getCoins() - 50);
                 gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);
                 drawMap.draw(gameMap);
-                gameViewLogic.createBuildProgressBar(xCords,yCords,tower);
+                basicTowerFactory.createBuildProgressBar(xCords,yCords,tower);
             }
         }
     }
