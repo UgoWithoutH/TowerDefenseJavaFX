@@ -45,7 +45,6 @@
                 text = "Options"
                 prefWidth="120"
                 prefHeight="35"
-                onAction="#test"
                 />
             <Button
                 fx:id = "exitButton"

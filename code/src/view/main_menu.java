@@ -143,8 +143,4 @@ public class main_menu implements GameViewLogic {
         l.setAlignment(Pos.CENTER);
         tilemapGroup.getChildren().add(sp);
     }
-
-    public void test(ActionEvent actionEvent) {
-        manager.getScoreRanking().test();
-    }
 }

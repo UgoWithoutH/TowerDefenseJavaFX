@@ -40,8 +40,4 @@ public class ScoreRanking {
         }
     }
 
-    public void test(){
-            rankingObservable.add(new GameState());
-    }
-
 }
