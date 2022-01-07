@@ -18,7 +18,7 @@ public abstract class Tower {
     private int upgradeTime;
     private int upgradeCost;
     private int sellCost;
-    private ArrayList<Projectile> projectileList;
+    private ArrayList<Projectile> projectileList; //TO DO faire une liste observable
     private Coordinate coords;
     private boolean attacker = true;
     private boolean buildable = false;

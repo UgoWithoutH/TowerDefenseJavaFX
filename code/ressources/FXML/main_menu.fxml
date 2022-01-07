@@ -29,18 +29,6 @@
                 prefHeight="35"
                 />
             <Button
-                fx:id = "loadGameButton"
-                text = "Load Game"
-                prefWidth="120"
-                prefHeight="35"
-                />
-            <Button
-                fx:id = "leaderboardButton"
-                text = "Leaderboard"
-                prefWidth="120"
-                prefHeight="35"
-                />
-            <Button
                 fx:id = "optionsButton"
                 onAction="#option"
                 text = "Options"
@@ -56,6 +44,10 @@
                 />
         </VBox>
     </GridPane>
-    <ListView fx:id="scoreList">
-    </ListView>
+    <VBox spacing="5">
+        <padding><Insets top="120" right="50" bottom="10" left="150"/></padding>
+        <Label fx:id="sblabel" text="SCOREBOARD"/>
+        <ListView fx:id="scoreList" maxWidth="300" maxHeight="300" prefHeight="300" prefWidth="300">
+        </ListView>
+    </VBox>
 </HBox>

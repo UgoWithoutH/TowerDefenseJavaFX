@@ -13,8 +13,17 @@
     -fx-background-color: linear-gradient(#777777, #444444);
 }
 
-#tdlabel {
+#scoreList{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#tdlabel{
     -fx-font-size: 40px;
+    -fx-font-family: "Arial Black";
+}
+
+#sblabel{
+    -fx-font-size: 20px;
     -fx-font-family: "Arial Black";
 }
 

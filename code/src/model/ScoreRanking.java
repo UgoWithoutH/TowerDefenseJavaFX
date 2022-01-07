@@ -5,6 +5,7 @@ import javafx.beans.property.SetProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleSetProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import model.game_logic.GameState;
@@ -18,6 +19,16 @@ public class ScoreRanking {
         public ObservableList<GameState> getRanking() {return ranking.get();}
         public ListProperty<GameState> rankingProperty() {return ranking;}
         public void setRanking(ObservableList<GameState> ranking) {this.ranking.set(ranking);}
+
+    //test pour avoir un exemple de notification de list observable à l'ajout
+    /*public ScoreRanking(){
+            rankingObservable.addListener(new ListChangeListener<GameState>() {
+                @Override
+                public void onChanged(Change<? extends GameState> c) {
+                    System.out.println("bonjour");
+                }
+            });
+    }*/
 
     public void updateScore(GameState gameState) {
         if (!rankingObservable.isEmpty()) {

@@ -21,7 +21,6 @@ public class Navigator {
     public static final URL GAMEUI = GameManager.class.getResource("/FXML/game.fxml");
     public static final URL OPTIONUI = GameManager.class.getResource("/FXML/option.fxml");
 
-    /** stage for game*/
     public static Stage stage;
     private static Manager manager;
 
@@ -33,7 +32,6 @@ public class Navigator {
     public static Manager getManager() {
         return manager;
     }
-
     public static void setManager(Manager manager) {
         Navigator.manager = manager;
     }
@@ -55,7 +53,7 @@ public class Navigator {
      */
     public static void loadVista(String fxml) {
         try {
-            stage.setScene(new Scene(FXMLLoader.load((Navigator.class.getResource(fxml)))));
+            stage.getScene().setRoot(FXMLLoader.load((Navigator.class.getResource(fxml))));
         } catch (IOException e) {
             e.printStackTrace();
         }

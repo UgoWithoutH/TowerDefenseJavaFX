@@ -106,4 +106,9 @@ public class game {
             gameManager.start();
         }
     }
+
+    public void giveUp(ActionEvent actionEvent) {
+        gameManager.getGame().setRunning(false);
+        Navigator.mainMenu();
+    }
 }

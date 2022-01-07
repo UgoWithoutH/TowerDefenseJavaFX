@@ -7,7 +7,7 @@ import model.characters.monster.Basic;
 import model.characters.monster.Monster;
 import model.characters.monster.Speed;
 import model.characters.tower.ClassicTower;
-import model.update.DrawMap;
+import model.Map.update.DrawMap;
 import model.Map.Map;
 import model.characters.tower.Tower;
 import view.view_factory.AnimationBasicTowerFactory;

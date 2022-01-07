@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 import model.Manager;
-import model.ScoreRanking;
 import model.game_logic.GameManager;
 import model.game_logic.GameState;
 import model.game_logic.GameViewLogic;
@@ -24,7 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Map.importMap;
-import model.update.DrawMap;
+import model.Map.update.DrawMap;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -42,9 +39,9 @@ public class main_menu implements GameViewLogic {
     private ListView scoreList;
 
     public void initialize(){
-        scoreList.setStyle("-fx-background-color: transparent;");
+        scoreList.setStyle("-fx-background-color: linear-gradient(#bab9b9, #777777);");
         scoreList.itemsProperty().bind(manager.getScoreRanking().rankingProperty());
-        scoreList.setCellFactory(__ ->
+        scoreList.setCellFactory(unNomPasUtilise ->
                 new ListCell<GameState>(){
                     @Override
                     protected void updateItem(GameState gameState, boolean empty) {
@@ -70,12 +67,10 @@ public class main_menu implements GameViewLogic {
         );
     }
 
-    /**
-     * l'affichage de la fenetre change lorsqu'on bouge la fenetre
-     * todo
-     *  ne pas changer la scene mais le root de la scene
-     * @throws URISyntaxException
-     */
+    private void listenerTower(){
+        //to do
+    }
+
     public void startNewGame() throws URISyntaxException {
         try{
             GameManager gameManager = manager.getGameManager();
@@ -86,22 +81,22 @@ public class main_menu implements GameViewLogic {
             tilemapGroup = new Group();
             tilemapGroup.getChildren().add(gameManager.getDrawMap());
             gameManager.getBasicTowerFactory().setTilemapGroup(tilemapGroup);
-            gamePane.add(tilemapGroup,0,1);
+            gamePane.add(tilemapGroup,0,0);
             HBox gameUI = loader.load(Navigator.GAMEUI.openStream());
             gamePane.getStylesheets().add(GameManager.class.getResource("/FXML/menustyle.css").toExternalForm());
             gamePane.add(gameUI,0,1);
-            gameScene = new Scene(gamePane);
+            Navigator.getStage().getScene().setRoot(gamePane);
             gameController = loader.getController();
             gameController.setGameManager(gameManager);
-            gameController.setScene(gameScene);
-            Navigator.getStage().setScene(gameScene);
+            gameController.setScene(Navigator.getStage().getScene());
             gameManager.start();
         }catch (IOException ex){ex.printStackTrace();}
     }
 
 
     public void option() {
-        try
+        manager.getScoreRanking().getRanking().add(new GameState());
+        /*try
         {
             FXMLLoader loader = new FXMLLoader(Navigator.OPTIONUI);
             Parent root = (Parent)loader.load();
@@ -110,7 +105,7 @@ public class main_menu implements GameViewLogic {
         catch (IOException e)
         {
             e.printStackTrace();
-        }
+        }*/
     }
 
 

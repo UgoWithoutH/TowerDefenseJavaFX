@@ -7877,7 +7877,7 @@
 											"top": 1334,
 											"width": 470,
 											"height": 13,
-											"text": "model.update"
+											"text": "model.Map.update"
 										},
 										{
 											"_type": "LabelView",
@@ -8010,7 +8010,7 @@
 											"top": -272,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from model.update)"
+											"text": "(from model.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8208,7 +8208,7 @@
 											"top": -224,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from model.update)"
+											"text": "(from model.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8406,7 +8406,7 @@
 											"top": 128,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from model.update)"
+											"text": "(from model.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8604,7 +8604,7 @@
 											"top": 256,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from model.update)"
+											"text": "(from model.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -9865,7 +9865,7 @@
 											"top": 1476,
 											"width": 80.57080078125,
 											"height": 13,
-											"text": "model.update"
+											"text": "model.Map.update"
 										},
 										{
 											"_type": "LabelView",
@@ -9879,7 +9879,7 @@
 											"top": 72,
 											"width": 80.18994140625,
 											"height": 13,
-											"text": "(from model.update)"
+											"text": "(from model.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -12292,7 +12292,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "model.update",
+					"name": "model.Map.update",
 					"ownedElements": [
 						{
 							"_type": "UMLClass",
@@ -12544,7 +12544,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9vZ9YZ6URGT8="
 							},
-							"name": "model.update",
+							"name": "model.Map.update",
 							"operations": [
 								{
 									"_type": "UMLOperation",

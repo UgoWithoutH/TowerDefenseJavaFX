@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GameState implements Serializable{
 
     private static GameState playerGame;
-    private ArrayList<Tower> playerTowers;
+    private ArrayList<Tower> playerTowers; //faire list observable
     private ArrayList<Monster> monstersAlive;
     private boolean running = false;
     private boolean speed = false;
