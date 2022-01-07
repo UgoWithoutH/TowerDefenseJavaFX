@@ -37,7 +37,7 @@ public class main_menu implements GameViewLogic {
     private view.game gameController;
     private view.option optionController;
     private Group tilemapGroup;
-    private Manager manager = Navigator.getManager();
+    private Manager manager = new Manager(new ScoreRanking());
     @FXML
     private ListView scoreList;
 
@@ -101,9 +101,7 @@ public class main_menu implements GameViewLogic {
 
 
     public void option() throws IOException {
-        ScreenController screenController = new ScreenController(Navigator.stage.getScene());
-        screenController.addScreen("option", FXMLLoader.load(Navigator.OPTIONUI));
-        screenController.activate("option");
+        ScreenController.activate("option");
     }
 
 

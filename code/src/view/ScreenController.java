@@ -6,8 +6,8 @@ import javafx.scene.layout.Pane;
 import java.util.HashMap;
 
 public class ScreenController {
-        private HashMap<String, Pane> screenMap = new HashMap<>();
-        private Scene main;
+        private static HashMap<String, Pane> screenMap = new HashMap<>();
+        private static Scene main;
 
         public ScreenController(Scene main) {
             this.main = main;
@@ -21,8 +21,7 @@ public class ScreenController {
             screenMap.remove(name);
         }
 
-        protected void activate(String name){
+        public static void activate(String name){
             main.setRoot( screenMap.get(name) );
         }
-
 }
