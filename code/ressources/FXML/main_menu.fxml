@@ -42,6 +42,7 @@
                 />
             <Button
                 fx:id = "optionsButton"
+                onAction="#option"
                 text = "Options"
                 prefWidth="120"
                 prefHeight="35"

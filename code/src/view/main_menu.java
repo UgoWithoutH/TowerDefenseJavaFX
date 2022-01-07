@@ -2,8 +2,10 @@ package view;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import model.Manager;
 import model.ScoreRanking;
@@ -31,7 +33,9 @@ public class main_menu implements GameViewLogic {
 
 
     private  Scene gameScene;
+    private  Scene optionScene;
     private view.game gameController;
+    private view.option optionController;
     private Group tilemapGroup;
     private Manager manager = Navigator.getManager();
     @FXML
@@ -76,7 +80,7 @@ public class main_menu implements GameViewLogic {
             tilemapGroup = new Group();
             tilemapGroup.getChildren().add(gameManager.getDrawMap());
             gameManager.getBasicTowerFactory().setTilemapGroup(tilemapGroup);
-            gamePane.add(tilemapGroup,0,0);
+            gamePane.add(tilemapGroup,0,1);
             HBox gameUI = loader.load(Navigator.GAMEUI.openStream());
             gamePane.getStylesheets().add(GameManager.class.getResource("/FXML/menustyle.css").toExternalForm());
             gamePane.add(gameUI,0,1);
@@ -88,6 +92,20 @@ public class main_menu implements GameViewLogic {
             gameManager.start();
         }catch (IOException ex){ex.printStackTrace();}
     }
+
+    public void option() {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(Navigator.OPTIONUI);
+            Parent root = (Parent)loader.load();
+            Navigator.stage.setScene(new Scene(root));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
     public void createMonster(int health){
         GameManager gameManager = gameController.getGameManager();

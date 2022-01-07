@@ -1,6 +1,7 @@
 package view;
 
 //import game.engine.GameManager;
+import javafx.scene.Parent;
 import model.Manager;
 import model.game_logic.GameManager;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +19,10 @@ public class Navigator {
 
 
     public static final URL GAMEUI = GameManager.class.getResource("/FXML/game.fxml");
+    public static final URL OPTIONUI = GameManager.class.getResource("/FXML/option.fxml");
 
     /** stage for game*/
-    private static Stage stage;
+    public static Stage stage;
     private static Manager manager;
 
     public static Stage getStage(){return stage;}
@@ -64,5 +66,14 @@ public class Navigator {
         stage.getScene().getStylesheets().setAll(
                 Navigator.class.getResource("/FXML/menustyle.css").toExternalForm());
     }
+
+    public static void optionMenu(){
+        Navigator.loadVista("/FXML/option.fxml");
+        stage.getScene().getStylesheets().setAll(
+                Navigator.class.getResource("/FXML/menustyle.css").toExternalForm());
+    }
+
+
+
 
 }
