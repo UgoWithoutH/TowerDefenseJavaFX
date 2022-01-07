@@ -100,17 +100,10 @@ public class main_menu implements GameViewLogic {
     }
 
 
-    public void option() {
-        try
-        {
-            FXMLLoader loader = new FXMLLoader(Navigator.OPTIONUI);
-            Parent root = (Parent)loader.load();
-            Navigator.stage.setScene(new Scene(root));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+    public void option() throws IOException {
+        ScreenController screenController = new ScreenController(Navigator.stage.getScene());
+        screenController.addScreen("option", FXMLLoader.load(Navigator.OPTIONUI));
+        screenController.activate("option");
     }
 
 
