@@ -62,15 +62,21 @@ public class main_menu {
                     protected void updateItem(GameState gameState, boolean empty) {
                         super.updateItem(gameState, empty);
                         if (!empty) {
-                            VBox myVbox = new VBox();
                             Label l1Text = new Label("Level : ");
                             Label l1 = new Label();
+                            HBox myHbox1 = new HBox(l1Text,l1);
                             l1.textProperty().bind(gameState.levelProperty().asString());
                             Label l2Text = new Label("Score : ");
                             Label l2 = new Label();
+                            HBox myHbox2 = new HBox(l2Text,l2);
                             l2.textProperty().bind(gameState.scoreProperty().asString());
-                            myVbox.getChildren().addAll(l1Text,l1,l2Text,l2);
-                            setGraphic(myVbox);
+                            Label l3Text = new Label("Time (seconds) : ");
+                            Label l3 = new Label();
+                            HBox myHbox3 = new HBox(l3Text,l3);
+                            l3.textProperty().bind(gameState.timeSecondsProperty().asString());
+                            HBox myHboxContent = new HBox(myHbox1,myHbox2,myHbox3);
+                            myHboxContent.setSpacing(5);
+                            setGraphic(myHboxContent);
                         } else {
                             textProperty().unbind();
                             setText("");
@@ -151,8 +157,10 @@ public class main_menu {
             @Override
             public void onChanged(Change<? extends Monster> change) {
                 var listMonsters = change.getList();
-                Monster monster = listMonsters.get(listMonsters.size() - 1);
-                createMonster();
+                if(!manager.getGameManager().isRemoveMonster()) {
+                    Monster monster = listMonsters.get(listMonsters.size() - 1);
+                    createMonster();
+                }
             }
         });
 
@@ -172,6 +180,7 @@ public class main_menu {
     public void createBuildProgressBar(Tower t) {
         Group g = new Group();
         Coordinate coordinateTower = t.getCoords();
+        int seconds = manager.getGameManager().getGame().isSpeed() ? t.getBuildTimeSeconds()/2 : t.getBuildTimeSeconds();
 
         double xCords = coordinateTower.getTileX()*64;
         double yCords = coordinateTower.getTileY()*64;
@@ -185,7 +194,7 @@ public class main_menu {
                         new KeyValue(bar.progressProperty(), 0)
                 ),
                 new KeyFrame(
-                        Duration.seconds(t.getBuildTimeSeconds()),
+                        Duration.seconds(seconds),
                         new KeyValue(bar.progressProperty(), 1)
                 )
         );
@@ -204,11 +213,14 @@ public class main_menu {
         Path projectilePath;
         PathTransition animation;
         GameManager gameManager = manager.getGameManager();
+        int speedMilis = gameManager.getGame().isSpeed() ? 150 : 300;
+
+
         for(Tower tower : gameManager.getGame().getPlayerTowers()){
             for(Projectile projectile : tower.getProjectileList()){
                 projectilePath = new Path(new MoveTo(projectile.getStartX() , projectile.getStartY()));
                 projectilePath.getElements().add(new LineTo(projectile.getEndX() , projectile.getEndY()));
-                animation = new PathTransition(Duration.millis(300) , projectilePath , projectile);
+                animation = new PathTransition(Duration.millis(speedMilis) , projectilePath , projectile);
                 animation.setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {

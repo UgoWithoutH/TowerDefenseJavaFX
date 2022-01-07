@@ -31,8 +31,6 @@ public class game {
     private Label coins;
     @FXML
     private Button speed;
-    @FXML
-    private StackPane coeur;
     private GameManager gameManager;
     private Scene scene;
     private boolean constructTowers = false;
@@ -62,7 +60,7 @@ public class game {
         scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if(constructTowers && gameManager.getGame().isRunning()){
+                if(constructTowers && gameManager.getBoucle().isRunning()){
                     gameManager.buyTower(event.getX(),event.getY());
                     constructTowers = false;
                 }
@@ -91,20 +89,19 @@ public class game {
 
     @FXML
     public void pauseOrRestart(ActionEvent actionEvent){
-
-        if(gameManager.getGame().isRunning()){
+        if(gameManager.getBoucle().isRunning()){
             pauseRestart.setText("Restart");
-            gameManager.getGame().setRunning(false);
+            gameManager.getBoucle().setRunning(false);
         }
         else{
             pauseRestart.setText("Stop");
-            gameManager.getGame().setRunning(true);
+            gameManager.getBoucle().setRunning(true);
             gameManager.start();
         }
     }
 
     public void giveUp(ActionEvent actionEvent) {
-        gameManager.getGame().setRunning(false);
+        gameManager.getBoucle().setRunning(false);
         Navigator.mainMenu();
     }
 }

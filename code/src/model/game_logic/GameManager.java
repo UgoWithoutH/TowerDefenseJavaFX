@@ -28,19 +28,18 @@ public class GameManager implements Observateur {
     private DrawMap drawMap;
     private Thread boucleThread;
     private Scanner enemyFile;
+    private boolean removeMonster = false;
 
     public GameManager(Map map) throws FileNotFoundException{
         this.gameMap = map;
         game = GameState.getNewGame();
-        game.setRunning(true);
         Monster.setPath(gameMap.getPath());
         enemyFile = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
-        boucle = new Boucle(this);
+        boucle = new Boucle();
+        boucle.subscribe(this);
     }
 
-    public void test(){
-        game.setVictory(true);
-    }
+    public boolean isRemoveMonster(){return removeMonster;}
 
     public Boucle getBoucle(){ return boucle; }
 
@@ -59,7 +58,10 @@ public class GameManager implements Observateur {
         return gameMap;
     }
 
+    public Scanner getEnemyFile(){return enemyFile;}
+
     public void start(){
+        boucle.setRunning(true);
         boucleThread = new Thread(boucle);
         boucleThread.start();
     }
@@ -67,7 +69,14 @@ public class GameManager implements Observateur {
     @Override
     public void update(int timer) {
         try {
-            if(!enemyFile.hasNextLine() && game.getMonstersAlive().isEmpty() && game.isRunning()){
+            var timeMilis = timer * boucle.getDefaultMilis();
+            var timeSeconds = (int) (timeMilis/1000);
+            System.out.println(game.getTimeSeconds());
+            if(timeSeconds != game.getTimeSeconds()){
+                game.setTimeSeconds(game.getTimeSeconds()+1);
+            }
+
+            if(!enemyFile.hasNextLine() && game.getMonstersAlive().isEmpty() && boucle.isRunning()){
                 victory();
             }
 
@@ -95,12 +104,14 @@ public class GameManager implements Observateur {
     }
 
     public void removeMonster(Monster monster){
+        removeMonster = true;
         game.getMonstersAlive().remove(monster);
+        removeMonster = false;
         monster.getView().setVisible(false);
     }
 
     public void updateStates(Monster monster){
-        if(game.isRunning()) {
+        if(boucle.isRunning()) {
             if (monster.isPathFinished()) {
                 game.setLives((game.getLives()) - 1);
             } else {
@@ -135,7 +146,7 @@ public class GameManager implements Observateur {
     }
 
     public void victory(){
-        game.setRunning(false);
+        boucle.setRunning(false);
         game.setVictory(true);
     }
 
@@ -145,7 +156,7 @@ public class GameManager implements Observateur {
             monster.getView().setVisible(false);
         }
         game.getMonstersAlive().clear();
-        game.setRunning(false);
+        boucle.setRunning(false);
         game.setGameOver(true);
         //gameViewLogic.gameOver();
     }

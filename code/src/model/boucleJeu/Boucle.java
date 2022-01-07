@@ -6,32 +6,34 @@ import static java.lang.Thread.sleep;
 
 
 public class Boucle extends Observable implements Runnable {
+    private final static long DEFAULT_MILIS = 50;
     private long milis  = 50;
-    private int timer = 200;
-    GameManager gameManager;
+    private int timer = 0;
+    private boolean running = false;
 
-    public Boucle(GameManager gameManager){
-        this.gameManager = gameManager;
-        subscribe(gameManager);
-    }
+    public long getDefaultMilis(){return DEFAULT_MILIS;}
 
     public long getMilis(){return milis;}
-
     public void setMilis(long milis){
         this.milis = milis;
     }
 
+    public void setTimer(int timer){this.timer = timer;}
+
+    public boolean isRunning(){return running;}
+    public void setRunning(boolean run){running = run;}
+
     public void start() {
-        gameManager.getGame().setRunning(true);
+        running = true;
         run();
     }
 
     @Override
     public void run() {
-        while(gameManager.getGame().isRunning()) {
+        while(isRunning()) {
             try {
                 sleep(milis);
-                timer--;
+                timer++;
                 beep(timer);
             } catch (InterruptedException e) {
                 e.printStackTrace();

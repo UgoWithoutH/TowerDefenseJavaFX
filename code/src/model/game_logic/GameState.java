@@ -20,8 +20,11 @@ public class GameState{
     private static GameState playerGame;
     private ObservableList<Tower> playerTowers;
     private ObservableList<Monster> monstersAlive;
-    private boolean running = false;
     private boolean speed = false;
+    private IntegerProperty timeSeconds = new SimpleIntegerProperty();
+        public int getTimeSeconds() {return timeSeconds.get();}
+        public IntegerProperty timeSecondsProperty() {return timeSeconds;}
+        public void setTimeSeconds(int timeSeconds) {this.timeSeconds.set(timeSeconds);}
     private BooleanProperty gameOver = new SimpleBooleanProperty();
         public boolean isGameOver() {return gameOver.get();}
         public BooleanProperty gameOverProperty() {return gameOver;}
@@ -48,6 +51,7 @@ public class GameState{
         public void setScore(int score) {this.score.set(score);}
 
     public GameState(){
+        setTimeSeconds(0);
         setCoins(100);
         setLevel(1);
         setScore(0);
@@ -68,9 +72,6 @@ public class GameState{
 
     public boolean isSpeed() {return speed;}
     public void setSpeed(boolean speed) {this.speed = speed;}
-
-    public boolean isRunning(){return running;}
-    public void setRunning(boolean run){running = run;}
 
     public ObservableList<Tower> getPlayerTowers(){
         return playerTowers;
