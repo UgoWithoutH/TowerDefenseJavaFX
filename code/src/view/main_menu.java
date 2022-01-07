@@ -70,6 +70,12 @@ public class main_menu implements GameViewLogic {
         );
     }
 
+    /**
+     * l'affichage de la fenetre change lorsqu'on bouge la fenetre
+     * todo
+     *  ne pas changer la scene mais le root de la scene
+     * @throws URISyntaxException
+     */
     public void startNewGame() throws URISyntaxException {
         try{
             GameManager gameManager = manager.getGameManager();
@@ -92,6 +98,7 @@ public class main_menu implements GameViewLogic {
             gameManager.start();
         }catch (IOException ex){ex.printStackTrace();}
     }
+
 
     public void option() {
         try
