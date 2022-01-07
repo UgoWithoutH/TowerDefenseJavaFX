@@ -20,21 +20,16 @@ public class Navigator {
 
     public static final URL GAMEUI = GameManager.class.getResource("/FXML/game.fxml");
     public static final URL OPTIONUI = GameManager.class.getResource("/FXML/option.fxml");
+    public static final URL MENUUI = GameManager.class.getResource("/FXML/main_menu.fxml");
 
     public static Stage stage;
-    private static Manager manager;
+
 
     public static Stage getStage(){return stage;}
     public static void setStage(Stage stage1){
         stage = stage1;
     }
 
-    public static Manager getManager() {
-        return manager;
-    }
-    public static void setManager(Manager manager) {
-        Navigator.manager = manager;
-    }
 
     /**
      * Charge la vue spécifié par le holder.FXML lors du
@@ -64,14 +59,4 @@ public class Navigator {
         stage.getScene().getStylesheets().setAll(
                 Navigator.class.getResource("/FXML/menustyle.css").toExternalForm());
     }
-
-    public static void optionMenu(){
-        Navigator.loadVista("/FXML/option.fxml");
-        stage.getScene().getStylesheets().setAll(
-                Navigator.class.getResource("/FXML/menustyle.css").toExternalForm());
-    }
-
-
-
-
 }

@@ -1,14 +1,12 @@
 package launch;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import model.Manager;
 import model.ScoreRanking;
 import view.Navigator;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.ScreenController;
 
 public class Main extends Application {
 
@@ -21,14 +19,16 @@ public class Main extends Application {
         stage.setWidth(RESOLUTION_X);
         stage.setHeight(RESOLUTION_Y);
         stage.setResizable(false);
-        Navigator.setManager(new Manager(new ScoreRanking()));
-        var root = FXMLLoader.load(getClass().getResource("/FXML/main_menu.fxml"));
-        Scene scene = new Scene((Parent) root);
-        stage.setScene(scene);
-        stage.getScene().getStylesheets().setAll(Navigator.class.getResource("/FXML/menustyle.css").toExternalForm());
         Navigator.setStage(stage);
-        //Navigator.mainMenu();
+        //Navigator.setManager(new Manager(new ScoreRanking()));
+        Navigator.mainMenu();
         stage.show();
+
+        ScreenController screenController = new ScreenController(stage.getScene());
+        screenController.addScreen("option", FXMLLoader.load(Navigator.OPTIONUI));
+        screenController.addScreen("game", FXMLLoader.load(Navigator.GAMEUI));
+        screenController.addScreen("menu", FXMLLoader.load(Navigator.MENUUI));
+
     }
 
     public static void main(String[] args) {

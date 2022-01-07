@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import model.Manager;
+import model.ScoreRanking;
 import model.game_logic.GameManager;
 import model.game_logic.GameState;
 import model.game_logic.GameViewLogic;
@@ -34,7 +35,7 @@ public class main_menu implements GameViewLogic {
     private view.game gameController;
     private view.option optionController;
     private Group tilemapGroup;
-    private Manager manager = Navigator.getManager();
+    private Manager manager = new Manager(new ScoreRanking());
     @FXML
     private ListView scoreList;
 
@@ -94,18 +95,9 @@ public class main_menu implements GameViewLogic {
     }
 
 
-    public void option() {
-        manager.getScoreRanking().getRanking().add(new GameState());
-        /*try
-        {
-            FXMLLoader loader = new FXMLLoader(Navigator.OPTIONUI);
-            Parent root = (Parent)loader.load();
-            Navigator.stage.setScene(new Scene(root));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }*/
+
+    public void option() throws IOException {
+        ScreenController.activate("option");
     }
 
 
