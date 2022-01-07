@@ -1,5 +1,9 @@
 package model.game_logic;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.characters.monster.Monster;
 import model.characters.tower.Tower;
 import javafx.beans.property.IntegerProperty;
@@ -11,13 +15,21 @@ import java.util.ArrayList;
 /** TODO: 10/12/2021
  *   patron de conception ETAT a envisager
  */
-public class GameState implements Serializable{
+public class GameState{
 
     private static GameState playerGame;
-    private ArrayList<Tower> playerTowers; //faire list observable
-    private ArrayList<Monster> monstersAlive;
+    private ObservableList<Tower> playerTowers;
+    private ObservableList<Monster> monstersAlive;
     private boolean running = false;
     private boolean speed = false;
+    private BooleanProperty gameOver = new SimpleBooleanProperty();
+        public boolean isGameOver() {return gameOver.get();}
+        public BooleanProperty gameOverProperty() {return gameOver;}
+        public void setGameOver(boolean gameOver) {this.gameOver.set(gameOver);}
+    private BooleanProperty victory = new SimpleBooleanProperty();
+        public boolean isVictory() {return victory.get();}
+        public BooleanProperty victoryProperty() {return victory;}
+        public void setVictory(boolean victory) {this.victory.set(victory);}
     private IntegerProperty level = new SimpleIntegerProperty();
         public int getLevel() {return level.get();}
         public IntegerProperty levelProperty() {return level;}
@@ -40,8 +52,9 @@ public class GameState implements Serializable{
         setLevel(1);
         setScore(0);
         setLives(2);
-        playerTowers = new ArrayList<Tower>();
-        monstersAlive = new ArrayList<Monster>();
+        setVictory(false);
+        playerTowers = FXCollections.observableArrayList();
+        monstersAlive = FXCollections.observableArrayList();
     }
 
     public static GameState getNewGame(){
@@ -59,10 +72,10 @@ public class GameState implements Serializable{
     public boolean isRunning(){return running;}
     public void setRunning(boolean run){running = run;}
 
-    public ArrayList<Tower> getPlayerTowers(){
+    public ObservableList<Tower> getPlayerTowers(){
         return playerTowers;
     }
-    public ArrayList<Monster> getMonstersAlive() {
+    public ObservableList<Monster> getMonstersAlive() {
         return monstersAlive;
     }
 

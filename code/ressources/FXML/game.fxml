@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
 <HBox alignment="CENTER" spacing="5" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game">
       <Button mnemonicParsing="false" text="GiveUp" onAction="#giveUp"/>
       <Button fx:id="buytower" mnemonicParsing="false" onAction="#buyTower"/>
@@ -14,5 +15,5 @@
       <Label fx:id="textScore"/>
       <Label text="monnaie : "/>
       <Label fx:id="coins"/>
-      <Label fx:id="coeur"/>
+      <StackPane fx:id="coeur"/>
 </HBox>

@@ -2,6 +2,8 @@ package model.characters.tower;
 
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Coordinate;
 import javafx.scene.paint.Color;
 import model.characters.Projectile;
@@ -15,10 +17,8 @@ public abstract class Tower {
     private int attackDamage;
     private double attackSpeed;
     private int attackRange;
-    private int upgradeTime;
-    private int upgradeCost;
     private int sellCost;
-    private ArrayList<Projectile> projectileList; //TO DO faire une liste observable
+    private ObservableList<Projectile> projectileList;
     private Coordinate coords;
     private boolean attacker = true;
     private boolean buildable = false;
@@ -26,14 +26,12 @@ public abstract class Tower {
 
 
     public Tower(int x , int y){
-        projectileList = new ArrayList<Projectile>();
+        projectileList = FXCollections.observableArrayList();
         coords = new Coordinate(x , y);
         attackDamage = 5;
         attackSpeed = 1.0;
         attackRange = 200;
         sellCost = 35;
-        upgradeCost = 20;
-        upgradeTime = 5000;
     }
 
     public int getBuildTimeSeconds(){
@@ -52,8 +50,6 @@ public abstract class Tower {
         attackDamage++;
         attackSpeed = attackSpeed - 0.1;
         attackRange = attackRange + 50;
-        upgradeTime += 3000;
-        upgradeCost += 20;
     }
 
     public void createProjectile(Monster target){
@@ -69,14 +65,6 @@ public abstract class Tower {
         return coords.getExactY();
     }
 
-    public int getTileX(){
-        return coords.getTileX();
-    }
-
-    public int getTileY(){
-        return coords.getTileY();
-    }
-
     public int getAttackRange(){
         return attackRange;
     }
@@ -85,40 +73,16 @@ public abstract class Tower {
         return  attackDamage;
     }
 
-    public double getAttackSpeed(){
-        return attackSpeed;
-    }
-
-    public int getUpgradeCost(){
-        return upgradeCost;
-    }
-
     public int getSellCost(){
         return sellCost;
     }
 
-    public int getUpgradeTime(){
-        return upgradeTime;
-    }
-
-    public ArrayList<Projectile> getProjectileList() {
+    public ObservableList<Projectile> getProjectileList() {
         return projectileList;
     }
 
     public Coordinate getCoords(){
         return coords;
-    }
-
-    public void setAttackDamage(int attackDamage){
-        this.attackDamage = attackDamage;
-    }
-
-    public void setAttackRange(int attackRange) {
-        this.attackRange = attackRange;
-    }
-
-    public void setAttackSpeed(double attackSpeed) {
-        this.attackSpeed = attackSpeed;
     }
 
     public boolean isAttaker() {

@@ -1,5 +1,9 @@
 package view;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import model.boucleJeu.Boucle;
 import model.game_logic.GameManager;
 import javafx.event.ActionEvent;
@@ -28,7 +32,7 @@ public class game {
     @FXML
     private Button speed;
     @FXML
-    private Label coeur;
+    private StackPane coeur;
     private GameManager gameManager;
     private Scene scene;
     private boolean constructTowers = false;
@@ -40,15 +44,7 @@ public class game {
             im.setFitHeight(20);
             im.setFitWidth(20);
             buytower.setGraphic(im);
-            ImageView imCoeur = new ImageView(new Image(String.valueOf(getClass().getResource("/coeur.PNG").toURI().toURL())));
-            imCoeur.setFitHeight(20);
-            imCoeur.setFitWidth(20);
-            coeur.setGraphic(imCoeur);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        } catch (MalformedURLException | URISyntaxException e) {e.printStackTrace();}
     }
 
     public GameManager getGameManager(){

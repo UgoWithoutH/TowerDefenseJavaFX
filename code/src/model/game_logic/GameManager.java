@@ -1,5 +1,7 @@
 package model.game_logic;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import model.boucleJeu.Boucle;
 import model.boucleJeu.Observateur;
 import model.game_logic.action.ActionTower;
@@ -10,7 +12,6 @@ import model.characters.tower.ClassicTower;
 import model.Map.update.DrawMap;
 import model.Map.Map;
 import model.characters.tower.Tower;
-import view.view_factory.AnimationBasicTowerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,25 +24,23 @@ public class GameManager implements Observateur {
 
     private Map gameMap;
     private GameState game;
-    private GameViewLogic gameViewLogic;
     private Boucle boucle;
     private DrawMap drawMap;
     private Thread boucleThread;
     private Scanner enemyFile;
-    private AnimationBasicTowerFactory basicTowerFactory;
 
-    public GameManager(GameViewLogic gameViewLogic, Map map) throws FileNotFoundException{
-        this.gameViewLogic = gameViewLogic;
+    public GameManager(Map map) throws FileNotFoundException{
         this.gameMap = map;
         game = GameState.getNewGame();
         game.setRunning(true);
         Monster.setPath(gameMap.getPath());
         enemyFile = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
         boucle = new Boucle(this);
-        basicTowerFactory = new AnimationBasicTowerFactory(this);
     }
 
-    public AnimationBasicTowerFactory getBasicTowerFactory() {return basicTowerFactory;}
+    public void test(){
+        game.setVictory(true);
+    }
 
     public Boucle getBoucle(){ return boucle; }
 
@@ -75,33 +74,22 @@ public class GameManager implements Observateur {
             if(timer%40 == 0 && enemyFile.hasNextLine()) {
                 spawnEnemy(enemyFile.nextLine());
             }
-            else if(timer <= 0){
-                game.setLevel(game.getLevel() + 1);
-            }
             updateLocations();
             attacker();
-            basicTowerFactory.createProjectiles();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        } catch (InterruptedException | CloneNotSupportedException e) {e.printStackTrace();}
     }
 
     public void spawnEnemy(String type) throws CloneNotSupportedException {
         switch (type) {
             case "Basic":
                 game.getMonstersAlive().add(new Basic(5));
-                gameViewLogic.createMonster(5);
                 break;
             case "Speed":
                 game.getMonstersAlive().add(new Speed(3));
-                gameViewLogic.createMonster(3);
                 break;
 
             default:
                 game.getMonstersAlive().add(new Basic(3));
-                gameViewLogic.createMonster(3);
                 break;
         }
     }
@@ -117,14 +105,13 @@ public class GameManager implements Observateur {
                 game.setLives((game.getLives()) - 1);
             } else {
                 game.setCoins((game.getCoins()) + monster.getReward());
-                game.setScore(game.getScore() + (monster.getReward() * game.getLevel()));
+                game.setScore(game.getScore() + (monster.getReward() * (game.getLevel() + 1)));
             }
         }
     }
 
     private void updateLocations(){
         ArrayList<Monster> monsterEnd = new ArrayList<>();
-        ArrayList<Monster> monsterListToDelete;
         if(!game.getMonstersAlive().isEmpty()){
             Iterator<Monster> monsters = game.getMonstersAlive().iterator();
             Monster monster;
@@ -149,7 +136,7 @@ public class GameManager implements Observateur {
 
     public void victory(){
         game.setRunning(false);
-        gameViewLogic.victory(game);
+        game.setVictory(true);
     }
 
     public void gameOver(){
@@ -159,7 +146,8 @@ public class GameManager implements Observateur {
         }
         game.getMonstersAlive().clear();
         game.setRunning(false);
-        gameViewLogic.gameOver();
+        game.setGameOver(true);
+        //gameViewLogic.gameOver();
     }
 
     public void buyTower(double xCords , double yCords){
@@ -173,7 +161,6 @@ public class GameManager implements Observateur {
                 game.setCoins(game.getCoins() - 50);
                 gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);
                 drawMap.draw(gameMap);
-                basicTowerFactory.createBuildProgressBar(xCords,yCords,tower);
             }
         }
     }

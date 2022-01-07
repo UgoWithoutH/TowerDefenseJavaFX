@@ -11,6 +11,6 @@ public class Manager {
     }
 
     public GameManager getGameManager() {return gameManager;}
-
+    public void setGameManager(GameManager gameManager) {this.gameManager = gameManager;}
     public ScoreRanking getScoreRanking() {return scoreRanking;}
 }

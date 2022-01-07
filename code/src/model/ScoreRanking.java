@@ -20,16 +20,6 @@ public class ScoreRanking {
         public ListProperty<GameState> rankingProperty() {return ranking;}
         public void setRanking(ObservableList<GameState> ranking) {this.ranking.set(ranking);}
 
-    //test pour avoir un exemple de notification de list observable à l'ajout
-    /*public ScoreRanking(){
-            rankingObservable.addListener(new ListChangeListener<GameState>() {
-                @Override
-                public void onChanged(Change<? extends GameState> c) {
-                    System.out.println("bonjour");
-                }
-            });
-    }*/
-
     public void updateScore(GameState gameState) {
         if (!rankingObservable.isEmpty()) {
             if (rankingObservable.size() > 3) {
