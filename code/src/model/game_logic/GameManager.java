@@ -141,7 +141,9 @@ public class GameManager implements Observateur {
                 }
             }
             for(Monster m : monsterEnd){
+                removeMonster = true; //car le onChangedListener est déclenché sauf que ce n'est pas pour créér un monstre
                 game.getMonstersAlive().remove(m);
+                removeMonster = false;
                 m.getView().setVisible(false);
             }
         }
@@ -157,10 +159,10 @@ public class GameManager implements Observateur {
         for(Monster monster : listMonster){
             monster.getView().setVisible(false);
         }
+        removeMonster = true;
         game.getMonstersAlive().clear();
         boucle.setRunning(false);
         game.setGameOver(true);
-        //gameViewLogic.gameOver();
     }
 
     public void buyTower(double xCords , double yCords){

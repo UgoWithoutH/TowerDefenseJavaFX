@@ -136,7 +136,7 @@ public class main_menu {
         gameManager.getGame().gameOverProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                gameOver(gameManager.getGame());
+                gameOver();
             }
         });
     }
@@ -251,7 +251,7 @@ public class main_menu {
         System.exit(1);
     }
 
-    public void gameOver(GameState game) {
+    public void gameOver() {
         Label l = new Label("Game Over");
         l.setId("labelText");
         Button accueil = new Button("Accueil");
@@ -270,7 +270,6 @@ public class main_menu {
         sp.setAlignment(Pos.CENTER);
         l.setAlignment(Pos.CENTER);
         tilemapGroup.getChildren().add(sp);
-        manager.getScoreRanking().getRanking().add(game);
     }
 
     public void victory(GameState game) {
