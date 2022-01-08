@@ -19,8 +19,6 @@ public class Navigator {
 
 
     public static final URL GAMEUI = GameManager.class.getResource("/FXML/game.fxml");
-    public static final URL OPTIONUI = GameManager.class.getResource("/FXML/option.fxml");
-    public static final URL MENUUI = GameManager.class.getResource("/FXML/main_menu.fxml");
     private static Stage stage;
     private static Manager manager;
 

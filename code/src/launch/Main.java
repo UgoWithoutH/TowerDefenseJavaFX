@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import model.Manager;
 import model.ScoreRanking;
+import model.game_logic.GameManager;
 import view.Navigator;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -18,21 +19,20 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        Pane fxml;
-
         stage.setTitle("Tower Defense");
         stage.setWidth(RESOLUTION_X);
         stage.setHeight(RESOLUTION_Y);
         stage.setResizable(false);
         Navigator.setStage(stage);
+        ScreenController.setStage(stage);
         Navigator.setManager(new Manager(new ScoreRanking()));
         Navigator.mainMenu();
         stage.show();
-        ScreenController screenController = new ScreenController(stage.getScene());
-        screenController.addScreen("option",FXMLLoader.load(Navigator.OPTIONUI));
-        screenController.addScreen("game", FXMLLoader.load(Navigator.GAMEUI));
-        //screenController.addScreen("menu", FXMLLoader.load(Navigator.MENUUI));
+    }
 
+    @Override
+    public void stop(){
+        System.out.println("Window is closing");
     }
 
     public static void main(String[] args) {

@@ -32,7 +32,7 @@ public class GameManager implements Observateur {
 
     public GameManager(Map map) throws FileNotFoundException{
         this.gameMap = map;
-        game = GameState.getNewGame();
+        game = new GameState();
         Monster.setPath(gameMap.getPath());
         enemyFile = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
         boucle = new Boucle();
@@ -42,6 +42,8 @@ public class GameManager implements Observateur {
     public boolean isRemoveMonster(){return removeMonster;}
 
     public Boucle getBoucle(){ return boucle; }
+
+    public Thread getBoucleThread(){ return boucleThread; }
 
     public DrawMap getDrawMap() {
         return drawMap;

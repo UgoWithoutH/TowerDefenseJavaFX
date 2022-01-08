@@ -23,6 +23,10 @@ public class Boucle extends Observable implements Runnable {
     public boolean isRunning(){return running;}
     public void setRunning(boolean run){running = run;}
 
+    /**
+     * todo
+     *  Penser a détruire le Thread lors de l'arret du jeu
+     */
     public void start() {
         running = true;
         run();

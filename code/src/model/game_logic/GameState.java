@@ -61,11 +61,6 @@ public class GameState{
         monstersAlive = FXCollections.observableArrayList();
     }
 
-    public static GameState getNewGame(){
-        playerGame = new GameState();
-        return playerGame;
-    }
-
     public static GameState getGame() throws NullPointerException{
             return playerGame;
     }

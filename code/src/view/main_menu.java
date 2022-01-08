@@ -47,12 +47,12 @@ public class main_menu {
     private  Scene gameScene;
     private  Scene optionScene;
     private view.game gameController;
-    private view.option optionController;
     private Group tilemapGroup;
     private Manager manager = Navigator.getManager();
     @FXML
     private ListView scoreList;
 
+    @FXML
     public void initialize(){
         scoreList.setStyle("-fx-background-color: linear-gradient(#bab9b9, #777777);");
         scoreList.itemsProperty().bind(manager.getScoreRanking().rankingProperty());
@@ -61,6 +61,7 @@ public class main_menu {
                     @Override
                     protected void updateItem(GameState gameState, boolean empty) {
                         super.updateItem(gameState, empty);
+                        System.out.println("OK");
                         if (!empty) {
                             Label l1Text = new Label("Level : ");
                             Label l1 = new Label();
@@ -113,9 +114,13 @@ public class main_menu {
             gameController = loader.getController();
             gameController.setGameManager(gameManager);
             gameController.setScene(Navigator.getStage().getScene());
-            Navigator.getStage().getScene().setRoot(gamePane);
+
+            ScreenController.addScreen("game", gamePane);
+            ScreenController.activate("game");
+
             listenerOnChangedVictoryAndGameOver();
             listenerOnChangedTowersAndMonsters();
+
             gameManager.start();
         }catch (IOException | URISyntaxException ex){ex.printStackTrace();}
     }
@@ -131,7 +136,7 @@ public class main_menu {
         gameManager.getGame().gameOverProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                gameOver();
+                gameOver(gameManager.getGame());
             }
         });
     }
@@ -246,7 +251,7 @@ public class main_menu {
         System.exit(1);
     }
 
-    public void gameOver() {
+    public void gameOver(GameState game) {
         Label l = new Label("Game Over");
         l.setId("labelText");
         Button accueil = new Button("Accueil");
@@ -265,6 +270,7 @@ public class main_menu {
         sp.setAlignment(Pos.CENTER);
         l.setAlignment(Pos.CENTER);
         tilemapGroup.getChildren().add(sp);
+        manager.getScoreRanking().getRanking().add(game);
     }
 
     public void victory(GameState game) {
