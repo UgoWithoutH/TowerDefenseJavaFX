@@ -187,7 +187,7 @@ public class GameManager implements Observateur {
                 int towerMaxXRange = tower.getX() + tower.getAttackRange();
                 int towerMinYRange = tower.getY() - tower.getAttackRange();
                 int towerMaxYRange = tower.getY() + tower.getAttackRange();
-                Iterator<Monster> iterator = GameState.getGame().getMonstersAlive().iterator();
+                Iterator<Monster> iterator = game.getMonstersAlive().iterator();
 
                 while (iterator.hasNext()) {
                     target = iterator.next();

@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class GameState{
 
-    private static GameState playerGame;
     private ObservableList<Tower> playerTowers;
     private ObservableList<Monster> monstersAlive;
     private boolean speed = false;
@@ -59,10 +58,6 @@ public class GameState{
         setVictory(false);
         playerTowers = FXCollections.observableArrayList();
         monstersAlive = FXCollections.observableArrayList();
-    }
-
-    public static GameState getGame() throws NullPointerException{
-            return playerGame;
     }
 
     public boolean isSpeed() {return speed;}
