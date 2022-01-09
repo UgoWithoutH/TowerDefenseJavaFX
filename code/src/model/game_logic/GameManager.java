@@ -61,7 +61,7 @@ public class GameManager implements Observateur {
     public void update(int timer) {
         try {
             if (boucle.isRunning()) {
-                Update.updateTimerSeconds(timer,boucle.getMilis(),game);
+                Update.updateTimerSeconds(timer,boucle.getDefaultMilis(),game);
                 if (!enemyFile.hasNextLine() && game.getMonstersAlive().isEmpty() && boucle.isRunning()) {
                     victory();
                 }

@@ -6,9 +6,12 @@ import static java.lang.Thread.sleep;
 
 
 public class Boucle extends Observable implements Runnable {
+    private static final long DEFAULT_MILIS = 50;
     private long milis  = 50;
     private int timer = 0;
     private boolean running = false;
+
+    public static long getDefaultMilis() {return DEFAULT_MILIS;}
 
     public long getMilis(){return milis;}
     public void setMilis(long milis){this.milis = milis;}

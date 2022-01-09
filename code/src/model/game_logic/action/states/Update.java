@@ -15,11 +15,12 @@ public class Update {
     }
 
     public static void updateTimerSeconds(int timer,long milis,GameState game){
-        var timeMilis = timer * milis;
+        var timeMilis = timer * 50;
         var timeSeconds = (int) (timeMilis / 1000);
 
         if (timeSeconds != game.getTimeSeconds()) {
             game.setTimeSeconds(game.getTimeSeconds() + 1);
         }
+        System.out.println(game.getTimeSeconds());
     }
 }
