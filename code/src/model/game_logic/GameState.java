@@ -20,6 +20,7 @@ public class GameState{
     private ObservableList<Tower> playerTowers;
     private ObservableList<Monster> monstersAlive;
     private boolean speed = false;
+    private boolean removeMonster = false;
     private IntegerProperty timeSeconds = new SimpleIntegerProperty();
         public int getTimeSeconds() {return timeSeconds.get();}
         public IntegerProperty timeSecondsProperty() {return timeSeconds;}
@@ -59,6 +60,9 @@ public class GameState{
         playerTowers = FXCollections.observableArrayList();
         monstersAlive = FXCollections.observableArrayList();
     }
+
+    public boolean isRemoveMonster() {return removeMonster;}
+    public void setRemoveMonster(boolean value){removeMonster = value;}
 
     public boolean isSpeed() {return speed;}
     public void setSpeed(boolean speed) {this.speed = speed;}

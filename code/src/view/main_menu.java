@@ -37,6 +37,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Map.importMap;
 import model.Map.update.DrawMap;
+import model.game_logic.action.monster.Remover;
+import model.game_logic.action.states.Update;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -61,7 +63,6 @@ public class main_menu {
                     @Override
                     protected void updateItem(GameState gameState, boolean empty) {
                         super.updateItem(gameState, empty);
-                        System.out.println("OK");
                         if (!empty) {
                             Label l1Text = new Label("Level : ");
                             Label l1 = new Label();
@@ -162,7 +163,7 @@ public class main_menu {
             @Override
             public void onChanged(Change<? extends Monster> change) {
                 var listMonsters = change.getList();
-                if(!manager.getGameManager().isRemoveMonster()) {
+                if(!manager.getGameManager().getGame().isRemoveMonster()) {
                     Monster monster = listMonsters.get(listMonsters.size() - 1);
                     createMonster();
                 }
@@ -171,8 +172,7 @@ public class main_menu {
 
     }
 
-    public void option() throws IOException {
-        //ScreenController.activate("option");
+    public void option(){
         manager.getScoreRanking().getRanking().add(new GameState());
     }
 
@@ -234,8 +234,8 @@ public class main_menu {
                         finishedProjectile.setVisible(false);
                         tilemapGroup.getChildren().remove(finishedProjectile);
                         if(finishedProjectile.getTarget().isDead()){
-                            gameManager.removeMonster(finishedProjectile.getTarget());
-                            gameManager.updateStates(finishedProjectile.getTarget());
+                            Remover.removeMonster(finishedProjectile.getTarget(),gameManager.getGame());
+                            Update.updateStates(finishedProjectile.getTarget(),gameManager.getGame());
                         }
                     }
                 });

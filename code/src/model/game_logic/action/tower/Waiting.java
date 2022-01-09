@@ -1,14 +1,13 @@
-package model.game_logic.action;
+package model.game_logic.action.tower;
 
-import model.characters.monster.Monster;
 import model.characters.tower.Tower;
 
 import static java.lang.Thread.sleep;
 
-public class ActionTower implements Runnable{
+public class Waiting implements Runnable{
     private Tower tower;
 
-    public ActionTower(Monster m, Tower t){
+    public Waiting(Tower t){
         tower = t;
     }
 

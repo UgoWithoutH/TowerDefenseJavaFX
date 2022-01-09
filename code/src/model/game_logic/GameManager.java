@@ -1,22 +1,17 @@
 package model.game_logic;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import model.boucleJeu.Boucle;
 import model.boucleJeu.Observateur;
-import model.game_logic.action.ActionTower;
-import model.characters.monster.Basic;
 import model.characters.monster.Monster;
-import model.characters.monster.Speed;
-import model.characters.tower.ClassicTower;
 import model.Map.update.DrawMap;
 import model.Map.Map;
-import model.characters.tower.Tower;
+import model.game_logic.action.states.Update;
+import model.game_logic.action.tower.Attacker;
+import model.game_logic.action.monster.Displacer;
+import model.game_logic.action.monster.Spawner;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -28,7 +23,7 @@ public class GameManager implements Observateur {
     private DrawMap drawMap;
     private Thread boucleThread;
     private Scanner enemyFile;
-    private boolean removeMonster = false;
+    private Displacer displacer;
 
     public GameManager(Map map) throws FileNotFoundException{
         this.gameMap = map;
@@ -39,11 +34,7 @@ public class GameManager implements Observateur {
         boucle.subscribe(this);
     }
 
-    public boolean isRemoveMonster(){return removeMonster;}
-
     public Boucle getBoucle(){ return boucle; }
-
-    public Thread getBoucleThread(){ return boucleThread; }
 
     public DrawMap getDrawMap() {
         return drawMap;
@@ -60,8 +51,6 @@ public class GameManager implements Observateur {
         return gameMap;
     }
 
-    public Scanner getEnemyFile(){return enemyFile;}
-
     public void start(){
         boucle.setRunning(true);
         boucleThread = new Thread(boucle);
@@ -71,81 +60,24 @@ public class GameManager implements Observateur {
     @Override
     public void update(int timer) {
         try {
-            var timeMilis = timer * boucle.getDefaultMilis();
-            var timeSeconds = (int) (timeMilis/1000);
-            System.out.println(game.getTimeSeconds());
-            if(timeSeconds != game.getTimeSeconds()){
-                game.setTimeSeconds(game.getTimeSeconds()+1);
-            }
+            if (boucle.isRunning()) {
+                Update.updateTimerSeconds(timer,boucle.getMilis(),game);
+                if (!enemyFile.hasNextLine() && game.getMonstersAlive().isEmpty() && boucle.isRunning()) {
+                    victory();
+                }
 
-            if(!enemyFile.hasNextLine() && game.getMonstersAlive().isEmpty() && boucle.isRunning()){
-                victory();
-            }
-
-            if(timer%40 == 0 && enemyFile.hasNextLine()) {
-                spawnEnemy(enemyFile.nextLine());
-            }
-            updateLocations();
-            attacker();
-        } catch (InterruptedException | CloneNotSupportedException e) {e.printStackTrace();}
-    }
-
-    public void spawnEnemy(String type) throws CloneNotSupportedException {
-        switch (type) {
-            case "Basic":
-                game.getMonstersAlive().add(new Basic(5));
-                break;
-            case "Speed":
-                game.getMonstersAlive().add(new Speed(3));
-                break;
-
-            default:
-                game.getMonstersAlive().add(new Basic(3));
-                break;
-        }
-    }
-
-    public void removeMonster(Monster monster){
-        removeMonster = true;
-        game.getMonstersAlive().remove(monster);
-        removeMonster = false;
-        monster.getView().setVisible(false);
-    }
-
-    public void updateStates(Monster monster){
-        if(boucle.isRunning()) {
-            if (monster.isPathFinished()) {
-                game.setLives((game.getLives()) - 1);
-            } else {
-                game.setCoins((game.getCoins()) + monster.getReward());
-                game.setScore(game.getScore() + (monster.getReward() * (game.getLevel() + 1)));
-            }
-        }
-    }
-
-    private void updateLocations(){
-        ArrayList<Monster> monsterEnd = new ArrayList<>();
-        if(!game.getMonstersAlive().isEmpty()){
-            Iterator<Monster> monsters = game.getMonstersAlive().iterator();
-            Monster monster;
-            while(monsters.hasNext()) {
-                monster = monsters.next();
-                monster.updateLocation(monster.getMovementSpeed());
-                if(monster.isPathFinished()){
-                    updateStates(monster);
-                    monsterEnd.add(monster);
-                    if(game.getLives() == 0){
-                        gameOver();
-                        return;
-                    }
+                if (timer % 40 == 0 && enemyFile.hasNextLine()) {
+                    Spawner.spawnEnemy(enemyFile.nextLine(), game);
+                }
+                if(!Displacer.updateLocations(game)){
+                    gameOver();
+                }
+                else {
+                    Attacker.attack(game);
                 }
             }
-            for(Monster m : monsterEnd){
-                removeMonster = true; //car le onChangedListener est déclenché sauf que ce n'est pas pour créér un monstre
-                game.getMonstersAlive().remove(m);
-                removeMonster = false;
-                m.getView().setVisible(false);
-            }
+        } catch(InterruptedException | CloneNotSupportedException e){
+            e.printStackTrace();
         }
     }
 
@@ -159,55 +91,9 @@ public class GameManager implements Observateur {
         for(Monster monster : listMonster){
             monster.getView().setVisible(false);
         }
-        removeMonster = true;
+        game.setRemoveMonster(true);
         game.getMonstersAlive().clear();
         boucle.setRunning(false);
         game.setGameOver(true);
-    }
-
-    public void buyTower(double xCords , double yCords){
-        int xTile = (int)(xCords / 64);
-        int yTile = (int)(yCords / 64);
-
-        if(gameMap.nodeOpen(xTile,yTile)){
-            Tower tower = new ClassicTower(xTile, yTile);
-            if(game.getCoins() >= tower.getSellCost()) {
-                game.addTower(tower);
-                game.setCoins(game.getCoins() - 50);
-                gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);
-                drawMap.draw(gameMap);
-            }
-        }
-    }
-
-    public void attacker() throws InterruptedException {
-        Monster target;
-        ActionTower attackService;
-        for (Tower tower : game.getPlayerTowers()) {
-            if (tower.isAttaker()) {
-                int towerMinXRange = tower.getX() - tower.getAttackRange();
-                int towerMaxXRange = tower.getX() + tower.getAttackRange();
-                int towerMinYRange = tower.getY() - tower.getAttackRange();
-                int towerMaxYRange = tower.getY() + tower.getAttackRange();
-                Iterator<Monster> iterator = game.getMonstersAlive().iterator();
-
-                while (iterator.hasNext()) {
-                    target = iterator.next();
-                    if (target.getX() > towerMinXRange
-                            & target.getX() < towerMaxXRange
-                            & target.getY() > towerMinYRange
-                            & target.getY() < towerMaxYRange) {
-                        attackService = new ActionTower(target, tower);
-                        Thread t = new Thread(attackService::run);
-                        t.start();
-                        if(tower.isBuildable()) {
-                            tower.createProjectile(target);
-                            target.takeDamage(tower.getAttackDamage());
-                        }
-                        break;
-                    }
-                }
-            }
-        }
     }
 }
