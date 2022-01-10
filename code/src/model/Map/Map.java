@@ -4,13 +4,6 @@ import model.Coordinate;
 
 import java.util.ArrayList;
 
-/** @Todo
- *     retourner path monstre
- *    acceler la generation de la map/draw
- *    enlever ImageView pour que notre jeux puisse etre lancer en console
- */
-
-
 public class Map {
 
     public final String TILESET = "/tileset/tile.png";
