@@ -1,22 +1,18 @@
-package view.informer;
+package view.creators;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
+import javafx.scene.Group;
 import model.characters.monster.Monster;
 import model.game_logic.GameManager;
-import model.game_logic.GameState;
 
-public class InformerMonsters {
+public class CreatorMonsters {
 
-    private ObjectProperty<Monster> monster = new SimpleObjectProperty<>();
-        public Monster getMonster() {return monster.get();}
-        public ObjectProperty<Monster> monsterProperty() {return monster;}
-        public void setMonster(Monster monster) {this.monster.set(monster);}
     private GameManager gameManager;
+    private Group tilemapGroup;
 
-    public InformerMonsters(GameManager gameManager) {
+    public CreatorMonsters(GameManager gameManager, Group tilemapGroup) {
         this.gameManager = gameManager;
+        this.tilemapGroup = tilemapGroup;
         addListener();
     }
 
@@ -26,7 +22,7 @@ public class InformerMonsters {
             public void onChanged(Change<? extends Monster> change) {
                 var listMonsters = change.getList();
                 if (!gameManager.getGame().isRemoveMonster()) {
-                    setMonster(listMonsters.get(listMonsters.size() - 1));
+                    tilemapGroup.getChildren().add(listMonsters.get(listMonsters.size() - 1).getView());
                 }
             }
         });

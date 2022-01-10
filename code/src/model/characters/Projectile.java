@@ -4,18 +4,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.characters.monster.Monster;
 
-/**
- * todo : supprimer extends circle
- *
- */
-public class Projectile extends Circle {
+public class Projectile{
     private Monster target;     // The target of the attack
     private final int startX;   // Starting location of the projectile
     private final int startY;
 
 
-    public Projectile(Monster target, int towerX, int towerY, Color color){
-        super(towerX , towerY , 5 , color);
+    public Projectile(Monster target, int towerX, int towerY){
         this.target = target;
         startX = towerX;
         startY = towerY;

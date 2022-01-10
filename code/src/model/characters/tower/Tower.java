@@ -1,7 +1,7 @@
 package model.characters.tower;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import model.Coordinate;
 import javafx.scene.paint.Color;
 import model.characters.Projectile;
@@ -13,7 +13,10 @@ public abstract class Tower {
     private double attackSpeed;
     private int attackRange;
     private int sellCost;
-    private ObservableList<Projectile> projectileList;
+    private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();
+        public Projectile getProjectile() {return projectile.get();}
+        public ObjectProperty<Projectile> projectileProperty() {return projectile;}
+        public void setProjectile(Projectile projectile) {this.projectile.set(projectile);}
     private Coordinate coords;
     private boolean attacker = true;
     private boolean buildable = false;
@@ -21,7 +24,6 @@ public abstract class Tower {
 
 
     public Tower(int x , int y){
-        projectileList = FXCollections.observableArrayList();
         coords = new Coordinate(x , y);
         attackDamage = 5;
         attackSpeed = 1.0;
@@ -48,7 +50,7 @@ public abstract class Tower {
     }
 
     public void createProjectile(Monster target){
-        projectileList.add(new Projectile(target , coords.getExactX() , coords.getExactY() , Color.BLACK));
+        setProjectile(new Projectile(target , coords.getExactX() , coords.getExactY()));
     }
 
 
@@ -70,10 +72,6 @@ public abstract class Tower {
 
     public int getSellCost(){
         return sellCost;
-    }
-
-    public ObservableList<Projectile> getProjectileList() {
-        return projectileList;
     }
 
     public Coordinate getCoords(){
