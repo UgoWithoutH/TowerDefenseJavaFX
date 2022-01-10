@@ -39,6 +39,8 @@ import model.Map.importMap;
 import model.Map.update.DrawMap;
 import model.game_logic.action.monster.Remover;
 import model.game_logic.action.states.Update;
+import view.informer.InformerMonsters;
+import view.informer.InformerProjectiles;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -121,7 +123,6 @@ public class main_menu {
 
             listenerOnChangedVictoryAndGameOver();
             listenerOnChangedTowersAndMonsters();
-
             gameManager.start();
         }catch (IOException | URISyntaxException ex){ex.printStackTrace();}
     }
@@ -150,23 +151,15 @@ public class main_menu {
                 Tower tower = listTower.get(listTower.size() - 1);
                 Coordinate coordinateTower = tower.getCoords();
                 createBuildProgressBar(tower);
-                tower.getProjectileList().addListener(new ListChangeListener<Projectile>() {
-                    @Override
-                    public void onChanged(Change<? extends Projectile> change) {
-                        createProjectiles();
-                    }
-                });
+                InformerProjectiles informerProjectiles = new InformerProjectiles(tower);
             }
         });
 
-        manager.getGameManager().getGame().getMonstersAlive().addListener(new ListChangeListener<Monster>() {
+        InformerMonsters informerMonsters = new InformerMonsters(manager.getGameManager());
+        informerMonsters.monsterProperty().addListener(new ChangeListener<Monster>() {
             @Override
-            public void onChanged(Change<? extends Monster> change) {
-                var listMonsters = change.getList();
-                if(!manager.getGameManager().getGame().isRemoveMonster()) {
-                    Monster monster = listMonsters.get(listMonsters.size() - 1);
-                    createMonster();
-                }
+            public void changed(ObservableValue<? extends Monster> observable, Monster oldValue, Monster newValue) {
+                tilemapGroup.getChildren().add(newValue.getView());
             }
         });
 
@@ -177,10 +170,10 @@ public class main_menu {
     }
 
 
-    public void createMonster(){
+    /*public void createMonster(){
         GameManager gameManager = gameController.getGameManager();
         tilemapGroup.getChildren().add(gameManager.getGame().getMonstersAlive().get(gameManager.getGame().getMonstersAlive().size() - 1).getView());
-    }
+    }*/
 
     public void createBuildProgressBar(Tower t) {
         Group g = new Group();
