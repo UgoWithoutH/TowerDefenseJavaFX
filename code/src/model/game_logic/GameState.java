@@ -12,9 +12,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/** TODO: 10/12/2021
- *   patron de conception ETAT a envisager
- */
+
 public class GameState{
 
     private ObservableList<Tower> playerTowers;
