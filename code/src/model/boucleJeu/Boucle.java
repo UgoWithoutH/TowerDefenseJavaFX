@@ -1,7 +1,6 @@
 package model.boucleJeu;
-import model.game_logic.GameManager;
-import javafx.application.Platform;
 
+import javafx.application.Platform;
 import static java.lang.Thread.sleep;
 
 

@@ -1,7 +1,6 @@
 package model.Map;
 
 import model.Coordinate;
-
 import java.util.ArrayList;
 
 public class Map {

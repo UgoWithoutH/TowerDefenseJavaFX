@@ -1,16 +1,11 @@
 package model.characters.tower;
 
-
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Coordinate;
 import javafx.scene.paint.Color;
 import model.characters.Projectile;
 import model.characters.monster.Monster;
-
-import java.util.ArrayList;
-
 
 public abstract class Tower {
     private static final int BUILD_TIME_SECONDS = 2;
