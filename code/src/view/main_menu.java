@@ -11,9 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import launch.Main;
 import model.Coordinate;
 import model.Manager;
 import model.characters.tower.Tower;
@@ -24,10 +26,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import model.Map.importMap;
 import model.Map.update.DrawMap;
 import view.creators.CreatorMonsters;
@@ -38,12 +36,9 @@ import java.net.URISyntaxException;
 
 public class main_menu {
 
-
-    private Scene gameScene;
-    private Scene optionScene;
     private view.game gameController;
     private Group tilemapGroup;
-    private Manager manager = Navigator.getManager();
+    private Manager manager = ScreenController.getManager();
     @FXML
     private ListView scoreList;
 
@@ -59,6 +54,13 @@ public class main_menu {
                         if (!empty) {
                             Label l1Text = new Label("Level : ");
                             Label l1 = new Label();
+
+                            if (gameState.isVictory()) {
+                                l1.setTextFill(Color.GREEN);
+                            } else {
+                                l1.setTextFill(Color.RED);
+                            }
+
                             HBox myHbox1 = new HBox(l1Text, l1);
                             l1.textProperty().bind(gameState.levelProperty().asString());
                             Label l2Text = new Label("Score : ");
@@ -72,6 +74,7 @@ public class main_menu {
                             HBox myHboxContent = new HBox(myHbox1, myHbox2, myHbox3);
                             myHboxContent.setSpacing(5);
                             setGraphic(myHboxContent);
+
                         } else {
                             textProperty().unbind();
                             setText("");
@@ -107,7 +110,7 @@ public class main_menu {
             gamePane.add(gameUI, 0, 1);
             gameController = loader.getController();
             gameController.setGameManager(gameManager);
-            gameController.setScene(Navigator.getStage().getScene());
+            gameController.setScene(ScreenController.getStage().getScene());
 
             ScreenController.addScreen("game", gamePane);
             ScreenController.activate("game");
@@ -118,6 +121,10 @@ public class main_menu {
         } catch (IOException | URISyntaxException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void option() {
+        manager.getScoreRanking().getRanking().add(new GameState());
     }
 
     private void listenerOnChangedVictoryAndGameOver() {
@@ -131,7 +138,7 @@ public class main_menu {
         gameManager.getGame().gameOverProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                gameOver();
+                gameOver(gameManager.getGame());
             }
         });
     }
@@ -150,10 +157,11 @@ public class main_menu {
         new CreatorMonsters(manager.getGameManager(),tilemapGroup);
     }
 
-    public void option() {
-        manager.getScoreRanking().getRanking().add(new GameState());
-    }
-
+    /** todo
+     *   lorsque la boucle est arrété il faut STOP le build
+     *
+     * @param t
+     */
     public void createBuildProgressBar(Tower t) {
         Group g = new Group();
         Coordinate coordinateTower = t.getCoords();
@@ -191,14 +199,15 @@ public class main_menu {
         System.exit(1);
     }
 
-    public void gameOver() {
+    public void gameOver(GameState game) {
+        manager.getScoreRanking().updateScore(game);
         Label l = new Label("Game Over");
         l.setId("labelText");
         Button accueil = new Button("Accueil");
         accueil.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                    Navigator.mainMenu();
+                    Navigator.affichageMenu();
                 }
         });
         VBox content = new VBox(l,accueil);
@@ -220,7 +229,7 @@ public class main_menu {
         accueil.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Navigator.mainMenu();
+                Navigator.affichageMenu();
             }
         });
         VBox content = new VBox(l,accueil);
@@ -233,4 +242,7 @@ public class main_menu {
         l.setAlignment(Pos.CENTER);
         tilemapGroup.getChildren().add(sp);
     }
+
+
+
 }

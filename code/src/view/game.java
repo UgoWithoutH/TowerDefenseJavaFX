@@ -49,13 +49,18 @@ public class game {
     public GameManager getGameManager(){
         return gameManager;
     }
-
     public void setGameManager(GameManager gameManager){
         this.gameManager = gameManager;
         textScore.textProperty().bind(gameManager.getGame().scoreProperty().asString());
         coins.textProperty().bind(gameManager.getGame().coinsProperty().asString());
     }
 
+
+    /** todo
+     *      C est quoi ce nom ??
+     *
+     * @param scene
+     */
     public void setScene(Scene scene){
         this.scene = scene;
         scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -63,11 +68,16 @@ public class game {
             public void handle(MouseEvent event) {
                 if(constructTowers && gameManager.getBoucle().isRunning()){
                     Buy.buyTower(event.getX(),event.getY(),gameManager.getGame(),gameManager.getGameMap(),gameManager.getDrawMap());
-                    constructTowers = false;
+                    constructTowers = true;
                 }
             }
         });
     }
+
+    /** todo
+     *   a quoi ca sert ??
+     * @param actionEvent
+     */
     @FXML
     public void buyTower(ActionEvent actionEvent) {
         constructTowers = true;
@@ -101,8 +111,15 @@ public class game {
         }
     }
 
+    /**Todo
+     *  ne pas seulement changer de Vue mais aussi mettre fin a la partie
+     *
+     * @param actionEvent
+     */
     public void giveUp(ActionEvent actionEvent) {
         gameManager.getBoucle().setRunning(false);
-        Navigator.mainMenu();
+
+        ScreenController.getManager().getScoreRanking().updateScore(ScreenController.getManager().getGameManager().getGame());
+        Navigator.affichageMenu();
     }
 }

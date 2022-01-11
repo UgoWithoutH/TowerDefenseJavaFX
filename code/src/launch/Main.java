@@ -1,6 +1,8 @@
 package launch;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import model.Manager;
 import model.ScoreRanking;
@@ -10,6 +12,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import view.ScreenController;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Main extends Application {
@@ -23,10 +26,21 @@ public class Main extends Application {
         stage.setWidth(RESOLUTION_X);
         stage.setHeight(RESOLUTION_Y);
         stage.setResizable(false);
-        Navigator.setStage(stage);
+
         ScreenController.setStage(stage);
-        Navigator.setManager(new Manager(new ScoreRanking()));
-        Navigator.mainMenu();
+        ScreenController.setManager(new Manager(new ScoreRanking()));
+
+
+        /**
+         * Premier affichage de fenétre !!
+         */
+        try {
+            stage.setScene(new Scene(FXMLLoader.load((Main.class.getResource("/FXML/main_menu.fxml")))));
+            stage.getScene().getStylesheets().setAll(Main.class.getResource("/FXML/menustyle.css").toExternalForm());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         stage.show();
     }
 

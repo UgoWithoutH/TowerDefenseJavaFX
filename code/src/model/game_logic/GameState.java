@@ -27,7 +27,7 @@ public class GameState{
         public boolean isGameOver() {return gameOver.get();}
         public BooleanProperty gameOverProperty() {return gameOver;}
         public void setGameOver(boolean gameOver) {this.gameOver.set(gameOver);}
-    private BooleanProperty victory = new SimpleBooleanProperty();
+    private BooleanProperty victory = new SimpleBooleanProperty(false);
         public boolean isVictory() {return victory.get();}
         public BooleanProperty victoryProperty() {return victory;}
         public void setVictory(boolean victory) {this.victory.set(victory);}
@@ -50,7 +50,7 @@ public class GameState{
 
     public GameState(){
         setTimeSeconds(0);
-        setCoins(100);
+        setCoins(1000);
         setLevel(1);
         setScore(0);
         setLives(2);

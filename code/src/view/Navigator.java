@@ -2,6 +2,8 @@ package view;
 
 //import game.engine.GameManager;
 import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
+import launch.Main;
 import model.Manager;
 import model.game_logic.GameManager;
 import javafx.fxml.FXMLLoader;
@@ -56,5 +58,21 @@ public class Navigator {
         Navigator.loadVista("/FXML/main_menu.fxml");
         stage.getScene().getStylesheets().setAll(
                 Navigator.class.getResource("/FXML/menustyle.css").toExternalForm());
+    }
+
+    public static void affichageMenu(){
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/FXML/main_menu.fxml"));
+            Pane root = (Pane)loader.load();
+
+            ScreenController.addScreen("setup", root);
+            ScreenController.activate("setup");
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

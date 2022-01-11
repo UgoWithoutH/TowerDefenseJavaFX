@@ -21,6 +21,6 @@ public class Update {
         if (timeSeconds != game.getTimeSeconds()) {
             game.setTimeSeconds(game.getTimeSeconds() + 1);
         }
-        System.out.println(game.getTimeSeconds());
+        //System.out.println(game.getTimeSeconds());
     }
 }
