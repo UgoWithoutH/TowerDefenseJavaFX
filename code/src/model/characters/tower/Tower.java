@@ -43,17 +43,6 @@ public abstract class Tower {
         this.buildable = buildable;
     }
 
-    public void upgradeTower(){
-        attackDamage++;
-        attackSpeed = attackSpeed - 0.1;
-        attackRange = attackRange + 50;
-    }
-
-    public void createProjectile(Monster target){
-        setProjectile(new Projectile(target , coords.getExactX() , coords.getExactY()));
-    }
-
-
     public int getX(){
         return coords.getExactX();
     }
@@ -84,6 +73,10 @@ public abstract class Tower {
 
     public void setAttaker(boolean attaker) {
         this.attacker = attaker;
+    }
+
+    public void createProjectile(Monster target){
+        setProjectile(new Projectile(target , coords.getExactX() , coords.getExactY()));
     }
 
 }

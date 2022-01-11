@@ -11,7 +11,7 @@ public abstract class Monster {
     Circle view;
     private final int radius = 10;
     private int healthPoints;
-    int movementSpeed;
+    private int movementSpeed;
     private int reward;
     private int direction;
     private boolean moveX;
@@ -28,7 +28,6 @@ public abstract class Monster {
         view = new Circle(path.get(0).getExactX(), path.get(0).getExactY(), radius);
         view.setFill(Color.RED);
     }
-
 
     public int getX() {
         return ((int) view.getCenterX());
@@ -58,16 +57,17 @@ public abstract class Monster {
         path = pathSet;
     }
 
+    public int getMovementSpeed() {
+        return movementSpeed;
+    }
+    public void setMovementSpeed(int movementSpeed){this.movementSpeed = movementSpeed;}
+
     public void takeDamage(int damage) {
         healthPoints = healthPoints - damage;
         if (healthPoints <= 0) {
             isDead = true;
             pathFinished = false;
         }
-    }
-
-    public int getMovementSpeed() {
-        return movementSpeed;
     }
 
     public void updateLocation(int distance) {

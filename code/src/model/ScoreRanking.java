@@ -1,16 +1,10 @@
 package model;
 
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.SetProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleSetProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import model.game_logic.GameState;
-
-import java.util.HashSet;
 
 public class ScoreRanking {
     private ObservableList<GameState> rankingObservable = FXCollections.observableArrayList();
@@ -20,7 +14,7 @@ public class ScoreRanking {
         public ListProperty<GameState> rankingProperty() {return ranking;}
         public void setRanking(ObservableList<GameState> ranking) {this.ranking.set(ranking);}
 
-    public void updateScore(GameState gameState) {
+    public void updateRanking(GameState gameState) {
         if (!rankingObservable.isEmpty()) {
             if (rankingObservable.size() > 3) {
                 GameState lowerState = gameState;

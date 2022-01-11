@@ -1,9 +1,5 @@
 package view;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import model.boucleJeu.Boucle;
 import model.game_logic.GameManager;
 import javafx.event.ActionEvent;
@@ -39,7 +35,7 @@ public class game {
     @FXML
     public void initialize(){
         try {
-            ImageView im = new ImageView(new Image(String.valueOf(getClass().getResource("/tower.PNG").toURI().toURL())));
+            ImageView im = new ImageView(new Image(String.valueOf(getClass().getResource("/images/tower.PNG").toURI().toURL())));
             im.setFitHeight(20);
             im.setFitWidth(20);
             buytower.setGraphic(im);
@@ -119,7 +115,7 @@ public class game {
     public void giveUp(ActionEvent actionEvent) {
         gameManager.getBoucle().setRunning(false);
 
-        ScreenController.getManager().getScoreRanking().updateScore(ScreenController.getManager().getGameManager().getGame());
+        ScreenController.getManager().getScoreRanking().updateRanking(ScreenController.getManager().getGameManager().getGame());
         Navigator.affichageMenu();
     }
 }

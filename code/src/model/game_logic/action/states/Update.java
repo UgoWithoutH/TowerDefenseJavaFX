@@ -15,7 +15,7 @@ public class Update {
     }
 
     public static void updateTimerSeconds(int timer,long milis,GameState game){
-        var timeMilis = timer * 50;
+        var timeMilis = timer * milis;
         var timeSeconds = (int) (timeMilis / 1000);
 
         if (timeSeconds != game.getTimeSeconds()) {

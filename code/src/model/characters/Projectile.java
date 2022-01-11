@@ -36,7 +36,5 @@ public class Projectile{
         return startY;
     }
 
-
-
 }
 

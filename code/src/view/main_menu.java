@@ -15,7 +15,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import launch.Main;
 import model.Coordinate;
 import model.Manager;
 import model.characters.tower.Tower;
@@ -94,7 +93,7 @@ public class main_menu {
             FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);
             GridPane gamePane = new GridPane();
             //Stack Pane coeur
-            ImageView imCoeur = new ImageView(new Image(String.valueOf(getClass().getResource("/coeur.PNG").toURI().toURL())));
+            ImageView imCoeur = new ImageView(new Image(String.valueOf(getClass().getResource("/images/coeur.PNG").toURI().toURL())));
             imCoeur.setFitHeight(50);
             imCoeur.setFitWidth(50);
             Text liveText = new Text();
@@ -123,9 +122,7 @@ public class main_menu {
         }
     }
 
-    public void option() {
-        manager.getScoreRanking().getRanking().add(new GameState());
-    }
+    public void option() {}
 
     private void listenerOnChangedVictoryAndGameOver() {
         GameManager gameManager = manager.getGameManager();
@@ -200,7 +197,7 @@ public class main_menu {
     }
 
     public void gameOver(GameState game) {
-        manager.getScoreRanking().updateScore(game);
+        manager.getScoreRanking().updateRanking(game);
         Label l = new Label("Game Over");
         l.setId("labelText");
         Button accueil = new Button("Accueil");
@@ -222,7 +219,7 @@ public class main_menu {
     }
 
     public void victory(GameState game) {
-        manager.getScoreRanking().updateScore(game);
+        manager.getScoreRanking().updateRanking(game);
         Label l = new Label("Victory");
         l.setId("labelText");
         Button accueil = new Button("Accueil");

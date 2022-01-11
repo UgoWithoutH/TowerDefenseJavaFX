@@ -23,7 +23,6 @@ public class GameManager implements Observateur {
     private DrawMap drawMap;
     private Thread boucleThread;
     private Scanner enemyFile;
-    private Displacer displacer;
 
     public GameManager(Map map) throws FileNotFoundException{
         this.gameMap = map;
