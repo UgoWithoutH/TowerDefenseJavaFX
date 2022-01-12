@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.game_logic.action.tower.Buy;
+import model.game_logic.action.tower.TowerAction;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -63,7 +64,7 @@ public class game {
             @Override
             public void handle(MouseEvent event) {
                 if(constructTowers && gameManager.getBoucle().isRunning()){
-                    Buy.buyTower(event.getX(),event.getY(),gameManager.getGame(),gameManager.getGameMap(),gameManager.getDrawMap());
+                    TowerAction.buyTower(event.getX(),event.getY(),gameManager.getGame(),gameManager.getGameMap(),gameManager.getDrawMap());
                     constructTowers = true;
                 }
             }

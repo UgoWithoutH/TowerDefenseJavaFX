@@ -7,7 +7,7 @@ import model.characters.tower.Tower;
 import model.game_logic.GameState;
 
 public class Buy {
-    public static void buyTower(double xCords , double yCords, GameState game, Map gameMap, DrawMap drawMap){
+    public static void buy(double xCords , double yCords, GameState game, Map gameMap, DrawMap drawMap){
         int xTile = (int)(xCords / 64);
         int yTile = (int)(yCords / 64);
 
