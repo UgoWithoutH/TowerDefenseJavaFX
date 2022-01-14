@@ -7,11 +7,19 @@ import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -20,13 +28,8 @@ import model.Manager;
 import model.characters.tower.Tower;
 import model.game_logic.GameManager;
 import model.game_logic.GameState;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import model.Map.importMap;
-import model.Map.update.DrawMap;
+import model.game_logic.action.Map.importMap;
+import model.game_logic.action.Map.update.DrawMap;
 import view.creators.CreatorMonsters;
 import view.creators.CreatorProjectiles;
 
@@ -85,6 +88,9 @@ public class main_menu {
         );
     }
 
+    /**
+     * Start Window and Game
+     */
     public void startNewGame() {
         try {
             GameManager gameManager = new GameManager(new importMap(1216, 608));
@@ -192,10 +198,15 @@ public class main_menu {
     }
 
 
-    public void exitGame(){
+    public void exitGame() {
         System.exit(1);
     }
 
+    /**
+     * Window GameOver
+     *
+     * @param game
+     */
     public void gameOver(GameState game) {
         manager.getScoreRanking().updateRanking(game);
         Label l = new Label("Game Over");
@@ -204,20 +215,25 @@ public class main_menu {
         accueil.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                    Navigator.affichageMenu();
-                }
+                Navigator.affichageMenu();
+            }
         });
         VBox content = new VBox(l,accueil);
-        content.setMaxSize(300,100);
+        content.setMaxSize(300, 100);
         content.setId("content");
         content.setAlignment(Pos.CENTER);
         VBox sp = new VBox(content);
-        sp.setPrefSize(tilemapGroup.getBoundsInParent().getWidth(),tilemapGroup.getBoundsInParent().getHeight());
+        sp.setPrefSize(tilemapGroup.getBoundsInParent().getWidth(), tilemapGroup.getBoundsInParent().getHeight());
         sp.setAlignment(Pos.CENTER);
         l.setAlignment(Pos.CENTER);
         tilemapGroup.getChildren().add(sp);
     }
 
+    /**
+     * Window Victory
+     *
+     * @param game
+     */
     public void victory(GameState game) {
         manager.getScoreRanking().updateRanking(game);
         Label l = new Label("Victory");

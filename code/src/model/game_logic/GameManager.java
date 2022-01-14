@@ -3,12 +3,12 @@ package model.game_logic;
 import model.boucleJeu.Boucle;
 import model.boucleJeu.Observateur;
 import model.characters.monster.Monster;
-import model.Map.update.DrawMap;
-import model.Map.Map;
-import model.game_logic.action.states.Update;
-import model.game_logic.action.tower.Attacker;
+import model.game_logic.action.Map.Map;
+import model.game_logic.action.Map.update.DrawMap;
 import model.game_logic.action.monster.Displacer;
 import model.game_logic.action.monster.Spawner;
+import model.game_logic.action.states.Update;
+import model.game_logic.action.tower.TowerAction;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,11 +38,8 @@ public class GameManager implements Observateur {
     public DrawMap getDrawMap() {
         return drawMap;
     }
-    public void setDrawMap(DrawMap drawMap) {
-        this.drawMap = drawMap;
-    }
 
-    public GameState getGame(){
+    public GameState getGame() {
         return game;
     }
 
@@ -50,7 +47,13 @@ public class GameManager implements Observateur {
         return gameMap;
     }
 
-    public void start(){
+
+    public void setDrawMap(DrawMap drawMap) {
+        this.drawMap = drawMap;
+    }
+
+
+    public void start() {
         boucle.setRunning(true);
         boucleThread = new Thread(boucle);
         boucleThread.start();
@@ -68,14 +71,13 @@ public class GameManager implements Observateur {
                 if (timer % 40 == 0 && enemyFile.hasNextLine()) {
                     Spawner.spawnEnemy(enemyFile.nextLine(), game);
                 }
-                if(!Displacer.updateLocations(game)){
+                if (!Displacer.updateLocations(game)) {
                     gameOver();
-                }
-                else {
-                    Attacker.attack(game);
+                } else {
+                    TowerAction.attackTower(game);
                 }
             }
-        } catch(InterruptedException | CloneNotSupportedException e){
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
     }
@@ -88,7 +90,7 @@ public class GameManager implements Observateur {
     public void gameOver(){
         var listMonster = game.getMonstersAlive();
         for(Monster monster : listMonster){
-            monster.getView().setVisible(false);
+            //monster.getView().setVisible(false);
         }
         game.setRemoveMonster(true);
         game.getMonstersAlive().clear();

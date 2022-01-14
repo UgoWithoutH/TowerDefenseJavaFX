@@ -3,7 +3,6 @@ package model.characters.tower;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import model.Coordinate;
-import javafx.scene.paint.Color;
 import model.characters.Projectile;
 import model.characters.monster.Monster;
 
@@ -19,7 +18,7 @@ public abstract class Tower {
         public void setProjectile(Projectile projectile) {this.projectile.set(projectile);}
     private Coordinate coords;
     private boolean attacker = true;
-    private boolean buildable = false;
+    private boolean build = false;
 
 
 
@@ -31,23 +30,23 @@ public abstract class Tower {
         sellCost = 35;
     }
 
-    public int getBuildTimeSeconds(){
+    public int getBuildTimeSeconds() {
         return BUILD_TIME_SECONDS;
     }
 
-    public boolean isBuildable() {
-        return buildable;
+    public boolean isBuild() {
+        return build;
     }
 
-    public void setBuildable(boolean buildable) {
-        this.buildable = buildable;
+    public void setBuild(boolean build) {
+        this.build = build;
     }
 
-    public int getX(){
+    public int getX() {
         return coords.getExactX();
     }
 
-    public int getY(){
+    public int getY() {
         return coords.getExactY();
     }
 

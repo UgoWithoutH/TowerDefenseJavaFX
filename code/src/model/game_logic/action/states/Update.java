@@ -4,6 +4,13 @@ import model.characters.monster.Monster;
 import model.game_logic.GameState;
 
 public class Update {
+
+    /**
+     * Update State Monster
+     *
+     * @param monster
+     * @param game
+     */
     public static void updateStates(Monster monster, GameState game) {
 
         if (monster.isPathFinished()) {
@@ -21,6 +28,5 @@ public class Update {
         if (timeSeconds != game.getTimeSeconds()) {
             game.setTimeSeconds(game.getTimeSeconds() + 1);
         }
-        //System.out.println(game.getTimeSeconds());
     }
 }

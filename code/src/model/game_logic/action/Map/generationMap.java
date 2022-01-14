@@ -1,4 +1,4 @@
-package model.Map;
+package model.game_logic.action.Map;
 
 public class generationMap extends Map{
 

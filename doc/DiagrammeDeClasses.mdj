@@ -7868,7 +7868,7 @@
 											"top": 1334,
 											"width": 470,
 											"height": 13,
-											"text": "model.Map.update"
+											"text": "model.game_logic.action.Map.update"
 										},
 										{
 											"_type": "LabelView",
@@ -8001,7 +8001,7 @@
 											"top": -272,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.Map.update)"
+											"text": "(from model.game_logic.action.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8199,7 +8199,7 @@
 											"top": -224,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.Map.update)"
+											"text": "(from model.game_logic.action.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8397,7 +8397,7 @@
 											"top": 128,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.Map.update)"
+											"text": "(from model.game_logic.action.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -8595,7 +8595,7 @@
 											"top": 256,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.Map.update)"
+											"text": "(from model.game_logic.action.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -9856,7 +9856,7 @@
 											"top": 1476,
 											"width": 114.1181640625,
 											"height": 13,
-											"text": "model.Map.update"
+											"text": "model.game_logic.action.Map.update"
 										},
 										{
 											"_type": "LabelView",
@@ -9870,7 +9870,7 @@
 											"top": 72,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.Map.update)"
+											"text": "(from model.game_logic.action.Map.update)"
 										},
 										{
 											"_type": "LabelView",
@@ -12283,7 +12283,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "model.Map.update",
+					"name": "model.game_logic.action.Map.update",
 					"ownedElements": [
 						{
 							"_type": "UMLClass",
@@ -12535,7 +12535,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9vZ9YZ6URGT8="
 							},
-							"name": "model.Map.update",
+							"name": "model.game_logic.action.Map.update",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -20883,7 +20883,7 @@
 											"top": 1176,
 											"width": 242.7724609375,
 											"height": 13,
-											"text": "-buildable: boolean = false",
+											"text": "-build: boolean = false",
 											"horizontalAlignment": 0
 										}
 									],
@@ -24494,7 +24494,7 @@
 													"_parent": {
 														"$ref": "AAAAAAF+RBS+qDKl91g="
 													},
-													"name": "buildable",
+													"name": "build",
 													"visibility": "private",
 													"type": "boolean",
 													"defaultValue": "false"

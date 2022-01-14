@@ -1,6 +1,7 @@
-package model.Map;
+package model.game_logic.action.Map;
 
 import model.Coordinate;
+
 import java.util.ArrayList;
 
 public class Map {
@@ -46,9 +47,6 @@ public class Map {
 
     }
 
-    // TODO: 17/12/2021
-    //  ajouter le fait que le point de départ puisse être n'importe ou
-    //  et permettre au circuit de revenir sur ses pieds (tourner a gauche)
     public ArrayList<Coordinate> getPath() {
         ArrayList<Coordinate> pathXY = new ArrayList<Coordinate>();
         boolean scanSwitch = false;

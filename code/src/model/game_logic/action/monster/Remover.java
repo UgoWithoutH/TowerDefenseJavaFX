@@ -8,6 +8,6 @@ public class Remover {
         game.setRemoveMonster(true);
         game.getMonstersAlive().remove(monster);
         game.setRemoveMonster(false);
-        monster.getView().setVisible(false);
+        //monster.getView().setVisible(false);
     }
 }

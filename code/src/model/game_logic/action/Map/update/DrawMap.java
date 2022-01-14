@@ -1,7 +1,8 @@
-package model.Map.update;
+package model.game_logic.action.Map.update;
 
-import model.Map.Map;
 import javafx.scene.image.*;
+import model.game_logic.action.Map.Map;
+
 import java.nio.ByteBuffer;
 
 public class DrawMap extends ImageView {

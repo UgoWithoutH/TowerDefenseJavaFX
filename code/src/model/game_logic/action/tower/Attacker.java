@@ -7,7 +7,13 @@ import model.game_logic.GameState;
 import java.util.Iterator;
 
 public class Attacker {
-    public static void attack(GameState game) throws InterruptedException {
+
+    /**
+     * Action Attack de toute les Tower du GameState
+     *
+     * @param game
+     */
+    public static void attack(GameState game) {
         Monster target;
         Waiting attackService;
         for (Tower tower : game.getPlayerTowers()) {
@@ -20,14 +26,11 @@ public class Attacker {
 
                 while (iterator.hasNext()) {
                     target = iterator.next();
-                    if (target.getX() > towerMinXRange
-                            & target.getX() < towerMaxXRange
-                            & target.getY() > towerMinYRange
-                            & target.getY() < towerMaxYRange) {
+                    if (target.getX() < towerMaxXRange & target.getX() > towerMinXRange & target.getY() > towerMinYRange & target.getY() < towerMaxYRange) {
                         attackService = new Waiting(tower);
                         Thread t = new Thread(attackService::run);
                         t.start();
-                        if(tower.isBuildable()) {
+                        if (tower.isBuild()) {
                             tower.createProjectile(target);
                             target.takeDamage(tower.getAttackDamage());
                         }

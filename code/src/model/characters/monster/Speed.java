@@ -1,11 +1,9 @@
 package model.characters.monster;
 
-import javafx.scene.paint.Color;
-
 public class Speed extends Monster{
     public Speed(int healthPoints) {
         super(healthPoints);
         setMovementSpeed(4);
-        view.setFill(Color.GREEN);
+        //view.setFill(Color.GREEN);
     }
 }

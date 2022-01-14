@@ -1,4 +1,4 @@
-package model.Map;
+package model.game_logic.action.Map;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,10 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-/** TODO: 10/12/2021
- *   mettre dans le loadMap en paramétre l'adresse (url) du fichier)
-  */
 
 public class importMap extends Map{
 

@@ -1,19 +1,14 @@
 package view;
 
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Manager;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class ScreenController {
-    /**
-     * todo
-     *  faire un (autoload)
-     */
-        private static HashMap<String, Pane> screenMap = new HashMap<>();
+
+    private static HashMap<String, Pane> screenMap = new HashMap<>();
 
         private static Stage stage;
         private static Manager manager;
@@ -39,13 +34,6 @@ public class ScreenController {
 
         public static void activate(String name){
             stage.getScene().setRoot( screenMap.get(name) );
-
-            /*
-            for (Map.Entry t : screenMap.entrySet() ){
-                System.out.println(t.getValue());
-            }
-            System.out.println("----------------");
-        */
         }
 
 }

@@ -14,11 +14,10 @@ public class Waiting implements Runnable{
     @Override
     public void run() {
         try {
-            if(!tower.isBuildable()){
-                sleep(tower.getBuildTimeSeconds()*1000);
-                tower.setBuildable(true);
-            }
-            else {
+            if (!tower.isBuild()) {
+                sleep(tower.getBuildTimeSeconds() * 1000);        // conversion Second to Millis
+                tower.setBuild(true);
+            } else {
                 tower.setAttaker(false);
                 sleep(2000);
                 tower.setAttaker(true);

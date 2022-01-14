@@ -1,14 +1,17 @@
 package model.characters.monster;
 
 import model.Coordinate;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 
+/**
+ * todo
+ *  Nous avons du javafx dans le MODELE !!
+ */
 public abstract class Monster {
     private static ArrayList<Coordinate> path;
-    Circle view;
+    //Circle view;
+    private Coordinate coords;
     private final int radius = 10;
     private int healthPoints;
     private int movementSpeed;
@@ -25,25 +28,41 @@ public abstract class Monster {
         this.healthPoints = healthPoints;
         movementSpeed = 1;
         reward = 2;
-        view = new Circle(path.get(0).getExactX(), path.get(0).getExactY(), radius);
-        view.setFill(Color.RED);
+        //view = new Circle(path.get(0).getExactX(), path.get(0).getExactY(), radius);
+        coords = new Coordinate(path.get(0).getExactX(), path.get(0).getExactY());
+        //view.setFill(Color.RED);
     }
 
     public int getX() {
-        return ((int) view.getCenterX());
+        return coords.getTileX();
+    }
+
+    public void setX(int x) {
+        coords.setTileX(x);
+        //view.setCenterX(x);
     }
 
     public int getY() {
-        return ((int) view.getCenterY());
+        return coords.getTileY();
+    }
+
+    public void setY(int y) {
+        coords.setTileY(y);
+        //view.setCenterY(y);
+    }
+
+    public int getRadius() {
+        return radius;
     }
 
     public int getReward() {
         return reward;
     }
-
+    /*
     public Circle getView() {
         return view;
     }
+     */
 
     public boolean isDead() {
         return isDead;
@@ -60,6 +79,7 @@ public abstract class Monster {
     public int getMovementSpeed() {
         return movementSpeed;
     }
+
     public void setMovementSpeed(int movementSpeed){this.movementSpeed = movementSpeed;}
 
     public void takeDamage(int damage) {
@@ -74,9 +94,9 @@ public abstract class Monster {
         if(pathFinished) return;
         // Déplacement selon l'axe des x
         if (moveX) {
-            view.setCenterX(view.getCenterX() + distance);
+            setX(coords.getTileX() + distance);
             // Arrivé à un point de changement dans le chemin, changer de direction
-            if (view.getCenterX() == path.get(direction).getExactX()) {
+            if (coords.getTileX() == path.get(direction).getExactX()) {
                 moveX = false;
                 direction++;
                 // Traversée de tous les points de changement, fin du chemin
@@ -88,13 +108,13 @@ public abstract class Monster {
         }
         // Déplacement selon l'axe des y
         else {
-            if (view.getCenterY() < path.get(direction).getExactY()) {
-                view.setCenterY(view.getCenterY() + distance);
+            if (coords.getTileY() < path.get(direction).getExactY()) {
+                setY(coords.getTileY() + distance);
             } else {
-                view.setCenterY(view.getCenterY() - distance);
+                setY(coords.getTileY() - distance);
             }
             // Atteindre le point de changement, changer de direction
-            if (view.getCenterY() == path.get(direction).getExactY()) {
+            if (coords.getTileY() == path.get(direction).getExactY()) {
                 moveX = true;
                 direction++;
                 if (direction == path.size()) {
