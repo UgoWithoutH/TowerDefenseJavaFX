@@ -7,20 +7,24 @@ import java.io.*;
 
 public class GestionairePersistance {
 
-    private static final File fileSerialization = new File(System.getProperty("user.dir")+ "/code/ressources/serialization/test.ser");
+    private static final File fileSerialization = new File(System.getProperty("user.dir") + "/code/ressources/serialization/test.ser");
 
-    public static void saveStates(ScoreRanking scoreRanking){
+    public static void saveStates(ScoreRanking scoreRanking) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileSerialization))) {
             try {
+                ScoreRankingSerializable srs = new ScoreRankingSerializable();
+                StateSerializable gameStateSerialization;
+                var list = scoreRanking.getRanking();
                 for (GameState game : scoreRanking.getRanking()) {
-                    StateSerializable gameStateSerialization = new StateSerializable(
+                    gameStateSerialization = new StateSerializable(
                             game.getLevel(),
                             game.getScore(),
                             game.getTimeSeconds(),
                             game.isVictory()
                     );
-                    oos.writeObject(gameStateSerialization);
+                    srs.getRanking().add(gameStateSerialization);
                 }
+                oos.writeObject(srs);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -32,29 +36,22 @@ public class GestionairePersistance {
     }
 
     public static void loadStates(ScoreRanking scoreRanking) {
-        boolean check = true;
+        if(fileSerialization.length() == 0) return;
+
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileSerialization))) {
-            try {
-                StateSerializable stateSerializable;
-                while (check) {
-                    stateSerializable = (StateSerializable) ois.readObject();
-                    GameState gameState = new GameState();
-                    gameState.setLevel(stateSerializable.getLevel());
-                    gameState.setScore(stateSerializable.getScore());
-                    gameState.setTimeSeconds(stateSerializable.getTime());
-                    gameState.setVictory(stateSerializable.isVictory());
-                    scoreRanking.getRanking().add(gameState);
-                }
+            ScoreRankingSerializable scoreRankingSerializable;
+            scoreRankingSerializable = (ScoreRankingSerializable) ois.readObject();
+            for (StateSerializable stateSerializable : scoreRankingSerializable.getRanking()) {
+                GameState gameState = new GameState();
+                gameState.setLevel(stateSerializable.getLevel());
+                gameState.setScore(stateSerializable.getScore());
+                gameState.setTimeSeconds(stateSerializable.getTime());
+                gameState.setVictory(stateSerializable.isVictory());
+                scoreRanking.getRanking().add(gameState);
             }
-            catch(EOFException ex){
-                check = false;
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
+
 }
