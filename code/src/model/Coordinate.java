@@ -1,21 +1,35 @@
 package model;
 
-public class Coordinate {
-    private int x;
-    private int y;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
+public class Coordinate {
+
+    //private int x;
+    //private int y;
+    IntegerProperty x = new SimpleIntegerProperty();
+        public int getX() {return x.get();}
+        public IntegerProperty xProperty() {return x;}
+        public void setX(int x) {this.x.set(x);}
+    IntegerProperty y = new SimpleIntegerProperty();
+        public int getY() {return y.get();}
+        public IntegerProperty yProperty() {return y;}
+        public void setY(int y) {this.y.set(y);}
 
     public Coordinate(int x , int y){
-        this.x = x;
-        this.y = y;
+        setX(x);
+        setY(y);
     }
 
     public Coordinate(double x , double y){
-        this.x = (int)(x / 64);
-        this.y = (int) (y / 64);
+        var testX = (int) (getX()/64);
+        var testY = (int) (getY()/64);
+
+        setX(testX);
+        setY(testY);
     }
 
-    public int getTileX() {
+    /*public int getTileX() {
         return x;
     }
 
@@ -29,23 +43,23 @@ public class Coordinate {
 
     public void setTileY(int y) {
         this.y = y;
-    }
+    }*/
 
     public int getExactX() {
-        return x * 64 + 32;
+        return getX() * 64 + 32;
     }
 
     public int getExactY() {
-        return y * 64 + 32;
+        return getY() * 64 + 32;
     }
 
-    public void setExactX(int x) {
+    /*public void setExactX(int x) {
         this.x = x;
     }
 
     public void setExactY(int y) {
         this.y = y;
-    }
+    }*/
 
     public boolean equals(Coordinate obj) {
         if (this.x == obj.x && this.y == obj.y) {

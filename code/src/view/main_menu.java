@@ -170,8 +170,8 @@ public class main_menu {
         Coordinate coordinateTower = t.getCoords();
         int seconds = manager.getGameManager().getGame().isSpeed() ? t.getBuildTimeSeconds() / 2 : t.getBuildTimeSeconds();
 
-        double xCords = coordinateTower.getTileX() * 64;
-        double yCords = coordinateTower.getTileY() * 64;
+        double xCords = coordinateTower.getX() * 64;
+        double yCords = coordinateTower.getY() * 64;
 
         g.setLayoutX(xCords - 32);
         g.setLayoutY(yCords - 32);

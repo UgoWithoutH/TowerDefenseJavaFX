@@ -33,21 +33,23 @@ public abstract class Monster {
         //view.setFill(Color.RED);
     }
 
+    public Coordinate getCoords(){return coords;}
+
     public int getX() {
-        return coords.getTileX();
+        return coords.getX();
     }
 
     public void setX(int x) {
-        coords.setTileX(x);
+        coords.setX(x);
         //view.setCenterX(x);
     }
 
     public int getY() {
-        return coords.getTileY();
+        return coords.getY();
     }
 
     public void setY(int y) {
-        coords.setTileY(y);
+        coords.setY(y);
         //view.setCenterY(y);
     }
 
@@ -94,9 +96,9 @@ public abstract class Monster {
         if(pathFinished) return;
         // Déplacement selon l'axe des x
         if (moveX) {
-            setX(coords.getTileX() + distance);
+            setX(coords.getX() + distance);
             // Arrivé à un point de changement dans le chemin, changer de direction
-            if (coords.getTileX() == path.get(direction).getExactX()) {
+            if (coords.getX() == path.get(direction).getExactX()) {
                 moveX = false;
                 direction++;
                 // Traversée de tous les points de changement, fin du chemin
@@ -108,13 +110,13 @@ public abstract class Monster {
         }
         // Déplacement selon l'axe des y
         else {
-            if (coords.getTileY() < path.get(direction).getExactY()) {
-                setY(coords.getTileY() + distance);
+            if (coords.getY() < path.get(direction).getExactY()) {
+                setY(coords.getY() + distance);
             } else {
-                setY(coords.getTileY() - distance);
+                setY(coords.getY() - distance);
             }
             // Atteindre le point de changement, changer de direction
-            if (coords.getTileY() == path.get(direction).getExactY()) {
+            if (coords.getY() == path.get(direction).getExactY()) {
                 moveX = true;
                 direction++;
                 if (direction == path.size()) {

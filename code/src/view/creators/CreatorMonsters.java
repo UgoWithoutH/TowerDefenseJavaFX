@@ -1,5 +1,7 @@
 package view.creators;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -35,9 +37,11 @@ public class CreatorMonsters {
             public void onChanged(Change<? extends Monster> change) {
                 var listMonsters = change.getList();
                 if (!gameManager.getGame().isRemoveMonster()) {
-                    Monster aa = listMonsters.get(listMonsters.size() - 1);
-                    Circle dd = new Circle(aa.getX(), aa.getY(), aa.getRadius(), Color.RED);
-                    tilemapGroup.getChildren().add(dd);
+                    Monster monster = listMonsters.get(listMonsters.size() - 1);
+                    Circle monsterView = new Circle(monster.getRadius(), Color.RED);
+                    monsterView.centerXProperty().bind(monster.getCoords().xProperty());
+                    monsterView.centerYProperty().bind(monster.getCoords().yProperty());
+                    tilemapGroup.getChildren().add(monsterView);
                 }
             }
         });
