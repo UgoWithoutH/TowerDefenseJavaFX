@@ -18,18 +18,9 @@ public class ScoreRanking {
     private ObservableList<GameState> rankingObservable = FXCollections.observableArrayList();
 
     ListProperty<GameState> ranking = new SimpleListProperty<>(rankingObservable);
-
-    public ObservableList<GameState> getRanking() {
-        return ranking.get();
-    }
-
-    public ListProperty<GameState> rankingProperty() {
-        return ranking;
-    }
-
-    public void setRanking(ObservableList<GameState> ranking) {
-        this.ranking.set(ranking);
-    }
+        public ObservableList<GameState> getRanking() {return ranking.get();}
+        public ListProperty<GameState> rankingProperty() {return ranking;}
+        public void setRanking(ObservableList<GameState> ranking) {this.ranking.set(ranking);}
 
     public void updateRanking(GameState gameState) {
         if (!rankingObservable.isEmpty()) {
@@ -39,6 +30,10 @@ public class ScoreRanking {
                 if (lowerState != gameState) {
                     rankingObservable.remove(lowerState);
                 }
+                rankingObservable.add(gameState);
+                Collections.sort(rankingObservable);
+            }
+            else{
                 rankingObservable.add(gameState);
                 Collections.sort(rankingObservable);
             }

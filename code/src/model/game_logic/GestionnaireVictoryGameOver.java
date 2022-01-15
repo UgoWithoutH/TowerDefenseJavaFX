@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class GestionnaireVictoryGameOver {
     private GameState game;
-    private Scanner enemyFile;
     private Boucle boucle;
     private CheckerGame checker;
 

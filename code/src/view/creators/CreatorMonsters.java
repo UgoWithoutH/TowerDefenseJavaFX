@@ -6,7 +6,9 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import model.characters.monster.Basic;
 import model.characters.monster.Monster;
+import model.characters.monster.Speed;
 import model.game_logic.GameManager;
 
 public class CreatorMonsters {
@@ -38,7 +40,13 @@ public class CreatorMonsters {
                 var listMonsters = change.getList();
                 if (!gameManager.getGame().isRemoveMonster()) {
                     Monster monster = listMonsters.get(listMonsters.size() - 1);
-                    Circle monsterView = new Circle(monster.getRadius(), Color.RED);
+                    Circle monsterView;
+                    if(monster instanceof Speed){
+                        monsterView = new Circle(monster.getRadius(), Color.GREEN);
+                    }
+                    else{
+                        monsterView = new Circle(monster.getRadius(), Color.RED);
+                    }
                     monsterView.centerXProperty().bind(monster.getCoords().xProperty());
                     monsterView.centerYProperty().bind(monster.getCoords().yProperty());
                     monsterView.visibleProperty().bind(monster.visibleProperty());

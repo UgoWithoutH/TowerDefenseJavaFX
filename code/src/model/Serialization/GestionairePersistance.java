@@ -11,7 +11,6 @@ public class GestionairePersistance {
 
     public static void saveStates(ScoreRanking scoreRanking) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileSerialization))) {
-            try {
                 ScoreRankingSerializable srs = new ScoreRankingSerializable();
                 StateSerializable gameStateSerialization;
                 var list = scoreRanking.getRanking();
@@ -27,11 +26,6 @@ public class GestionairePersistance {
                 }
                 oos.writeObject(srs);
             } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -58,6 +58,7 @@ public class main_menu {
                         super.updateItem(gameState, empty);
                         if (!empty) {
                             Label l1 = new Label();
+                            l1.setStyle("-fx-font-weight: bold;");
                             HBox myHbox1 = new HBox(l1);
                             l1.textProperty().bind(gameState.pseudoProperty());
                             Label l2Text = new Label("Level : ");
@@ -99,6 +100,14 @@ public class main_menu {
      */
     public void startNewGame() {
         try {
+            if(pseudoField.getText() == null){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Attention");
+                alert.setHeaderText("Incorrect nickname");
+                alert.setContentText("Please enter a nickname");
+                alert.showAndWait();
+                return;
+            }
             GameManager gameManager = new GameManager(pseudoField.getText(),new importMap(1216, 608));
             manager.setGameManager(gameManager);
             gameManager.setDrawMap(new DrawMap(gameManager.getGameMap()));
@@ -141,13 +150,13 @@ public class main_menu {
         gameManager.getGame().victoryProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                victory(gameManager.getGame());
+                gameOverOrVictory(gameManager.getGame());
             }
         });
         gameManager.getGame().gameOverProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                gameOver(gameManager.getGame());
+                gameOverOrVictory(gameManager.getGame());
             }
         });
     }
@@ -213,9 +222,17 @@ public class main_menu {
      *
      * @param game
      */
-    public void gameOver(GameState game) {
+    public void gameOverOrVictory(GameState game) {
         manager.getScoreRanking().updateRanking(game);
-        Label l = new Label("Game Over");
+        Label l = new Label();
+        if(game.isVictory()){
+            l.setText("Victory");
+            l.setTextFill(Color.GREEN);
+        }
+        else{
+            l.setText("GameOver");
+            l.setTextFill(Color.RED);
+        }
         l.setId("labelText");
         Button accueil = new Button("Accueil");
         accueil.setOnAction(new EventHandler<ActionEvent>() {
@@ -230,33 +247,6 @@ public class main_menu {
         content.setAlignment(Pos.CENTER);
         VBox sp = new VBox(content);
         sp.setPrefSize(tilemapGroup.getBoundsInParent().getWidth(), tilemapGroup.getBoundsInParent().getHeight());
-        sp.setAlignment(Pos.CENTER);
-        l.setAlignment(Pos.CENTER);
-        tilemapGroup.getChildren().add(sp);
-    }
-
-    /**
-     * Window Victory
-     *
-     * @param game
-     */
-    public void victory(GameState game) {
-        manager.getScoreRanking().updateRanking(game);
-        Label l = new Label("Victory");
-        l.setId("labelText");
-        Button accueil = new Button("Accueil");
-        accueil.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Navigator.affichageMenu();
-            }
-        });
-        VBox content = new VBox(l,accueil);
-        content.setMaxSize(300,100);
-        content.setId("content");
-        content.setAlignment(Pos.CENTER);
-        VBox sp = new VBox(content);
-        sp.setPrefSize(tilemapGroup.getBoundsInParent().getWidth(),tilemapGroup.getBoundsInParent().getHeight());
         sp.setAlignment(Pos.CENTER);
         l.setAlignment(Pos.CENTER);
         tilemapGroup.getChildren().add(sp);

@@ -23,7 +23,6 @@ public class GameManager implements Observateur {
     private GameState game;
     private Boucle boucle;
     private DrawMap drawMap;
-    private Thread boucleThread;
     private Displacer displacer;
     private GestionnaireVictoryGameOver gestionnaireGame;
     private Spawner spawner;
@@ -62,7 +61,7 @@ public class GameManager implements Observateur {
 
     public void start() {
         boucle.setRunning(true);
-        boucleThread = new Thread(boucle);
+        Thread boucleThread = new Thread(boucle);
         boucleThread.start();
     }
 

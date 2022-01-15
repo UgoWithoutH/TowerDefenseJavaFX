@@ -2,7 +2,7 @@ package model.boucleJeu;
 
 import java.util.LinkedList;
 
-public class Observable {
+public abstract class Observable {
     private LinkedList<Observateur> observateurs = new LinkedList<>();
 
     public void subscribe(Observateur listener){
