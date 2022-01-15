@@ -7,7 +7,7 @@ import java.io.*;
 
 public class GestionairePersistance {
 
-    private static final File fileSerialization = new File(System.getProperty("user.dir") + "/code/ressources/serialization/test.ser");
+    private static final File fileSerialization = new File(System.getProperty("user.dir") + "/code/ressources/serialization/sauvegardeScores.ser");
 
     public static void saveStates(ScoreRanking scoreRanking) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileSerialization))) {

@@ -4,6 +4,7 @@ package view;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -23,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.util.converter.NumberStringConverter;
 import model.Coordinate;
 import model.Manager;
 import model.characters.tower.Tower;
@@ -45,11 +47,14 @@ public class main_menu {
     private ListView scoreList;
     @FXML
     private TextField pseudoField;
+    @FXML
+    private TextField nbScores;
 
     @FXML
     public void initialize() {
         pseudoField.textProperty().bindBidirectional(manager.pseudoProperty());
         scoreList.setStyle("-fx-background-color: linear-gradient(#bab9b9, #777777);");
+        nbScores.textProperty().bindBidirectional(manager.getScoreRanking().numberScoresProperty(),new NumberStringConverter());
         scoreList.itemsProperty().bind(manager.getScoreRanking().rankingProperty());
         scoreList.setCellFactory(__ ->
                 new ListCell<GameState>() {
@@ -59,28 +64,19 @@ public class main_menu {
                         if (!empty) {
                             Label l1 = new Label();
                             l1.setStyle("-fx-font-weight: bold;");
-                            HBox myHbox1 = new HBox(l1);
                             l1.textProperty().bind(gameState.pseudoProperty());
-                            Label l2Text = new Label("Level : ");
                             Label l2 = new Label();
-
                             if (gameState.isVictory()) {
                                 l2.setTextFill(Color.GREEN);
                             } else {
                                 l2.setTextFill(Color.RED);
                             }
-
-                            HBox myHbox2 = new HBox(l2Text, l2);
-                            l2.textProperty().bind(gameState.levelProperty().asString());
-                            Label l3Text = new Label("Score : ");
+                            l2.textProperty().bind(Bindings.format("Level : %s",gameState.levelProperty().asString()));
                             Label l3 = new Label();
-                            HBox myHbox3 = new HBox(l3Text, l3);
-                            l3.textProperty().bind(gameState.scoreProperty().asString());
-                            Label l4Text = new Label("Time (seconds) : ");
+                            l3.textProperty().bind(Bindings.format("Score : %s",gameState.scoreProperty().asString()));
                             Label l4 = new Label();
-                            HBox myHbox4 = new HBox(l4Text, l4);
-                            l4.textProperty().bind(gameState.timeSecondsProperty().asString());
-                            HBox myHboxContent = new HBox(myHbox1, myHbox2, myHbox3, myHbox4);
+                            l4.textProperty().bind(Bindings.format("Time (seconds) : %s",gameState.timeSecondsProperty().asString()));
+                            HBox myHboxContent = new HBox(l1, l2, l3, l4);
                             myHboxContent.setSpacing(5);
                             setGraphic(myHboxContent);
 
@@ -108,7 +104,7 @@ public class main_menu {
                 alert.showAndWait();
                 return;
             }
-            GameManager gameManager = new GameManager(pseudoField.getText(),new importMap(1216, 608));
+            GameManager gameManager = new GameManager(manager.getPseudo(),new importMap(1216, 608));
             manager.setGameManager(gameManager);
             gameManager.setDrawMap(new DrawMap(gameManager.getGameMap()));
             FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);

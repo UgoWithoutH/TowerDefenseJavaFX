@@ -44,5 +44,11 @@
         <Label fx:id="sblabel" text="SCOREBOARD" textFill="#000000"/>
         <ListView fx:id="scoreList" maxHeight="300" maxWidth="300" prefHeight="300" prefWidth="300">
         </ListView>
+        <HBox>
+            <Label text="Nombre de score maximum : "/>
+            <TextField fx:id="nbScores" prefWidth="50"/>
+        </HBox>
+
+
     </VBox>
 </HBox>
