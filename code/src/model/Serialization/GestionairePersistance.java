@@ -17,6 +17,7 @@ public class GestionairePersistance {
                 var list = scoreRanking.getRanking();
                 for (GameState game : scoreRanking.getRanking()) {
                     gameStateSerialization = new StateSerializable(
+                            game.getPseudo(),
                             game.getLevel(),
                             game.getScore(),
                             game.getTimeSeconds(),
@@ -42,7 +43,7 @@ public class GestionairePersistance {
             ScoreRankingSerializable scoreRankingSerializable;
             scoreRankingSerializable = (ScoreRankingSerializable) ois.readObject();
             for (StateSerializable stateSerializable : scoreRankingSerializable.getRanking()) {
-                GameState gameState = new GameState();
+                GameState gameState = new GameState(stateSerializable.getPseudo());
                 gameState.setLevel(stateSerializable.getLevel());
                 gameState.setScore(stateSerializable.getScore());
                 gameState.setTimeSeconds(stateSerializable.getTime());

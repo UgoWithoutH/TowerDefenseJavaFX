@@ -17,7 +17,7 @@ public abstract class TowerAction {
 
         if (gameMap.nodeOpen(xTile, yTile)) {
             Tower tower = new ClassicTower(xTile, yTile);
-            if (game.getCoins() >= tower.getSellCost()) {
+            if (game.getCoins() >= Tower.getDefaultSellCostSellCost()) {
                 game.addTower(tower);
                 game.setCoins(game.getCoins() - 50);
                 gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);

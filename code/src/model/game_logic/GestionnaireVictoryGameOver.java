@@ -1,18 +1,17 @@
 package model.game_logic;
 
 import model.boucleJeu.Boucle;
-import model.game_logic.GameState;
 import model.game_logic.action.game.CheckerGame;
 
 import java.util.Scanner;
 
-public class GestionnaireGame {
+public class GestionnaireVictoryGameOver {
     private GameState game;
     private Scanner enemyFile;
     private Boucle boucle;
     private CheckerGame checker;
 
-    public GestionnaireGame(GameState game, Scanner enemyFile, Boucle boucle) {
+    public GestionnaireVictoryGameOver(GameState game, Scanner enemyFile, Boucle boucle) {
         this.game = game;
         this.boucle = boucle;
         checker = new CheckerGame(game,enemyFile,boucle);

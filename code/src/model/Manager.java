@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
 import model.Serialization.GestionairePersistance;
@@ -13,6 +15,10 @@ import java.io.*;
 public class Manager {
     private GameManager gameManager;
     private ScoreRanking scoreRanking;
+    private StringProperty pseudo = new SimpleStringProperty();
+        public String getPseudo() {return pseudo.get();}
+        public StringProperty pseudoProperty() {return pseudo;}
+        public void setPseudo(String pseudo) {this.pseudo.set(pseudo);}
 
     public Manager(ScoreRanking scoreRanking){
         this.scoreRanking=scoreRanking;

@@ -9,9 +9,8 @@ import model.characters.monster.Monster;
 public abstract class Tower {
     private static final int BUILD_TIME_SECONDS = 2;
     private int attackDamage;
-    private double attackSpeed;
     private int attackRange;
-    private int sellCost;
+    private static final int DEFAULT_SELL_COST = 35;
     private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();
         public Projectile getProjectile() {return projectile.get();}
         public ObjectProperty<Projectile> projectileProperty() {return projectile;}
@@ -25,9 +24,7 @@ public abstract class Tower {
     public Tower(int x , int y){
         coords = new Coordinate(x , y);
         attackDamage = 5;
-        attackSpeed = 1.0;
         attackRange = 200;
-        sellCost = 35;
     }
 
     public int getBuildTimeSeconds() {
@@ -58,8 +55,8 @@ public abstract class Tower {
         return  attackDamage;
     }
 
-    public int getSellCost(){
-        return sellCost;
+    public static int getDefaultSellCostSellCost(){
+        return DEFAULT_SELL_COST;
     }
 
     public Coordinate getCoords(){

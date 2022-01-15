@@ -11,10 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?scenebuilder-stylesheet menustyle.css?>
 
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="view.main_menu">
     <GridPane alignment="TOP_LEFT" hgap="10" vgap="10">
               <padding><Insets bottom="10" left="25" right="50" top="100" /></padding>
-        <Label fx:id="tdlabel" alignment="TOP_CENTER" text="Tower Defense" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <HBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label fx:id="psLabel" text="NICKNAME : "/>
+            <TextField fx:id="pseudoField"/>
+        </HBox>
+        <Label fx:id="mainText" alignment="TOP_CENTER" text="Tower Defense" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <VBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
             <Button fx:id="newGameButton" onAction="#startNewGame" prefHeight="35" prefWidth="120" text="New Game" />
             <Button fx:id="optionsButton" onAction="#option" prefHeight="35" prefWidth="120" text="Options" />

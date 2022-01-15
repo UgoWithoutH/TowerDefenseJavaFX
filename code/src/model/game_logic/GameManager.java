@@ -25,18 +25,18 @@ public class GameManager implements Observateur {
     private DrawMap drawMap;
     private Thread boucleThread;
     private Displacer displacer;
-    private GestionnaireGame gestionnaireGame;
+    private GestionnaireVictoryGameOver gestionnaireGame;
     private Spawner spawner;
 
-    public GameManager(Map map) throws FileNotFoundException{
+    public GameManager(String pseudo, Map map) throws FileNotFoundException{
         this.gameMap = map;
-        game = new GameState();
+        game = new GameState(pseudo);
         Monster.setPath(gameMap.getPath());
         boucle = new Boucle();
         boucle.subscribe(this);
         displacer = new DisplacerMonsters(game);
         Scanner scannerMonster = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
-        gestionnaireGame = new GestionnaireGame(game,scannerMonster,boucle);
+        gestionnaireGame = new GestionnaireVictoryGameOver(game,scannerMonster,boucle);
         spawner = new SpawnerMonster(game,scannerMonster);
     }
 

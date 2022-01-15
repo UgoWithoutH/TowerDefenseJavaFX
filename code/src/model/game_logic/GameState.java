@@ -1,24 +1,26 @@
 package model.game_logic;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.characters.monster.Monster;
 import model.characters.tower.Tower;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
-public class GameState{
+public class GameState implements Comparable<GameState>{
 
     private ObservableList<Tower> playerTowers;
     private ObservableList<Monster> monstersAlive;
     private boolean speed = false;
     private boolean removeMonster = false;
+    private StringProperty pseudo = new SimpleStringProperty();
+        public String getPseudo() {return pseudo.get();}
+        public StringProperty pseudoProperty() {return pseudo;}
+        public void setPseudo(String pseudo) {this.pseudo.set(pseudo);}
     private IntegerProperty timeSeconds = new SimpleIntegerProperty();
         public int getTimeSeconds() {return timeSeconds.get();}
         public IntegerProperty timeSecondsProperty() {return timeSeconds;}
@@ -48,9 +50,10 @@ public class GameState{
         public IntegerProperty scoreProperty() {return score;}
         public void setScore(int score) {this.score.set(score);}
 
-    public GameState(){
+    public GameState(String pseudo){
+        setPseudo(pseudo);
         setTimeSeconds(0);
-        setCoins(1000);
+        setCoins(100);
         setLevel(1);
         setScore(0);
         setLives(2);
@@ -73,4 +76,32 @@ public class GameState{
     }
 
     public void addTower(Tower tower){playerTowers.add(tower);}
+
+    @Override
+    public int compareTo(GameState g) {
+        if(this.getPseudo().compareTo(g.getPseudo()) == 0) {
+            return ((this.getLevel() - g.getLevel()) +
+                    (this.getScore() - g.getScore()) +
+                    (this.getTimeSeconds()) - g.getTimeSeconds());
+        }
+        else{
+            return ((this.getLevel() - g.getLevel()) +
+                    (this.getScore() - g.getScore()) +
+                    (this.getTimeSeconds()) - g.getTimeSeconds() +
+                    this.getPseudo().compareTo(g.getPseudo()));
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameState gameState = (GameState) o;
+        return pseudo.equals(gameState.pseudo) && timeSeconds.equals(gameState.timeSeconds) && victory.equals(gameState.victory) && level.equals(gameState.level) && score.equals(gameState.score);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pseudo, timeSeconds, victory, level, score);
+    }
 }
