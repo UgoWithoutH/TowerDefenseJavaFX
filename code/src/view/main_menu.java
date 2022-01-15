@@ -28,8 +28,8 @@ import model.Manager;
 import model.characters.tower.Tower;
 import model.game_logic.GameManager;
 import model.game_logic.GameState;
-import model.game_logic.action.Map.importMap;
-import model.game_logic.action.Map.update.DrawMap;
+import model.game_logic.Map.importMap;
+import view.map.DrawMap;
 import view.creators.CreatorMonsters;
 import view.creators.CreatorProjectiles;
 

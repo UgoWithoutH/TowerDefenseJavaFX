@@ -19,7 +19,6 @@ public class Manager {
         ScreenController.getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                System.out.println("fermé");
                 GestionairePersistance.saveStates(scoreRanking);
             }
         });

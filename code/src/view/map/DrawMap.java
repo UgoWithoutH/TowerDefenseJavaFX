@@ -1,7 +1,7 @@
-package model.game_logic.action.Map.update;
+package view.map;
 
 import javafx.scene.image.*;
-import model.game_logic.action.Map.Map;
+import model.game_logic.Map.Map;
 
 import java.nio.ByteBuffer;
 

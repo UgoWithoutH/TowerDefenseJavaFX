@@ -3,9 +3,11 @@ package model.game_logic;
 import model.boucleJeu.Boucle;
 import model.boucleJeu.Observateur;
 import model.characters.monster.Monster;
-import model.game_logic.action.Map.Map;
-import model.game_logic.action.Map.update.DrawMap;
+import model.game_logic.Map.Map;
+import model.game_logic.action.monster.SpawnerMonster;
+import view.map.DrawMap;
 import model.game_logic.action.monster.Displacer;
+import model.game_logic.action.monster.DisplacerMonsters;
 import model.game_logic.action.monster.Spawner;
 import model.game_logic.action.states.Update;
 import model.game_logic.action.tower.TowerAction;
@@ -22,15 +24,20 @@ public class GameManager implements Observateur {
     private Boucle boucle;
     private DrawMap drawMap;
     private Thread boucleThread;
-    private Scanner enemyFile;
+    private Displacer displacer;
+    private GestionnaireGame gestionnaireGame;
+    private Spawner spawner;
 
     public GameManager(Map map) throws FileNotFoundException{
         this.gameMap = map;
         game = new GameState();
         Monster.setPath(gameMap.getPath());
-        enemyFile = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
         boucle = new Boucle();
         boucle.subscribe(this);
+        displacer = new DisplacerMonsters(game);
+        Scanner scannerMonster = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
+        gestionnaireGame = new GestionnaireGame(game,scannerMonster,boucle);
+        spawner = new SpawnerMonster(game,scannerMonster);
     }
 
     public Boucle getBoucle(){ return boucle; }
@@ -61,40 +68,16 @@ public class GameManager implements Observateur {
 
     @Override
     public void update(int timer) {
-        try {
-            if (boucle.isRunning()) {
-                Update.updateTimerSeconds(timer,boucle.getDefaultMilis(),game);
-                if (!enemyFile.hasNextLine() && game.getMonstersAlive().isEmpty() && boucle.isRunning()) {
-                    victory();
-                }
+        if (boucle.isRunning()) {
+            Update.updateTimerSeconds(timer, boucle.getDefaultMilis(), game);
 
-                if (timer % 40 == 0 && enemyFile.hasNextLine()) {
-                    Spawner.spawnEnemy(enemyFile.nextLine(), game);
-                }
-                if (!Displacer.updateLocations(game)) {
-                    gameOver();
-                } else {
-                    TowerAction.attackTower(game);
-                }
-            }
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+            gestionnaireGame.verifyVictory();
+
+            spawner.spawnEnemy(timer);
+
+            gestionnaireGame.verifyGameOver(!displacer.updateLocations());
+
+            TowerAction.attackTower(game);
         }
-    }
-
-    public void victory(){
-        boucle.setRunning(false);
-        game.setVictory(true);
-    }
-
-    public void gameOver(){
-        var listMonster = game.getMonstersAlive();
-        for(Monster monster : listMonster){
-            //monster.getView().setVisible(false);
-        }
-        game.setRemoveMonster(true);
-        game.getMonstersAlive().clear();
-        boucle.setRunning(false);
-        game.setGameOver(true);
     }
 }

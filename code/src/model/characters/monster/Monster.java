@@ -1,5 +1,7 @@
 package model.characters.monster;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import model.Coordinate;
 
 import java.util.ArrayList;
@@ -20,6 +22,10 @@ public abstract class Monster {
     private boolean moveX;
     private boolean isDead;
     private boolean pathFinished;
+    private BooleanProperty visible = new SimpleBooleanProperty();
+        public boolean isVisible() {return visible.get();}
+        public BooleanProperty visibleProperty() {return visible;}
+        public void setVisible(boolean visible) {this.visible.set(visible);}
 
     public Monster(int healthPoints) {
         pathFinished = false;
@@ -28,9 +34,8 @@ public abstract class Monster {
         this.healthPoints = healthPoints;
         movementSpeed = 1;
         reward = 2;
-        //view = new Circle(path.get(0).getExactX(), path.get(0).getExactY(), radius);
         coords = new Coordinate(path.get(0).getExactX(), path.get(0).getExactY());
-        //view.setFill(Color.RED);
+        setVisible(true);
     }
 
     public Coordinate getCoords(){return coords;}
@@ -41,7 +46,6 @@ public abstract class Monster {
 
     public void setX(int x) {
         coords.setX(x);
-        //view.setCenterX(x);
     }
 
     public int getY() {
@@ -50,7 +54,6 @@ public abstract class Monster {
 
     public void setY(int y) {
         coords.setY(y);
-        //view.setCenterY(y);
     }
 
     public int getRadius() {
@@ -60,11 +63,6 @@ public abstract class Monster {
     public int getReward() {
         return reward;
     }
-    /*
-    public Circle getView() {
-        return view;
-    }
-     */
 
     public boolean isDead() {
         return isDead;

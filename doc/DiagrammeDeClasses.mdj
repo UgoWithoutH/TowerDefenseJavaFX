@@ -7868,7 +7868,7 @@
 											"top": 1334,
 											"width": 470,
 											"height": 13,
-											"text": "model.game_logic.action.Map.update"
+											"text": "view.map"
 										},
 										{
 											"_type": "LabelView",
@@ -8001,7 +8001,7 @@
 											"top": -272,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.game_logic.action.Map.update)"
+											"text": "(from view.map)"
 										},
 										{
 											"_type": "LabelView",
@@ -8199,7 +8199,7 @@
 											"top": -224,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.game_logic.action.Map.update)"
+											"text": "(from view.map)"
 										},
 										{
 											"_type": "LabelView",
@@ -8397,7 +8397,7 @@
 											"top": 128,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.game_logic.action.Map.update)"
+											"text": "(from view.map)"
 										},
 										{
 											"_type": "LabelView",
@@ -8595,7 +8595,7 @@
 											"top": 256,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.game_logic.action.Map.update)"
+											"text": "(from view.map)"
 										},
 										{
 											"_type": "LabelView",
@@ -9856,7 +9856,7 @@
 											"top": 1476,
 											"width": 114.1181640625,
 											"height": 13,
-											"text": "model.game_logic.action.Map.update"
+											"text": "view.map"
 										},
 										{
 											"_type": "LabelView",
@@ -9870,7 +9870,7 @@
 											"top": 72,
 											"width": 145.95166015625,
 											"height": 13,
-											"text": "(from model.game_logic.action.Map.update)"
+											"text": "(from view.map)"
 										},
 										{
 											"_type": "LabelView",
@@ -12283,7 +12283,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "model.game_logic.action.Map.update",
+					"name": "view.map",
 					"ownedElements": [
 						{
 							"_type": "UMLClass",
@@ -12535,7 +12535,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9vZ9YZ6URGT8="
 							},
-							"name": "model.game_logic.action.Map.update",
+							"name": "view.map",
 							"operations": [
 								{
 									"_type": "UMLOperation",

@@ -1,7 +1,7 @@
 package view.creators;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -41,6 +41,7 @@ public class CreatorMonsters {
                     Circle monsterView = new Circle(monster.getRadius(), Color.RED);
                     monsterView.centerXProperty().bind(monster.getCoords().xProperty());
                     monsterView.centerYProperty().bind(monster.getCoords().yProperty());
+                    monsterView.visibleProperty().bind(monster.visibleProperty());
                     tilemapGroup.getChildren().add(monsterView);
                 }
             }

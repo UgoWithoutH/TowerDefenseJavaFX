@@ -1,4 +1,4 @@
-package model.game_logic.action.Map;
+package model.game_logic.Map;
 
 import model.Coordinate;
 
