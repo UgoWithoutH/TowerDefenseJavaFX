@@ -7,10 +7,10 @@ import model.characters.Projectile;
 import model.characters.monster.Monster;
 
 public abstract class Tower {
-    private static final int BUILD_TIME_SECONDS = 2;
+    private static int BUILD_TIME_SECONDS = 2;
     private int attackDamage;
     private int attackRange;
-    private static final int DEFAULT_SELL_COST = 35;
+    private static  int DEFAULT_SELL_COST = 35;
     private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();
         public Projectile getProjectile() {return projectile.get();}
         public ObjectProperty<Projectile> projectileProperty() {return projectile;}
@@ -29,6 +29,10 @@ public abstract class Tower {
 
     public int getBuildTimeSeconds() {
         return BUILD_TIME_SECONDS;
+    }
+
+    public void setBuildTimeSeconds(int t) {
+        BUILD_TIME_SECONDS = t;
     }
 
     public boolean isBuild() {
@@ -59,6 +63,10 @@ public abstract class Tower {
         return DEFAULT_SELL_COST;
     }
 
+    public void setDefaultSellCostSellCost(int c){
+       DEFAULT_SELL_COST = c;
+    }
+
     public Coordinate getCoords(){
         return coords;
     }
@@ -70,6 +78,7 @@ public abstract class Tower {
     public void setAttaker(boolean attaker) {
         this.attacker = attaker;
     }
+
 
     public void createProjectile(Monster target){
         setProjectile(new Projectile(target , coords.getExactX() , coords.getExactY()));

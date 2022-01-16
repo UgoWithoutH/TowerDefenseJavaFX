@@ -14,11 +14,11 @@ import java.util.TreeSet;
 public class ScoreRanking {
     private ObservableList<GameState> rankingObservable = FXCollections.observableArrayList();
 
-    ListProperty<GameState> ranking = new SimpleListProperty<>(rankingObservable);
+    private ListProperty<GameState> ranking = new SimpleListProperty<>(rankingObservable);
         public ObservableList<GameState> getRanking() {return ranking.get();}
         public ListProperty<GameState> rankingProperty() {return ranking;}
         public void setRanking(ObservableList<GameState> ranking) {this.ranking.set(ranking);}
-    IntegerProperty numberScores = new SimpleIntegerProperty();
+    private IntegerProperty numberScores = new SimpleIntegerProperty();
         public int getNumberScores() {return numberScores.get();}
         public IntegerProperty numberScoresProperty() {return numberScores;}
         public void setNumberScores(int numberScores) {this.numberScores.set(numberScores);}

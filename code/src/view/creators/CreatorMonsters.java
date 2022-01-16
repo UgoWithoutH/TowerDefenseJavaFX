@@ -28,11 +28,7 @@ public class CreatorMonsters {
         addListener();
     }
 
-    /**
-     * Add Monster in View
-     * todo
-     *  Terminer la nouvelle création de monstre et le déplacement et la couleur par BONHOME
-     */
+
     public void addListener() {
         gameManager.getGame().getMonstersAlive().addListener(new ListChangeListener<Monster>() {
             @Override
@@ -42,10 +38,10 @@ public class CreatorMonsters {
                     Monster monster = listMonsters.get(listMonsters.size() - 1);
                     Circle monsterView;
                     if(monster instanceof Speed){
-                        monsterView = new Circle(monster.getRadius(), Color.GREEN);
+                        monsterView = new Circle(10, Color.GREEN);
                     }
                     else{
-                        monsterView = new Circle(monster.getRadius(), Color.RED);
+                        monsterView = new Circle(10, Color.RED);
                     }
                     monsterView.centerXProperty().bind(monster.getCoords().xProperty());
                     monsterView.centerYProperty().bind(monster.getCoords().yProperty());

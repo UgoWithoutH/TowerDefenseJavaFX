@@ -6,15 +6,9 @@ import model.Coordinate;
 
 import java.util.ArrayList;
 
-/**
- * todo
- *  Nous avons du javafx dans le MODELE !!
- */
 public abstract class Monster {
     private static ArrayList<Coordinate> path;
-    //Circle view;
     private Coordinate coords;
-    private final int radius = 10;
     private int healthPoints;
     private int movementSpeed;
     private int reward;
@@ -54,10 +48,6 @@ public abstract class Monster {
 
     public void setY(int y) {
         coords.setY(y);
-    }
-
-    public int getRadius() {
-        return radius;
     }
 
     public int getReward() {

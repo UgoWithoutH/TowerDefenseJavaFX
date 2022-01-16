@@ -7,11 +7,11 @@ public class Coordinate {
 
     //private int x;
     //private int y;
-    IntegerProperty x = new SimpleIntegerProperty();
+    private IntegerProperty x = new SimpleIntegerProperty();
         public int getX() {return x.get();}
         public IntegerProperty xProperty() {return x;}
         public void setX(int x) {this.x.set(x);}
-    IntegerProperty y = new SimpleIntegerProperty();
+    private IntegerProperty y = new SimpleIntegerProperty();
         public int getY() {return y.get();}
         public IntegerProperty yProperty() {return y;}
         public void setY(int y) {this.y.set(y);}
