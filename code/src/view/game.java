@@ -116,6 +116,6 @@ public class game {
         gameManager.getBoucle().setRunning(false);
 
         ScreenController.getManager().getScoreRanking().updateRanking(ScreenController.getManager().getGameManager().getGame());
-        Navigator.affichageMenu();
+        ScreenController.activate("setup");
     }
 }

@@ -1,19 +1,14 @@
 package launch;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import model.Manager;
 import model.ScoreRanking;
-import model.game_logic.GameManager;
-import view.Navigator;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.ScreenController;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class Main extends Application {
 
@@ -40,8 +35,9 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         stage.show();
+
+        ScreenController.addAffichageMenu();
     }
 
     @Override

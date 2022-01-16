@@ -37,12 +37,14 @@ import view.creators.CreatorProjectiles;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public class main_menu {
 
     private view.game gameController;
     private Group tilemapGroup;
     private Manager manager = ScreenController.getManager();
+    public static final URL GAMEUI = GameManager.class.getResource("/FXML/game.fxml");
     @FXML
     private ListView scoreList;
     @FXML
@@ -107,7 +109,7 @@ public class main_menu {
             GameManager gameManager = new GameManager(manager.getPseudo(),new importMap(1216, 608));
             manager.setGameManager(gameManager);
             gameManager.setDrawMap(new DrawMap(gameManager.getGameMap()));
-            FXMLLoader loader = new FXMLLoader(Navigator.GAMEUI);
+            FXMLLoader loader = new FXMLLoader(GAMEUI);
             GridPane gamePane = new GridPane();
             //Stack Pane coeur
             ImageView imCoeur = new ImageView(new Image(String.valueOf(getClass().getResource("/images/coeur.PNG").toURI().toURL())));
@@ -122,7 +124,7 @@ public class main_menu {
             tilemapGroup.getChildren().addAll(gameManager.getDrawMap(), stackPaneCoeur);
             gamePane.add(tilemapGroup, 0, 0);
             //Hbox boutons game
-            HBox gameUI = loader.load(Navigator.GAMEUI.openStream());
+            HBox gameUI = loader.load(GAMEUI.openStream());
             gamePane.add(gameUI, 0, 1);
             gameController = loader.getController();
             gameController.setGameManager(gameManager);
@@ -234,7 +236,7 @@ public class main_menu {
         accueil.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Navigator.affichageMenu();
+                ScreenController.activate("setup");
             }
         });
         VBox content = new VBox(l,accueil);
