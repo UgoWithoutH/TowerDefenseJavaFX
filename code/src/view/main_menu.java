@@ -199,12 +199,7 @@ public class main_menu {
                         new KeyValue(bar.progressProperty(), 1)
                 )
         );
-        task.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                bar.setVisible(false);
-            }
-        });
+        task.setOnFinished(event -> bar.setVisible(false));
         g.getChildren().add(bar);
         tilemapGroup.getChildren().add(g);
         task.playFromStart();

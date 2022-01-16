@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import launch.Main;
 import model.Manager;
+import model.ScoreRanking;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,6 +16,12 @@ public class ScreenController {
 
     private static Stage stage;
     private static Manager manager;
+
+    public ScreenController(Stage stage) {
+        this.stage = stage;
+        this.manager = new Manager(new ScoreRanking());
+        addAffichageMenu();
+    }
 
     public static Stage getStage(){return stage;}
     public static void setStage(Stage stage1){stage = stage1;}
@@ -39,7 +46,7 @@ public class ScreenController {
         stage.getScene().setRoot( screenMap.get(name) );
     }
 
-    public static void addAffichageMenu(){
+    private static void addAffichageMenu(){
         try
         {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/FXML/main_menu.fxml"));

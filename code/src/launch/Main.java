@@ -22,9 +22,7 @@ public class Main extends Application {
         stage.setHeight(RESOLUTION_Y);
         stage.setResizable(false);
 
-        ScreenController.setStage(stage);
-        ScreenController.setManager(new Manager(new ScoreRanking()));
-
+        new ScreenController(stage);
 
         /**
          * Premier affichage de fenétre !!
@@ -36,8 +34,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
         stage.show();
-
-        ScreenController.addAffichageMenu();
     }
 
     @Override

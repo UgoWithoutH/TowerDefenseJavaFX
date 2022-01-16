@@ -38,12 +38,7 @@ public class CreatorProjectiles {
     }
 
     public void addListener(Tower tower){
-        tower.projectileProperty().addListener(new ChangeListener<Projectile>() {
-            @Override
-            public void changed(ObservableValue<? extends Projectile> observable, Projectile oldValue, Projectile newValue) {
-                createProjectiles(newValue);
-            }
-        });
+        tower.projectileProperty().addListener((observable, oldValue, newValue) -> createProjectiles(newValue));
     }
 
     public void createProjectiles(Projectile projectile) {
