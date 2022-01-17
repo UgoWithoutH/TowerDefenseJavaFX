@@ -4,8 +4,6 @@ import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -18,13 +16,10 @@ import javafx.util.Duration;
 import model.characters.Projectile;
 import model.characters.tower.Tower;
 import model.game_logic.GameManager;
-import model.game_logic.action.monster.IRemove;
 import model.game_logic.action.monster.RemoverMonster;
 import model.game_logic.action.states.Update;
 
 public class CreatorProjectiles {
-
-    private IRemove remove;
 
     private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();
         public Projectile getProjectile() {return projectile.get();}
@@ -61,7 +56,7 @@ public class CreatorProjectiles {
                 finishedProjectile.setVisible(false);
                 tilemapGroup.getChildren().remove(finishedProjectile);
                 if (projectile.getTarget().isDead()) {
-                    remove.removeMonster(projectile.getTarget(), gameManager.getGame());
+                    RemoverMonster.removeMonster(projectile.getTarget(), gameManager.getGame());
                     Update.updateStates(projectile.getTarget(), gameManager.getGame());
                 }
             }

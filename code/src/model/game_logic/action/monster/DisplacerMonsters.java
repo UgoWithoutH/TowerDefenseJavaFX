@@ -10,7 +10,6 @@ import java.util.Iterator;
 public class DisplacerMonsters implements IDisplacer {
 
     protected GameState game;
-    private IRemove remove;
 
     public DisplacerMonsters(GameState game) {this.game = game;}
 
@@ -32,7 +31,7 @@ public class DisplacerMonsters implements IDisplacer {
                 }
             }
             for (Monster m : monsterEnd) {
-                remove.removeMonster(m,game);
+                RemoverMonster.removeMonster(m,game);
             }
         }
         return true;
