@@ -18,10 +18,13 @@ import javafx.util.Duration;
 import model.characters.Projectile;
 import model.characters.tower.Tower;
 import model.game_logic.GameManager;
+import model.game_logic.action.monster.IRemove;
 import model.game_logic.action.monster.RemoverMonster;
 import model.game_logic.action.states.Update;
 
 public class CreatorProjectiles {
+
+    private IRemove remove;
 
     private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();
         public Projectile getProjectile() {return projectile.get();}
@@ -58,7 +61,7 @@ public class CreatorProjectiles {
                 finishedProjectile.setVisible(false);
                 tilemapGroup.getChildren().remove(finishedProjectile);
                 if (projectile.getTarget().isDead()) {
-                    RemoverMonster.removeMonster(projectile.getTarget(), gameManager.getGame());
+                    remove.removeMonster(projectile.getTarget(), gameManager.getGame());
                     Update.updateStates(projectile.getTarget(), gameManager.getGame());
                 }
             }

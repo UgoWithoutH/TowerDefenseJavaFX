@@ -6,10 +6,14 @@ import model.game_logic.GameState;
 
 import java.util.Scanner;
 
-public class SpawnerMonster extends Spawner {
+public class SpawnerMonster implements ISpawner {
+
+    protected GameState game;
+    protected Scanner scannerFile;
 
     public SpawnerMonster(GameState game, Scanner scannerFile) {
-        super(game, scannerFile);
+        this.game = game;
+        this.scannerFile = scannerFile;
     }
 
     public void spawnEnemy(int timer) {

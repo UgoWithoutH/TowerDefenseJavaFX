@@ -6,9 +6,9 @@ import model.characters.monster.Monster;
 import model.game_logic.Map.Map;
 import model.game_logic.action.monster.SpawnerMonster;
 import view.map.DrawMap;
-import model.game_logic.action.monster.Displacer;
+import model.game_logic.action.monster.IDisplacer;
 import model.game_logic.action.monster.DisplacerMonsters;
-import model.game_logic.action.monster.Spawner;
+import model.game_logic.action.monster.ISpawner;
 import model.game_logic.action.states.Update;
 import model.game_logic.action.tower.TowerAction;
 
@@ -23,9 +23,9 @@ public class GameManager implements Observateur {
     private GameState game;
     private Boucle boucle;
     private DrawMap drawMap;
-    private Displacer displacer;
+    private IDisplacer displacer;
     private GestionnaireVictoryGameOver gestionnaireGame;
-    private Spawner spawner;
+    private ISpawner ISpawner;
 
     public GameManager(String pseudo, Map map) throws FileNotFoundException{
         this.gameMap = map;
@@ -36,7 +36,7 @@ public class GameManager implements Observateur {
         displacer = new DisplacerMonsters(game);
         Scanner scannerMonster = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/Level/Level1/EnemyFile.txt"));
         gestionnaireGame = new GestionnaireVictoryGameOver(game,scannerMonster,boucle);
-        spawner = new SpawnerMonster(game,scannerMonster);
+        ISpawner = new SpawnerMonster(game,scannerMonster);
     }
 
     public Boucle getBoucle(){ return boucle; }
@@ -72,7 +72,7 @@ public class GameManager implements Observateur {
 
             gestionnaireGame.verifyVictory();
 
-            spawner.spawnEnemy(timer);
+            ISpawner.spawnEnemy(timer);
 
             gestionnaireGame.verifyGameOver(!displacer.updateLocations());
 

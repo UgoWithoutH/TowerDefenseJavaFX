@@ -7,9 +7,12 @@ import model.game_logic.action.states.Update;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class DisplacerMonsters extends Displacer{
+public class DisplacerMonsters implements IDisplacer {
 
-    public DisplacerMonsters(GameState game){super(game);}
+    protected GameState game;
+    private IRemove remove;
+
+    public DisplacerMonsters(GameState game) {this.game = game;}
 
     @Override
     public boolean updateLocations() {
@@ -29,7 +32,7 @@ public class DisplacerMonsters extends Displacer{
                 }
             }
             for (Monster m : monsterEnd) {
-                RemoverMonster.removeMonster(m,game);
+                remove.removeMonster(m,game);
             }
         }
         return true;
