@@ -1,7 +1,7 @@
 package view.map;
 
 import javafx.scene.image.*;
-import model.game_logic.Map.Map;
+import model.gamelogic.map.Map;
 
 import java.nio.ByteBuffer;
 
@@ -14,7 +14,7 @@ public class DrawMap extends ImageView {
     public void draw(Map map) {
 
         //loads tileset
-        Image tileset = loadTileSet(map.TILESET);
+        Image tileset = loadTileSet(map.getTileset());
 
         //Pixel reader
         PixelReader tilereader = tileset.getPixelReader();
@@ -24,14 +24,14 @@ public class DrawMap extends ImageView {
         WritablePixelFormat<ByteBuffer> picFormat = WritablePixelFormat.getByteBgraInstance();
 
         //Pixel writer
-        WritableImage paintedMap = new WritableImage(map.RESOLUTION_WIDTH , map.RESOLUTION_HEIGHT);
+        WritableImage paintedMap = new WritableImage(map.getResolutionWidth() , map.getResolutionHeight());
         PixelWriter tileWriter = paintedMap.getPixelWriter();
 
         //reads map node than paints the tile
-        for(int x = 0; x < map.TILE_LENGTH_X; x++){
-            for(int y = 0; y < map.TILE_LENGTH_Y; y++ ){
+        for(int x = 0; x < map.getTileLengthX(); x++){
+            for(int y = 0; y < map.getTileLengthY(); y++ ){
                 //populate each rectangle with tile from PixelReader
-                switch(map.map[y][x]){
+                switch(map.getMap()[y][x]){
                     case 0: //paint grass(OPEN NODE)
                         tilereader.getPixels(384 , 64 , 64 , 64 , picFormat , buffer , 0 , 256);
                         break;
@@ -58,8 +58,8 @@ public class DrawMap extends ImageView {
                         break;
                 }
 
-                if(y == map.TILE_LENGTH_Y - 1 & map.OFFSET_Y_FLAG){
-                    tileWriter.setPixels(x * 64 , y * 64, 64 , map.OFFSET_Y , picFormat , buffer , 0 , 256);
+                if(y == map.getTileLengthY() - 1 & map.isOffsetYFlag()){
+                    tileWriter.setPixels(x * 64 , y * 64, 64 , map.getOffsetY() , picFormat , buffer , 0 , 256);
                 }
                 else{
                     tileWriter.setPixels(x * 64 , y * 64, 64 , 64 , picFormat , buffer , 0 , 256);

@@ -49,7 +49,7 @@ public class ScreenController {
     private static void addAffichageMenu(){
         try
         {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/FXML/main_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/MainMenu.fxml"));
             Pane root = (Pane)loader.load();
             ScreenController.addScreen("setup", root);
         }

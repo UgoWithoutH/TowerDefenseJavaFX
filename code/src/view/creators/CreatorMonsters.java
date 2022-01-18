@@ -1,15 +1,13 @@
 package view.creators;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import model.characters.monster.Basic;
+import model.characters.Character;
 import model.characters.monster.Monster;
 import model.characters.monster.Speed;
-import model.game_logic.GameManager;
+import model.gamelogic.GameManager;
 
 public class CreatorMonsters {
 
@@ -29,27 +27,32 @@ public class CreatorMonsters {
     }
 
 
-    public void addListener() {
-        gameManager.getGame().getMonstersAlive().addListener(new ListChangeListener<Monster>() {
+    private void addListener() {
+        gameManager.getGame().getCharactersAlive().addListener(new ListChangeListener<Character>() {
             @Override
-            public void onChanged(Change<? extends Monster> change) {
-                var listMonsters = change.getList();
-                if (!gameManager.getGame().isRemoveMonster()) {
-                    Monster monster = listMonsters.get(listMonsters.size() - 1);
-                    Circle monsterView;
-                    if(monster instanceof Speed){
-                        monsterView = new Circle(10, Color.GREEN);
+            public void onChanged(Change<? extends Character> change) {
+                var listCharacters = change.getList();
+                if (!gameManager.getGame().isRemoveCharacter()) {
+                    Character character = listCharacters.get(listCharacters.size() - 1);
+                    if(character instanceof Monster monster){
+                        createMonster(monster);
                     }
-                    else{
-                        monsterView = new Circle(10, Color.RED);
-                    }
-                    monsterView.centerXProperty().bind(monster.getCoords().xProperty());
-                    monsterView.centerYProperty().bind(monster.getCoords().yProperty());
-                    monsterView.visibleProperty().bind(monster.visibleProperty());
-                    tilemapGroup.getChildren().add(monsterView);
                 }
             }
         });
+    }
 
+    private void createMonster(Monster monster){
+        Circle monsterView;
+        if(monster instanceof Speed){
+            monsterView = new Circle(10, Color.GREEN);
+        }
+        else{
+            monsterView = new Circle(10, Color.RED);
+        }
+        monsterView.centerXProperty().bind(monster.getCoords().xProperty());
+        monsterView.centerYProperty().bind(monster.getCoords().yProperty());
+        monsterView.visibleProperty().bind(monster.visibleProperty());
+        tilemapGroup.getChildren().add(monsterView);
     }
 }

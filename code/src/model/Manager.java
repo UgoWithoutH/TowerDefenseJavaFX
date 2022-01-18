@@ -4,13 +4,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
-import model.Serialization.GestionairePersistance;
-import model.Serialization.StateSerializable;
-import model.game_logic.GameManager;
-import model.game_logic.GameState;
+import model.serialization.GestionairePersistance;
+import model.gamelogic.GameManager;
 import view.ScreenController;
-
-import java.io.*;
 
 public class Manager {
     private GameManager gameManager;

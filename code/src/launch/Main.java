@@ -2,8 +2,6 @@ package launch;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import model.Manager;
-import model.ScoreRanking;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.ScreenController;
@@ -28,8 +26,8 @@ public class Main extends Application {
          * Premier affichage de fenétre !!
          */
         try {
-            stage.setScene(new Scene(FXMLLoader.load((Main.class.getResource("/FXML/main_menu.fxml")))));
-            stage.getScene().getStylesheets().setAll(Main.class.getResource("/FXML/menustyle.css").toExternalForm());
+            stage.setScene(new Scene(FXMLLoader.load((Main.class.getResource("/fxml/MainMenu.fxml")))));
+            stage.getScene().getStylesheets().setAll(Main.class.getResource("/fxml/MenuStyle.css").toExternalForm());
         } catch (IOException e) {
             e.printStackTrace();
         }

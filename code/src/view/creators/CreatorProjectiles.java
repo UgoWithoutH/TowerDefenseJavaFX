@@ -14,10 +14,12 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import model.characters.Projectile;
+import model.characters.monster.Monster;
 import model.characters.tower.Tower;
-import model.game_logic.GameManager;
-import model.game_logic.action.monster.RemoverMonster;
-import model.game_logic.action.states.Update;
+import model.gamelogic.GameManager;
+import model.gamelogic.action.Remover;
+import model.gamelogic.action.monster.RemoverMonster;
+import model.gamelogic.action.states.Updater;
 
 public class CreatorProjectiles {
 
@@ -56,8 +58,12 @@ public class CreatorProjectiles {
                 finishedProjectile.setVisible(false);
                 tilemapGroup.getChildren().remove(finishedProjectile);
                 if (projectile.getTarget().isDead()) {
-                    RemoverMonster.removeMonster(projectile.getTarget(), gameManager.getGame());
-                    Update.updateStates(projectile.getTarget(), gameManager.getGame());
+                    Remover remover;
+                    if(projectile.getTarget() instanceof Monster monster){
+                        remover = new RemoverMonster();
+                        remover.remove(monster,gameManager.getGame());
+                    }
+                    Updater.updateStates(projectile.getTarget(), gameManager.getGame());
                 }
             }
         });

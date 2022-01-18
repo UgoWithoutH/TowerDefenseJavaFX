@@ -1,20 +1,18 @@
 package model.characters;
 
-import model.characters.monster.Monster;
-
 public class Projectile{
-    private Monster target;     // The target of the attack
-    private final int startX;   // Starting location of the projectile
+    private Character target;
+    private final int startX;
     private final int startY;
 
 
-    public Projectile(Monster target, int towerX, int towerY){
+    public Projectile(Character target, int towerX, int towerY){
         this.target = target;
         startX = towerX;
         startY = towerY;
     }
 
-    public Monster getTarget(){
+    public Character getTarget(){
         return target;
     }
 

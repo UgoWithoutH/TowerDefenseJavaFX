@@ -3,13 +3,9 @@ package model;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
-import javafx.collections.SetChangeListener;
-import model.game_logic.GameState;
+import model.gamelogic.GameState;
 
 import java.util.Collections;
-import java.util.Scanner;
-import java.util.TreeSet;
 
 public class ScoreRanking {
     private ObservableList<GameState> rankingObservable = FXCollections.observableArrayList();
