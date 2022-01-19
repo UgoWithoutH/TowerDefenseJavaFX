@@ -46,9 +46,7 @@ public class CreatorProjectiles {
         projectilePath = new Path(new MoveTo(projectile.getStartX(), projectile.getStartY()));
         projectilePath.getElements().add(new LineTo(projectile.getEndX(), projectile.getEndY()));
         animation = new PathTransition(Duration.millis(speedMillis), projectilePath, projectileView);
-        animation.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
+        animation.setOnFinished(actionEvent -> {
                 PathTransition finishedAnimation = (PathTransition) actionEvent.getSource();
                 Circle finishedProjectile = (Circle) finishedAnimation.getNode();
                 finishedProjectile.setVisible(false);
@@ -61,7 +59,7 @@ public class CreatorProjectiles {
                     }
                     Updater.updateStates(projectile.getTarget(), gameManager.getGame());
             }
-        }});
+        });
         Platform.runLater(() -> tilemapGroup.getChildren().add(projectileView));
         animation.play();
     }

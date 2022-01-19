@@ -58,16 +58,14 @@ public class Game {
 
     public void setScene(Scene scene) {
         this.scene = scene;
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
+        scene.setOnMouseClicked(event -> {
                 if (constructTowers && gameManager.getLoop().isRunning()) {
                     IBuyer buyer = new BuyerTower(gameManager.getGame(),gameManager.getGameMap(),gameManager.getDrawMap());
                     buyer.buy(event.getX(), event.getY());
                     constructTowers = true;
                 }
             }
-        });
+        );
     }
 
     /**
