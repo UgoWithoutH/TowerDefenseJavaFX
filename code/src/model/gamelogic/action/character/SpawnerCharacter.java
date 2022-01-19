@@ -12,15 +12,23 @@ public class SpawnerCharacter implements ISpawner {
     private GameState game;
     private Scanner scannerFile;
 
+    /**
+     *
+     * @param game GameState
+     * @param scannerFile Scanner of Characters Files
+     */
     public SpawnerCharacter(GameState game, Scanner scannerFile) {
         this.game = game;
         this.scannerFile = scannerFile;
     }
 
+    /**
+     * Generation Characters in X timer
+     * @param timer int Loop Game
+     */
     public void spawnEnemy(int timer) {
 
         if (timer % 40 == 0 && scannerFile.hasNextLine()) {
-
             switch (scannerFile.next()) {
                 case "Basic" -> game.getCharactersAlive().add(new Basic(5));
                 case "Speed" -> game.getCharactersAlive().add(new Speed(3));

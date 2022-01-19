@@ -6,8 +6,7 @@ import model.gamelogic.GameState;
 public class Updater {
 
     /**
-     * Update State Monster
-     *
+     * Update State when Characters
      * @param character
      * @param game
      */
@@ -21,7 +20,7 @@ public class Updater {
         }
     }
 
-    public static void updateTimerSeconds(int timer,long millis,GameState game){
+    public static void updateTimerSeconds(int timer, long millis, GameState game){
         var timeMillis = timer * millis;
         var timeSeconds = (int) (timeMillis / 1000);
 
