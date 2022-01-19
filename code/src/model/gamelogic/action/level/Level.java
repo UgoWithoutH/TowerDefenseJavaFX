@@ -21,6 +21,13 @@ public class Level implements ILevel{
     public Scanner getLevelFile() {
         return levelFile;
     }
+
+    /**
+     * Set le Scanner du fichier d'ennemie si disponible
+     * Sinon il n'y a pas plus de manche
+     * @param level int Level a charger
+     * @return  boolean true si disponible
+     */
     public boolean setFileLevel(int level){
         Scanner scannerMonster = null;
         try {
@@ -32,6 +39,10 @@ public class Level implements ILevel{
         return true;
     }
 
+    /**
+     *  Charge le prochain Niveau (Vague) si disponible
+     * @return  boolean si Level trouvé
+     */
     @Override
     public boolean nextLevel() {
         this.level++;
