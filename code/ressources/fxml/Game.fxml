@@ -16,4 +16,6 @@
       <Label text="monnaie : "/>
       <Label fx:id="coins"/>
       <StackPane fx:id="coeur"/>
+      <Label text="Level : "/>
+      <Label fx:id="level"/>
 </HBox>

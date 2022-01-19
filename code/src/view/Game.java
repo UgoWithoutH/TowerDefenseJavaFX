@@ -29,6 +29,8 @@ public class Game {
     @FXML
     private Label coins;
     @FXML
+    private Label level;
+    @FXML
     private Button speed;
     private GameManager gameManager;
     private Scene scene;
@@ -57,6 +59,7 @@ public class Game {
         this.gameManager = gameManager;
         textScore.textProperty().bind(gameManager.getGame().scoreProperty().asString());
         coins.textProperty().bind(gameManager.getGame().coinsProperty().asString());
+        level.textProperty().bind(gameManager.getGame().levelProperty().asString());
     }
 
     /**

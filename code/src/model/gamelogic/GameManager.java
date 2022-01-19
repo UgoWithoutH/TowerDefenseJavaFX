@@ -1,5 +1,7 @@
 package model.gamelogic;
 
+import model.gamelogic.action.ILevel;
+import model.gamelogic.action.level.Level;
 import model.gameloop.IObserver;
 import model.gameloop.Loop;
 import model.characters.Character;
@@ -13,7 +15,6 @@ import view.map.DrawMap;
 import model.gamelogic.action.character.DisplacerCharacters;
 import model.gamelogic.action.states.Updater;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -29,6 +30,7 @@ public class GameManager implements IObserver {
     private AdministratorVictoryGameOver administratorVictoryGameOver;
     private ISpawner spawner;
     private IAttacker attacker;
+    private Level levelNext;
 
     public GameManager(String pseudo, Map map) throws FileNotFoundException{
         this.gameMap = map;
@@ -37,9 +39,12 @@ public class GameManager implements IObserver {
         loop = new Loop();
         loop.subscribe(this);
         displacer = new DisplacerCharacters(game);
-        Scanner scannerMonster = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/levels/level1.txt"));
-        administratorVictoryGameOver = new AdministratorVictoryGameOver(game,scannerMonster, loop);
-        spawner = new SpawnerCharacter(game,scannerMonster);
+
+
+        levelNext = new Level(game);
+        administratorVictoryGameOver = new AdministratorVictoryGameOver(game,levelNext, loop);
+        spawner = new SpawnerCharacter(game,levelNext);
+
         attacker = new AttackerTower(game.getPlayerTowers(), game.getCharactersAlive());
     }
 
