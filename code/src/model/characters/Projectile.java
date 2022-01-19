@@ -1,7 +1,7 @@
 package model.characters;
 
 public class Projectile{
-    private Character target;
+    private final Character target;
     private final int startX;
     private final int startY;
 

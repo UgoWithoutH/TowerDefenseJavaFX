@@ -1,14 +1,14 @@
 package model.gamelogic.action.character;
 import model.characters.Character;
 import model.gamelogic.GameState;
-import model.gamelogic.action.Displacer;
-import model.gamelogic.action.Remover;
+import model.gamelogic.action.IDisplacer;
+import model.gamelogic.action.IRemover;
 import model.gamelogic.action.states.Updater;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class DisplacerCharacters implements Displacer {
+public class DisplacerCharacters implements IDisplacer {
 
     private GameState game;
 
@@ -33,7 +33,7 @@ public class DisplacerCharacters implements Displacer {
                 }
             }
             for (Character CharacterDelete : CharactersEnd) {
-                Remover remover = new RemoverCharacter(game);
+                IRemover remover = new RemoverCharacter(game);
                 remover.remove(CharacterDelete);
             }
         }

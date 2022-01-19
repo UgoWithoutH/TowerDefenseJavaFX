@@ -1,6 +1,6 @@
 package model.gamelogic.action;
 
-public interface Displacer {
+public interface IDisplacer {
 
      boolean updateLocations();
 }

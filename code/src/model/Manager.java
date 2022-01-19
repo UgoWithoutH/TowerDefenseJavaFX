@@ -2,10 +2,8 @@ package model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.event.EventHandler;
-import javafx.stage.WindowEvent;
-import model.serialization.GestionairePersistance;
 import model.gamelogic.GameManager;
+import model.serialization.GestionairePersistance;
 import view.ScreenController;
 
 public class Manager {
@@ -18,12 +16,7 @@ public class Manager {
 
     public Manager(ScoreRanking scoreRanking){
         this.scoreRanking=scoreRanking;
-        ScreenController.getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                GestionairePersistance.saveStates(scoreRanking);
-            }
-        });
+        ScreenController.getStage().setOnCloseRequest(event -> GestionairePersistance.saveStates(scoreRanking));
         GestionairePersistance.loadStates(scoreRanking);
     }
 

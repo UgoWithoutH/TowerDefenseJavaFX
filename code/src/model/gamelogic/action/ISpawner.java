@@ -1,5 +1,5 @@
 package model.gamelogic.action;
 
-public interface Spawner {
+public interface ISpawner {
     void spawnEnemy(int timer);
 }

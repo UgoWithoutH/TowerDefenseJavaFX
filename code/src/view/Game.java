@@ -1,21 +1,20 @@
 package view;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import model.boucleJeu.Loop;
 import model.gamelogic.GameManager;
-import model.gamelogic.action.Buyer;
+import model.gamelogic.action.IBuyer;
 import model.gamelogic.action.tower.BuyerTower;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class Game {
 
@@ -30,13 +29,12 @@ public class Game {
     @FXML
     private Button speed;
     private GameManager gameManager;
-    private Scene scene;
     private boolean constructTowers = false;
 
     @FXML
     public void initialize() {
         try {
-            ImageView im = new ImageView(new Image(String.valueOf(getClass().getResource("/images/tower.PNG").toURI().toURL())));
+            ImageView im = new ImageView(new Image(String.valueOf(Objects.requireNonNull(getClass().getResource("/images/tower.PNG")).toURI().toURL())));
             im.setFitHeight(20);
             im.setFitWidth(20);
             buytower.setGraphic(im);
@@ -61,12 +59,12 @@ public class Game {
         if(!gameManager.getGame().isSpeed()){
             speed.setText("X1");
             gameManager.getGame().setSpeed(true);
-            boucle.setMilis(boucle.getMilis()/2);
+            boucle.setMillis(boucle.getMillis()/2);
         }
         else{
             speed.setText("X2");
             gameManager.getGame().setSpeed(false);
-            boucle.setMilis(boucle.getMilis()*2);
+            boucle.setMillis(boucle.getMillis()*2);
         }
     }
 
@@ -94,15 +92,11 @@ public class Game {
 
 
     public void setScene(Scene scene) {
-        this.scene = scene;
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (constructTowers && gameManager.getLoop().isRunning()) {
-                    Buyer buyer = new BuyerTower(gameManager.getGame(),gameManager.getGameMap(),gameManager.getDrawMap());
-                    buyer.buy(event.getX(), event.getY());
-                    constructTowers = true;
-                }
+        scene.setOnMouseClicked(event -> {
+            if (constructTowers && gameManager.getLoop().isRunning()) {
+                IBuyer buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap(), gameManager.getDrawMap());
+                buyer.buy(event.getX(), event.getY());
+                constructTowers = true;
             }
         });
     }

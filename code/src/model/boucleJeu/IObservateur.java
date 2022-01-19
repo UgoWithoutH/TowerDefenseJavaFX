@@ -1,6 +1,6 @@
 package model.boucleJeu;
 
-public interface Observateur {
+public interface IObservateur {
 
     void update(int timer);
 

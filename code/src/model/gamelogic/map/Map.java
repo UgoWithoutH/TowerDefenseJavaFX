@@ -28,19 +28,9 @@ public class Map {
         offsetX = tileLengthX * 64 - resolutionWidth;
         offsetY = tileLengthY * 64 - resolutionHeight;
 
-        if(offsetX == 0){
-            offsetXFlag = false;
-        }
-        else{
-            offsetXFlag = true;
-        }
+        offsetXFlag = offsetX != 0;
 
-        if(offsetY == 0){
-            offsetYFlag = false;
-        }
-        else{
-            offsetYFlag = true;
-        }
+        offsetYFlag = offsetY != 0;
     }
 
     public String getTileset() {
@@ -79,7 +69,7 @@ public class Map {
 
 
     public ArrayList<Coordinate> getPath() {
-        ArrayList<Coordinate> pathXY = new ArrayList<Coordinate>();
+        ArrayList<Coordinate> pathXY = new ArrayList<>();
         boolean scanSwitch = false;
         int previousY = 0;
         int previousX = 0;
@@ -131,9 +121,6 @@ public class Map {
      * @return boolean
      */
     public boolean nodeOpen(int xCord , int yCord){
-        if(map[yCord][xCord] != 0){
-            return false;
-        }
-        return true;
+        return map[yCord][xCord] == 0;
     }
 }

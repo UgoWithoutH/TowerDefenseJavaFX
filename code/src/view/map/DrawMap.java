@@ -31,31 +31,23 @@ public class DrawMap extends ImageView {
         for(int x = 0; x < map.getTileLengthX(); x++){
             for(int y = 0; y < map.getTileLengthY(); y++ ){
                 //populate each rectangle with tile from PixelReader
-                switch(map.getMap()[y][x]){
-                    case 0: //paint grass(OPEN NODE)
-                        tilereader.getPixels(384 , 64 , 64 , 64 , picFormat , buffer , 0 , 256);
-                        break;
-                    case 1: //paint horizontal path
-                        tilereader.getPixels(384 , 192 , 64 , 64 , picFormat , buffer , 0 , 256);
-                        break;
-                    case 2: //paint vertical path
-                        tilereader.getPixels(448 , 128 , 64 , 64 , picFormat , buffer , 0 , 256);
-                        break;
-                    case 3: //paint corner EAST TO NORTH
-                        tilereader.getPixels(256 , 192 , 64 , 64 , picFormat , buffer , 0 , 256);
-                        break;
-                    case 4: //paint corner SOUTH TO EAST
-                        tilereader.getPixels(192 , 192 , 64 , 64 , picFormat , buffer , 0 , 256);
-                        break;
-                    case 5: //paint corner NORTH TO EAST
-                        tilereader.getPixels(192 , 128 , 64 , 64 , picFormat , buffer , 0 , 256);
-                        break;
-                    case 6: //paint corner EAST TO SOUTH
-                        tilereader.getPixels(256 , 128 , 64 , 64 , picFormat , buffer , 0 , 256);
-                        break;
-                    case 7: //paint grass and tower
-                        tilereader.getPixels(384 , 512 , 64 , 64 , picFormat , buffer , 0 , 256);
-                        break;
+                switch (map.getMap()[y][x]) {
+                    case 0 -> //paint grass(OPEN NODE)
+                            tilereader.getPixels(384, 64, 64, 64, picFormat, buffer, 0, 256);
+                    case 1 -> //paint horizontal path
+                            tilereader.getPixels(384, 192, 64, 64, picFormat, buffer, 0, 256);
+                    case 2 -> //paint vertical path
+                            tilereader.getPixels(448, 128, 64, 64, picFormat, buffer, 0, 256);
+                    case 3 -> //paint corner EAST TO NORTH
+                            tilereader.getPixels(256, 192, 64, 64, picFormat, buffer, 0, 256);
+                    case 4 -> //paint corner SOUTH TO EAST
+                            tilereader.getPixels(192, 192, 64, 64, picFormat, buffer, 0, 256);
+                    case 5 -> //paint corner NORTH TO EAST
+                            tilereader.getPixels(192, 128, 64, 64, picFormat, buffer, 0, 256);
+                    case 6 -> //paint corner EAST TO SOUTH
+                            tilereader.getPixels(256, 128, 64, 64, picFormat, buffer, 0, 256);
+                    case 7 -> //paint grass and tower
+                            tilereader.getPixels(384, 512, 64, 64, picFormat, buffer, 0, 256);
                 }
 
                 if(y == map.getTileLengthY() - 1 & map.isOffsetYFlag()){
@@ -65,7 +57,7 @@ public class DrawMap extends ImageView {
                     tileWriter.setPixels(x * 64 , y * 64, 64 , 64 , picFormat , buffer , 0 , 256);
                 }
             }
-        };
+        }
         this.setImage(paintedMap);
     }
 

@@ -21,9 +21,9 @@ public class Updater {
         }
     }
 
-    public static void updateTimerSeconds(int timer,long milis,GameState game){
-        var timeMilis = timer * milis;
-        var timeSeconds = (int) (timeMilis / 1000);
+    public static void updateTimerSeconds(int timer,long millis,GameState game){
+        var timeMillis = timer * millis;
+        var timeSeconds = (int) (timeMillis / 1000);
 
         if (timeSeconds != game.getTimeSeconds()) {
             game.setTimeSeconds(game.getTimeSeconds() + 1);

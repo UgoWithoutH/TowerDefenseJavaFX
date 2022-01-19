@@ -28,15 +28,12 @@ public class CreatorMonsters {
 
 
     private void addListener() {
-        gameManager.getGame().getCharactersAlive().addListener(new ListChangeListener<Character>() {
-            @Override
-            public void onChanged(Change<? extends Character> change) {
-                var listCharacters = change.getList();
-                if (!gameManager.getGame().isRemoveCharacter()) {
-                    Character character = listCharacters.get(listCharacters.size() - 1);
-                    if(character instanceof Monster monster){
-                        createMonster(monster);
-                    }
+        gameManager.getGame().getCharactersAlive().addListener((ListChangeListener<Character>) change -> {
+            var listCharacters = change.getList();
+            if (!gameManager.getGame().isRemoveCharacter()) {
+                Character character = listCharacters.get(listCharacters.size() - 1);
+                if (character instanceof Monster monster) {
+                    createMonster(monster);
                 }
             }
         });

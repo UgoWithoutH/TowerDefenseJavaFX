@@ -1,6 +1,6 @@
 package model.gamelogic.action;
 
-public interface Attacker {
+public interface IAttacker {
 
     void attack();
 }

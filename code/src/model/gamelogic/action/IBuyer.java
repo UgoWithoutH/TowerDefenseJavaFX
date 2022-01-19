@@ -1,6 +1,6 @@
 package model.gamelogic.action;
 
-public interface Buyer {
+public interface IBuyer {
 
     void buy(double xCords, double yCords);
 }
