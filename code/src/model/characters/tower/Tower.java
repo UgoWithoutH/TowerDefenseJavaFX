@@ -7,10 +7,10 @@ import model.characters.Character;
 import model.characters.Projectile;
 
 public abstract class Tower {
-    private static int BUILD_TIME_SECONDS = 2;
+    private static final int BUILD_TIME_SECONDS = 2;
+    private static final int DEFAULT_SELL_COST = 35;
     private int attackDamage;
     private int attackRange;
-    private static  int DEFAULT_SELL_COST = 35;
     private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();
         public Projectile getProjectile() {return projectile.get();}
         public ObjectProperty<Projectile> projectileProperty() {return projectile;}

@@ -20,8 +20,6 @@ public class AttackerTower implements IAttacker {
         Character target;
         WaitingBuild attackService;
 
-        //if(game.isGameOver()) return;
-
         for (Tower tower : listTower) {
             if (tower.isAttacker()) {
                 int towerMinXRange = tower.getX() - tower.getAttackRange();

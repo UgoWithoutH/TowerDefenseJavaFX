@@ -79,7 +79,6 @@ public class MainMenu {
                             HBox myHboxContent = new HBox(l1, l2, l3, l4);
                             myHboxContent.setSpacing(5);
                             setGraphic(myHboxContent);
-
                         } else {
                             textProperty().unbind();
                             setText("");

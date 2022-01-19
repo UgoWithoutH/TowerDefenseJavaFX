@@ -8,7 +8,7 @@ import model.gamelogic.GameState;
 import java.util.Collections;
 
 public class ScoreRanking {
-    private ObservableList<GameState> rankingObservable = FXCollections.observableArrayList();
+    private final ObservableList<GameState> rankingObservable = FXCollections.observableArrayList();
 
     private ListProperty<GameState> ranking = new SimpleListProperty<>(rankingObservable);
         public ObservableList<GameState> getRanking() {return ranking.get();}
@@ -36,16 +36,11 @@ public class ScoreRanking {
                 if (lowerState != gameState) {
                     rankingObservable.remove(lowerState);
                 }
-                rankingObservable.add(gameState);
-                Collections.sort(rankingObservable);
-            }
-            else{
-                rankingObservable.add(gameState);
-                Collections.sort(rankingObservable);
             }
         }
-        else{
-            rankingObservable.add(gameState);
+        rankingObservable.add(gameState);
+        if(rankingObservable.size() > 1){
+            Collections.sort(rankingObservable);
         }
     }
 }

@@ -47,8 +47,8 @@ public class CreatorMonsters {
         else{
             monsterView = new Circle(10, Color.RED);
         }
-        monsterView.centerXProperty().bind(monster.getCoords().xProperty());
-        monsterView.centerYProperty().bind(monster.getCoords().yProperty());
+        monsterView.centerXProperty().bind(monster.getCoordinate().xProperty());
+        monsterView.centerYProperty().bind(monster.getCoordinate().yProperty());
         monsterView.visibleProperty().bind(monster.visibleProperty());
         tilemapGroup.getChildren().add(monsterView);
     }

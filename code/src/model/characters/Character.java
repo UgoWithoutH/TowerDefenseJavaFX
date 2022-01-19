@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class Character {
     private static ArrayList<Coordinate> path;
-    private Coordinate coords;
+    private Coordinate coordinate;
     private int healthPoints;
     private int reward;
     private int direction;
@@ -22,7 +22,7 @@ public abstract class Character {
         this.movementSpeed = movementSpeed;
         this.healthPoints = healthPoints;
         reward = 2;
-        coords = new Coordinate(path.get(0).getExactX(), path.get(0).getExactY());
+        coordinate = new Coordinate(path.get(0).getExactX(), path.get(0).getExactY());
     }
 
     public int getDirection() {return direction;}
@@ -34,20 +34,20 @@ public abstract class Character {
     public int getHealthPoints() {return healthPoints;}
     public void setHealthPoints(int healthPoints) {this.healthPoints = healthPoints;}
 
-    public Coordinate getCoords(){return coords;}
+    public Coordinate getCoordinate(){return coordinate;}
 
     public int getX() {
-        return coords.getX();
+        return coordinate.getX();
     }
     public void setX(int x) {
-        coords.setX(x);
+        coordinate.setX(x);
     }
 
     public int getY() {
-        return coords.getY();
+        return coordinate.getY();
     }
     public void setY(int y) {
-        coords.setY(y);
+        coordinate.setY(y);
     }
 
     public int getReward() {
@@ -74,9 +74,9 @@ public abstract class Character {
         if(pathFinished) return;
         // Déplacement selon l'axe des x
         if (moveX) {
-            setX(coords.getX() + movementSpeed);
+            setX(coordinate.getX() + movementSpeed);
             // Arrivé à un point de changement dans le chemin, changer de direction
-            if (coords.getX() == path.get(direction).getExactX()) {
+            if (coordinate.getX() == path.get(direction).getExactX()) {
                 moveX = false;
                 direction++;
                 // Traversée de tous les points de changement, fin du chemin
@@ -88,13 +88,13 @@ public abstract class Character {
         }
         // Déplacement selon l'axe des y
         else {
-            if (coords.getY() < path.get(direction).getExactY()) {
-                setY(coords.getY() + movementSpeed);
+            if (coordinate.getY() < path.get(direction).getExactY()) {
+                setY(coordinate.getY() + movementSpeed);
             } else {
-                setY(coords.getY() - movementSpeed);
+                setY(coordinate.getY() - movementSpeed);
             }
             // Atteindre le point de changement, changer de direction
-            if (coords.getY() == path.get(direction).getExactY()) {
+            if (coordinate.getY() == path.get(direction).getExactY()) {
                 moveX = true;
                 direction++;
                 if (direction == path.size()) {

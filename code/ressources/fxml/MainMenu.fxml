@@ -47,7 +47,5 @@
             <Label text="Maximum number of scores : "/>
             <TextField fx:id="nbScores" prefWidth="50"/>
         </HBox>
-
-
     </VBox>
 </HBox>
