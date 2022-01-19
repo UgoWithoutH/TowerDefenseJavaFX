@@ -72,7 +72,7 @@ public class GameManager implements IObserver {
     }
 
     /**
-     * Update a chaque Toure de Boucle
+     * Update a chaque tour de Boucle
      * @param timer int Timer de la boucle de Jeu
      */
     @Override

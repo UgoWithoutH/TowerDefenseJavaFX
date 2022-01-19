@@ -4,6 +4,7 @@ package view;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
@@ -36,6 +37,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
+
+import static java.lang.Thread.sleep;
 
 public class MainMenu {
 
@@ -137,7 +140,36 @@ public class MainMenu {
 
             listenerOnChangedVictoryAndGameOver();
             createCreators();
-            gameManager.start();
+            final Label compteur = new Label();
+            compteur.setStyle("-fx-font-size: 100");
+            compteur.setAlignment(Pos.CENTER);
+            StackPane sp = new StackPane(compteur);
+            sp.setPrefSize(gameManager.getGameMap().getResolutionWidth(),gameManager.getGameMap().getResolutionHeight());
+            tilemapGroup.getChildren().add(sp);
+            Thread thread = new Thread(() -> {
+                try {
+                    for (int i = 3; i >= 0; i--) {
+                        sleep(1000);
+                        final int tmp = i;
+                        Platform.runLater(() -> compteur.setText(String.valueOf(tmp)));
+                    }
+                    Timeline task = new Timeline(
+                            new KeyFrame(
+                                    Duration.ZERO,
+                                    new KeyValue(compteur.opacityProperty(), 1)
+                            ),
+                            new KeyFrame(
+                                    Duration.seconds(1),
+                                    new KeyValue(compteur.opacityProperty(), 0.0)
+                            )
+                    );
+                    task.playFromStart();
+                    gameManager.start();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+            thread.start();
         } catch (IOException | URISyntaxException ex) {
             ex.printStackTrace();
         }
