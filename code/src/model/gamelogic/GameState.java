@@ -51,7 +51,7 @@ public class GameState implements Comparable<GameState>{
     public GameState(String pseudo){
         setPseudo(pseudo);
         setTimeSeconds(0);
-        setCoins(100);
+        setCoins(50);
         setLevel(1);
         setScore(0);
         setLives(2);

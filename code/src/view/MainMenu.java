@@ -100,7 +100,7 @@ public class MainMenu {
      * Start Window and Game
      */
     @FXML
-    public void startNewGame(ActionEvent actionEvent) {
+    public void startNewGame() {
         try {
             if(pseudoField.getText() == null){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -140,39 +140,47 @@ public class MainMenu {
 
             listenerOnChangedVictoryAndGameOver();
             createCreators();
-            final Label compteur = new Label();
-            compteur.setStyle("-fx-font-size: 100");
-            compteur.setAlignment(Pos.CENTER);
-            StackPane sp = new StackPane(compteur);
+            Label counter = new Label();
+            counter.setStyle("-fx-font-size: 100");
+            counter.setAlignment(Pos.CENTER);
+            Label textWave = new Label();
+            StackPane sp = new StackPane(counter);
             sp.setPrefSize(gameManager.getGameMap().getResolutionWidth(),gameManager.getGameMap().getResolutionHeight());
             tilemapGroup.getChildren().add(sp);
-            Thread thread = new Thread(() -> {
-                try {
-                    for (int i = 3; i >= 0; i--) {
-                        sleep(1000);
-                        final int tmp = i;
-                        Platform.runLater(() -> compteur.setText(String.valueOf(tmp)));
-                    }
-                    Timeline task = new Timeline(
-                            new KeyFrame(
-                                    Duration.ZERO,
-                                    new KeyValue(compteur.opacityProperty(), 1)
-                            ),
-                            new KeyFrame(
-                                    Duration.seconds(1),
-                                    new KeyValue(compteur.opacityProperty(), 0.0)
-                            )
-                    );
-                    task.playFromStart();
-                    gameManager.start();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-            thread.start();
+            animationTime(counter,gameManager);
         } catch (IOException | URISyntaxException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void animationTime(Label counter, GameManager gameManager){
+        Thread thread = new Thread(() -> {
+            try {
+                sleep(500);
+                for (int i = 3; i >= 0; i--) {
+                    final int tmp = i;
+                    Platform.runLater(() -> counter.setText(String.valueOf(tmp)));
+                    sleep(1000);
+                }
+                Timeline task = new Timeline(
+                        new KeyFrame(
+                                Duration.ZERO,
+                                new KeyValue(counter.opacityProperty(), 1)
+                        ),
+                        new KeyFrame(
+                                Duration.seconds(1),
+                                new KeyValue(counter.opacityProperty(), 0.0)
+                        )
+                );
+                task.playFromStart();
+                if(gameManager.getGame().getLevel() == 1){
+                    gameManager.start();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
     }
 
     /**
@@ -235,6 +243,7 @@ public class MainMenu {
      */
     @FXML
     private void exitGame() {
+        manager.saveStates();
         System.exit(1);
     }
 

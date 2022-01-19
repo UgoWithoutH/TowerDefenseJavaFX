@@ -41,6 +41,4 @@ public class Level implements ILevel{
         }
         return false;
     }
-
-
 }

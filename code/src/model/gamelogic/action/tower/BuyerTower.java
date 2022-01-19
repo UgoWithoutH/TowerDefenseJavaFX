@@ -32,7 +32,7 @@ public class BuyerTower implements IBuyer {
             Tower tower = new ClassicTower(xTile, yTile);
             if (game.getCoins() >= Tower.getDefaultSellCost()) {
                 game.addTower(tower);
-                game.setCoins(game.getCoins() - 50);
+                game.setCoins(game.getCoins() - Tower.getDefaultSellCost());
                 gameMap.setMapNode(((int) (xCords / 64)), ((int) (yCords / 64)), 7);
                 drawMap.draw(gameMap);
             }

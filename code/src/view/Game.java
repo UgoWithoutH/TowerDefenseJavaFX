@@ -1,14 +1,11 @@
 package view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import model.gameloop.Loop;
 import model.gamelogic.GameManager;
 import model.gamelogic.action.IBuyer;
@@ -80,20 +77,17 @@ public class Game {
 
     /**
      * Button ON/OFF Buy Tower
-     *
-     * @param actionEvent
      */
     @FXML
-    private void buyTower(ActionEvent actionEvent) {
+    private void buyTower() {
         constructTowers = true;
     }
 
     /**
      * Bouton d'augmentation de la vitesse
-     * @param actionEvent
      */
     @FXML
-    private void speed(ActionEvent actionEvent) {
+    private void speed() {
         Loop boucle = gameManager.getLoop();
         if(!gameManager.getGame().isSpeed()){
             speed.setText("X1");
@@ -109,10 +103,9 @@ public class Game {
 
     /**
      * Bouton Pause/Start
-     * @param actionEvent   ActionEvent
      */
     @FXML
-    private void pauseOrRestart(ActionEvent actionEvent){
+    private void pauseOrRestart(){
         if(gameManager.getLoop().isRunning()) {
             pauseRestart.setText("Restart");
             gameManager.getLoop().setRunning(false);
@@ -125,13 +118,10 @@ public class Game {
 
     /**
      * Bouton Give-UP
-     * @param actionEvent   ActionEvent
      */
     @FXML
-    public void giveUp(ActionEvent actionEvent) {
+    private void giveUp() {
         gameManager.getLoop().setRunning(false);
-
-        ScreenController.getManager().getScoreRanking().updateRanking(ScreenController.getManager().getGameManager().getGame());
         ScreenController.activate("setup");
     }
 }

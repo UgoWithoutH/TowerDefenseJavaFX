@@ -8,7 +8,7 @@ import model.characters.Projectile;
 
 public abstract class Tower {
     private static final int BUILD_TIME_SECONDS = 2;
-    private static final int DEFAULT_SELL_COST = 35;
+    private static final int DEFAULT_SELL_COST = 20;
     private int attackDamage;
     private int attackRange;
     private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();
