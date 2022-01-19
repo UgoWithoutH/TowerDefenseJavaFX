@@ -30,7 +30,7 @@ public class GameManager implements IObserver {
     private AdministratorVictoryGameOver administratorVictoryGameOver;
     private ISpawner spawner;
     private IAttacker attacker;
-    private Level levelNext;
+    private ILevel levelNext;
 
     public GameManager(String pseudo, Map map) throws FileNotFoundException{
         this.gameMap = map;
@@ -42,8 +42,8 @@ public class GameManager implements IObserver {
 
 
         levelNext = new Level(game);
-        administratorVictoryGameOver = new AdministratorVictoryGameOver(game,levelNext, loop);
-        spawner = new SpawnerCharacter(game,levelNext);
+        administratorVictoryGameOver = new AdministratorVictoryGameOver(game, (Level) levelNext, loop);
+        spawner = new SpawnerCharacter(game, (Level) levelNext);
 
         attacker = new AttackerTower(game.getPlayerTowers(), game.getCharactersAlive());
     }

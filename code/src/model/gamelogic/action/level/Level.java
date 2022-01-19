@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Level  {
+public class Level implements ILevel{
     private GameState game;
     private int level;
     private Scanner levelFile;
@@ -25,7 +25,6 @@ public class Level  {
         Scanner scannerMonster = null;
         try {
             scannerMonster = new Scanner(new File(System.getProperty("user.dir") + "/code/ressources/levels/level"+level+".txt"));
-            System.out.println(level);
         } catch (FileNotFoundException e) {
             return false;
         }
@@ -33,7 +32,7 @@ public class Level  {
         return true;
     }
 
-
+    @Override
     public boolean nextLevel() {
         this.level++;
         if(setFileLevel(this.level)){
