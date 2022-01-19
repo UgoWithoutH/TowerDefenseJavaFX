@@ -50,6 +50,9 @@ public class MainMenu {
     private Group tilemapGroup;
     private Manager manager = ScreenController.getManager();
 
+    /**
+     * Initialize fenetre Menu, Cellfactory
+     */
     @FXML
     public void initialize() {
         pseudoField.textProperty().bindBidirectional(manager.pseudoProperty());
@@ -140,12 +143,18 @@ public class MainMenu {
         }
     }
 
+    /**
+     *
+     */
     private void listenerOnChangedVictoryAndGameOver() {
         GameManager gameManager = manager.getGameManager();
         gameManager.getGame().victoryProperty().addListener((observableValue, aBoolean, t1) -> gameOverOrVictory(gameManager.getGame()));
         gameManager.getGame().gameOverProperty().addListener((observableValue, aBoolean, t1) -> gameOverOrVictory(gameManager.getGame()));
     }
 
+    /**
+     * Listener Projectile et des Monster
+     */
     private void createCreators() {
         manager.getGameManager().getGame().getPlayerTowers().addListener((ListChangeListener<Tower>) change -> {
             var listTower = change.getList();
@@ -157,6 +166,10 @@ public class MainMenu {
         new CreatorMonsters(manager.getGameManager(),tilemapGroup);
     }
 
+    /**
+     * Creer une Progress Bar de Tower
+     * @param tower Tower
+     */
     private void createBuildProgressBar(Tower tower) {
         Group g = new Group();
         Coordinate coordinateTower = tower.getCoordinate();
@@ -185,13 +198,16 @@ public class MainMenu {
     }
 
 
+    /**
+     * Bouton Exit-Game
+     */
     @FXML
     private void exitGame() {
         System.exit(1);
     }
 
     /**
-     * Window GameOver
+     * Fenetre GameOver
      *
      * @param game
      */

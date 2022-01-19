@@ -34,6 +34,9 @@ public class Game {
     private Scene scene;
     private boolean constructTowers = false;
 
+    /**
+     * Initialize la vue d'une partie
+     */
     @FXML
     public void initialize() {
         try {
@@ -56,6 +59,10 @@ public class Game {
         coins.textProperty().bind(gameManager.getGame().coinsProperty().asString());
     }
 
+    /**
+     * Recupere l'event, la position du click pour construire une Tower
+     * @param scene
+     */
     public void setScene(Scene scene) {
         this.scene = scene;
         scene.setOnMouseClicked(event -> {
@@ -78,6 +85,10 @@ public class Game {
         constructTowers = true;
     }
 
+    /**
+     * Bouton d'augmentation de la vitesse
+     * @param actionEvent
+     */
     @FXML
     private void speed(ActionEvent actionEvent) {
         Loop boucle = gameManager.getLoop();
@@ -93,6 +104,10 @@ public class Game {
         }
     }
 
+    /**
+     * Bouton Pause/Start
+     * @param actionEvent   ActionEvent
+     */
     @FXML
     private void pauseOrRestart(ActionEvent actionEvent){
         if(gameManager.getLoop().isRunning()) {
@@ -105,6 +120,10 @@ public class Game {
         }
     }
 
+    /**
+     * Bouton Give-UP
+     * @param actionEvent   ActionEvent
+     */
     @FXML
     public void giveUp(ActionEvent actionEvent) {
         gameManager.getLoop().setRunning(false);

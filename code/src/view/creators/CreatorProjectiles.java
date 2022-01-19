@@ -30,13 +30,22 @@ public class CreatorProjectiles {
     private Group tilemapGroup;
     private GameManager gameManager;
 
-
+    /**
+     *  Create Projectile par une observable list dans GameManager
+     * @param gameManager   GameManager
+     * @param tower Tower
+     * @param tilemapGroup  Group
+     */
     public CreatorProjectiles(GameManager gameManager, Tower tower, Group tilemapGroup){
         this.tilemapGroup = tilemapGroup;
         this.gameManager = gameManager;
         tower.projectileProperty().addListener((observable, oldValue, newValue) -> createProjectiles(newValue));
     }
 
+    /**
+     * Cree la vue de Projectile
+     * @param projectile    Projectile
+     */
     public void createProjectiles(Projectile projectile) {
         Path projectilePath;
         PathTransition animation;
