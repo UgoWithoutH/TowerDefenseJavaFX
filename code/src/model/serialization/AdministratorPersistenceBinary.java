@@ -7,8 +7,15 @@ import java.io.*;
 
 public class AdministratorPersistenceBinary extends AdministratorPersistence{
 
+    /**
+     * Addresse du fichier de sauvegarde
+     */
     private static final File fileSerialization = new File(System.getProperty("user.dir") + "/code/ressources/serialization/saveScores.ser");
 
+    /**
+     * Sauvegarde de tous les Scores
+     * @param scoreRanking  ScoreRanking
+     */
     @Override
     public void save(ScoreRanking scoreRanking) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileSerialization))) {
@@ -30,6 +37,10 @@ public class AdministratorPersistenceBinary extends AdministratorPersistence{
         }
     }
 
+    /**
+     * Chargement de tous les Scores sauvegardé
+     * @param scoreRanking
+     */
     @Override
     public void load(ScoreRanking scoreRanking) {
         if(fileSerialization.length() == 0) return;

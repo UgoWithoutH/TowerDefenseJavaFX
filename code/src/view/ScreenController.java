@@ -47,6 +47,9 @@ public class ScreenController {
     }
 
 
+    /**
+     * Ajoute une Vue Menu dans le HashMap pour faciliter le changement de Vue
+     */
     private void addMenuView(){
         try
         {

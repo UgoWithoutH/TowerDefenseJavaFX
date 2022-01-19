@@ -15,10 +15,10 @@ public class CreatorMonsters {
     private Group tilemapGroup;
 
     /**
-     * Create Monster By observable list
+     * Create Monster par une observable list dans GameManager
      *
-     * @param gameManager
-     * @param tilemapGroup
+     * @param gameManager   GameManager
+     * @param tilemapGroup  Group
      */
     public CreatorMonsters(GameManager gameManager, Group tilemapGroup) {
         this.gameManager = gameManager;
@@ -26,7 +26,9 @@ public class CreatorMonsters {
         addListener();
     }
 
-
+    /**
+     * Ecoute l'Observable list pour tout changement
+     */
     private void addListener() {
         gameManager.getGame().getCharactersAlive().addListener((ListChangeListener<Character>) change -> {
             var listCharacters = change.getList();
@@ -39,6 +41,10 @@ public class CreatorMonsters {
         });
     }
 
+    /**
+     * Cree la Vue du Monstre
+     * @param monster   Monster
+     */
     private void createMonster(Monster monster){
         Circle monsterView;
         if(monster instanceof Speed){

@@ -23,6 +23,11 @@ public class ScoreRanking {
         setNumberScores(10);
     }
 
+    /**
+     * Met a jour le Classement une fois que la partie est terminé
+     * Prépare aussi la persistence
+     * @param gameState GameState
+     */
     public void updateRanking(GameState gameState) {
         if(getNumberScores() == 0){
             rankingObservable.clear();

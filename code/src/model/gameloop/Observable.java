@@ -13,6 +13,10 @@ public abstract class Observable {
         observatory.remove(listener);
     }
 
+    /**
+     * Notification de tout Observer sur la boucle
+     * @param timer
+     */
     public void notifier(int timer){
         for(var observer : observatory){
             observer.update(timer);

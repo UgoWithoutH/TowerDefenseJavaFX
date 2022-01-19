@@ -22,11 +22,18 @@ public class Loop extends Observable implements Runnable {
      * todo
      *  Penser a détruire le Thread lors de l'arret du jeu
      */
+
+    /**
+     * Démarrage de la boucle
+     */
     public void start() {
         running = true;
         run();
     }
 
+    /**
+     * Procédure de la boucle avec sa fréquence
+     */
     @Override
     public void run() {
         while(isRunning()) {
