@@ -12,6 +12,10 @@ public class RemoverMonster implements IRemover {
         this.game = game;
     }
 
+    /**
+     * Remove Characters in ObservableList<Characters> in GameState
+     * @param character Character (Monster)
+     */
     @Override
     public void remove(Character character) {
         Monster monster = (Monster) character;

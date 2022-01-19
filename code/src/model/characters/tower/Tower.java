@@ -68,7 +68,10 @@ public abstract class Tower {
         this.attacker = attacker;
     }
 
-
+    /**
+     * Create Projectile to Character (Monster)
+     * @param target Character
+     */
     public void createProjectile(Character target){
         setProjectile(new Projectile(target , coordinate.getExactX() , coordinate.getExactY()));
     }

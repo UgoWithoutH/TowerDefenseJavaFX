@@ -16,6 +16,10 @@ public class Monster extends Character {
         setVisible(true);
     }
 
+    /**
+     *  Damage take-in
+     * @param damage int
+     */
     public void takeDamage(int damage) {
         setHealthPoints(getHealthPoints() - damage);
         if (getHealthPoints() <= 0) {
