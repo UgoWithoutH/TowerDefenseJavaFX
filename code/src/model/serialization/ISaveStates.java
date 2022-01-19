@@ -2,6 +2,6 @@ package model.serialization;
 
 import model.ScoreRanking;
 
-public interface SaveStates {
+public interface ISaveStates {
     void save(ScoreRanking scoreRanking);
 }

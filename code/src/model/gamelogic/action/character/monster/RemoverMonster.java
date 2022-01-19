@@ -3,9 +3,9 @@ package model.gamelogic.action.character.monster;
 import model.characters.Character;
 import model.characters.monster.Monster;
 import model.gamelogic.GameState;
-import model.gamelogic.action.Remover;
+import model.gamelogic.action.IRemover;
 
-public class RemoverMonster implements Remover {
+public class RemoverMonster implements IRemover {
     private GameState game;
 
     public RemoverMonster(GameState game) {

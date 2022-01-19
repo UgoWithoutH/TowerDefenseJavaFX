@@ -5,11 +5,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -31,13 +28,14 @@ import model.characters.tower.Tower;
 import model.gamelogic.GameManager;
 import model.gamelogic.GameState;
 import model.gamelogic.map.importMap;
-import view.map.DrawMap;
 import view.creators.CreatorMonsters;
 import view.creators.CreatorProjectiles;
+import view.map.DrawMap;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Objects;
 
 public class MainMenu {
 
@@ -113,7 +111,7 @@ public class MainMenu {
             FXMLLoader loader = new FXMLLoader(GAMEUI);
             GridPane gamePane = new GridPane();
             //Stack Pane coeur
-            ImageView imCoeur = new ImageView(new Image(String.valueOf(getClass().getResource("/images/coeur.PNG").toURI().toURL())));
+            ImageView imCoeur = new ImageView(new Image(String.valueOf(Objects.requireNonNull(getClass().getResource("/images/coeur.PNG")).toURI().toURL())));
             imCoeur.setFitHeight(50);
             imCoeur.setFitWidth(50);
             Text liveText = new Text();
@@ -125,6 +123,7 @@ public class MainMenu {
             tilemapGroup.getChildren().addAll(gameManager.getDrawMap(), stackPaneCoeur);
             gamePane.add(tilemapGroup, 0, 0);
             //Hbox boutons game
+            assert GAMEUI != null;
             HBox gameUI = loader.load(GAMEUI.openStream());
             gamePane.add(gameUI, 0, 1);
             gameController = loader.getController();
@@ -144,30 +143,17 @@ public class MainMenu {
 
     private void listenerOnChangedVictoryAndGameOver() {
         GameManager gameManager = manager.getGameManager();
-        gameManager.getGame().victoryProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                gameOverOrVictory(gameManager.getGame());
-            }
-        });
-        gameManager.getGame().gameOverProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                gameOverOrVictory(gameManager.getGame());
-            }
-        });
+        gameManager.getGame().victoryProperty().addListener((observableValue, aBoolean, t1) -> gameOverOrVictory(gameManager.getGame()));
+        gameManager.getGame().gameOverProperty().addListener((observableValue, aBoolean, t1) -> gameOverOrVictory(gameManager.getGame()));
     }
 
     private void createCreators() {
-        manager.getGameManager().getGame().getPlayerTowers().addListener(new ListChangeListener<Tower>() {
-            @Override
-            public void onChanged(Change<? extends Tower> change) {
-                var listTower = change.getList();
-                Tower tower = listTower.get(listTower.size() - 1);
-                Coordinate coordinateTower = tower.getCoordinate();
-                createBuildProgressBar(tower);
-                new CreatorProjectiles(manager.getGameManager(),tower,tilemapGroup);
-            }
+        manager.getGameManager().getGame().getPlayerTowers().addListener((ListChangeListener<Tower>) change -> {
+            var listTower = change.getList();
+            Tower tower = listTower.get(listTower.size() - 1);
+            Coordinate coordinateTower = tower.getCoordinate();
+            createBuildProgressBar(tower);
+            new CreatorProjectiles(manager.getGameManager(), tower, tilemapGroup);
         });
         new CreatorMonsters(manager.getGameManager(),tilemapGroup);
     }
@@ -223,12 +209,7 @@ public class MainMenu {
         }
         l.setId("labelText");
         Button accueil = new Button("Accueil");
-        accueil.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                ScreenController.activate("setup");
-            }
-        });
+        accueil.setOnAction(event -> ScreenController.activate("setup"));
         VBox content = new VBox(l,accueil);
         content.setMaxSize(300, 100);
         content.setId("content");

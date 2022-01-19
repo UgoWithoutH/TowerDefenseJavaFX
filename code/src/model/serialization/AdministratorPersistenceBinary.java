@@ -14,8 +14,7 @@ public class AdministratorPersistenceBinary extends AdministratorPersistence{
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileSerialization))) {
                 ScoreRankingSerializable srs = new ScoreRankingSerializable();
                 StateSerializable gameStateSerialization;
-                var list = scoreRanking.getRanking();
-                for (GameState game : scoreRanking.getRanking()) {
+            for (GameState game : scoreRanking.getRanking()) {
                     gameStateSerialization = new StateSerializable(
                             game.getPseudo(),
                             game.getLevel(),

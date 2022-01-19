@@ -3,19 +3,19 @@ package model.gameloop;
 import java.util.LinkedList;
 
 public abstract class Observable {
-    private LinkedList<Observer> observateurs = new LinkedList<>();
+    private LinkedList<IObserver> observatory = new LinkedList<>();
 
-    public void subscribe(Observer listener){
-        observateurs.add(listener);
+    public void subscribe(IObserver listener){
+        observatory.add(listener);
     }
 
-    public void unsubscribe(Observer listener){
-        observateurs.remove(listener);
+    public void unsubscribe(IObserver listener){
+        observatory.remove(listener);
     }
 
     public void notifier(int timer){
-        for(var observateur : observateurs){
-            observateur.update(timer);
+        for(var observer : observatory){
+            observer.update(timer);
         }
     }
 }

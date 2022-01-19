@@ -11,11 +11,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.gameloop.Loop;
 import model.gamelogic.GameManager;
-import model.gamelogic.action.Buyer;
+import model.gamelogic.action.IBuyer;
 import model.gamelogic.action.tower.BuyerTower;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class Game {
 
@@ -36,7 +37,7 @@ public class Game {
     @FXML
     public void initialize() {
         try {
-            ImageView im = new ImageView(new Image(String.valueOf(getClass().getResource("/images/tower.PNG").toURI().toURL())));
+            ImageView im = new ImageView(new Image(String.valueOf(Objects.requireNonNull(getClass().getResource("/images/tower.PNG")).toURI().toURL())));
             im.setFitHeight(20);
             im.setFitWidth(20);
             buytower.setGraphic(im);
@@ -61,7 +62,7 @@ public class Game {
             @Override
             public void handle(MouseEvent event) {
                 if (constructTowers && gameManager.getLoop().isRunning()) {
-                    Buyer buyer = new BuyerTower(gameManager.getGame(),gameManager.getGameMap(),gameManager.getDrawMap());
+                    IBuyer buyer = new BuyerTower(gameManager.getGame(),gameManager.getGameMap(),gameManager.getDrawMap());
                     buyer.buy(event.getX(), event.getY());
                     constructTowers = true;
                 }
@@ -85,12 +86,12 @@ public class Game {
         if(!gameManager.getGame().isSpeed()){
             speed.setText("X1");
             gameManager.getGame().setSpeed(true);
-            boucle.setMilis(boucle.getMilis()/2);
+            boucle.setMillis(boucle.getMillis()/2);
         }
         else{
             speed.setText("X2");
             gameManager.getGame().setSpeed(false);
-            boucle.setMilis(boucle.getMilis()*2);
+            boucle.setMillis(boucle.getMillis()*2);
         }
     }
 

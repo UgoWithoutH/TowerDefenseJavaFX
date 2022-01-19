@@ -4,11 +4,9 @@ import javafx.collections.ObservableList;
 import model.characters.Character;
 import model.characters.monster.Monster;
 import model.characters.tower.Tower;
-import model.gamelogic.action.Attacker;
+import model.gamelogic.action.IAttacker;
 
-import java.util.Iterator;
-
-public class AttackerTower implements Attacker {
+public class AttackerTower implements IAttacker {
     private ObservableList<Tower> listTower;
     private ObservableList<Character> listCharacter;
 
@@ -25,22 +23,21 @@ public class AttackerTower implements Attacker {
         //if(game.isGameOver()) return;
 
         for (Tower tower : listTower) {
-            if (tower.isAttaker()) {
+            if (tower.isAttacker()) {
                 int towerMinXRange = tower.getX() - tower.getAttackRange();
                 int towerMaxXRange = tower.getX() + tower.getAttackRange();
                 int towerMinYRange = tower.getY() - tower.getAttackRange();
                 int towerMaxYRange = tower.getY() + tower.getAttackRange();
-                Iterator<Character> iterator = listCharacter.iterator();
 
-                while (iterator.hasNext()) {
-                    target = iterator.next();
+                for (Character character : listCharacter) {
+                    target = character;
                     if (target.getX() < towerMaxXRange & target.getX() > towerMinXRange & target.getY() > towerMinYRange & target.getY() < towerMaxYRange) {
                         attackService = new WaitingBuild(tower);
-                        Thread t = new Thread(attackService::run);
+                        Thread t = new Thread(attackService);
                         t.start();
                         if (tower.isBuild()) {
                             tower.createProjectile(target);
-                            if(target instanceof Monster monster) {
+                            if (target instanceof Monster monster) {
                                 monster.takeDamage(tower.getAttackDamage());
                             }
                         }

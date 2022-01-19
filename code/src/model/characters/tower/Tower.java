@@ -61,11 +61,11 @@ public abstract class Tower {
         return coordinate;
     }
 
-    public boolean isAttaker() {
+    public boolean isAttacker() {
         return attacker;
     }
-    public void setAttaker(boolean attaker) {
-        this.attacker = attaker;
+    public void setAttacker(boolean attacker) {
+        this.attacker = attacker;
     }
 
 

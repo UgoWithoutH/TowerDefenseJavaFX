@@ -2,6 +2,6 @@ package model.serialization;
 
 import model.ScoreRanking;
 
-public interface LoadStates {
+public interface ILoadStates {
     void load(ScoreRanking scoreRanking);
 }

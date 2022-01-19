@@ -17,7 +17,7 @@ import model.characters.Projectile;
 import model.characters.monster.Monster;
 import model.characters.tower.Tower;
 import model.gamelogic.GameManager;
-import model.gamelogic.action.Remover;
+import model.gamelogic.action.IRemover;
 import model.gamelogic.action.character.monster.RemoverMonster;
 import model.gamelogic.action.states.Updater;
 
@@ -40,12 +40,12 @@ public class CreatorProjectiles {
     public void createProjectiles(Projectile projectile) {
         Path projectilePath;
         PathTransition animation;
-        int speedMilis = gameManager.getGame().isSpeed() ? 150 : 300;
+        int speedMillis = gameManager.getGame().isSpeed() ? 150 : 300;
         Circle projectileView = new Circle(projectile.getStartX(),projectile.getStartY(),5, Color.BLACK);
 
         projectilePath = new Path(new MoveTo(projectile.getStartX(), projectile.getStartY()));
         projectilePath.getElements().add(new LineTo(projectile.getEndX(), projectile.getEndY()));
-        animation = new PathTransition(Duration.millis(speedMilis), projectilePath, projectileView);
+        animation = new PathTransition(Duration.millis(speedMillis), projectilePath, projectileView);
         animation.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -54,15 +54,14 @@ public class CreatorProjectiles {
                 finishedProjectile.setVisible(false);
                 tilemapGroup.getChildren().remove(finishedProjectile);
                 if (projectile.getTarget().isDead()) {
-                    Remover remover;
+                    IRemover remover;
                     if(projectile.getTarget() instanceof Monster monster){
                         remover = new RemoverMonster(gameManager.getGame());
                         remover.remove(monster);
                     }
                     Updater.updateStates(projectile.getTarget(), gameManager.getGame());
-                }
             }
-        });
+        }});
         Platform.runLater(() -> tilemapGroup.getChildren().add(projectileView));
         animation.play();
     }

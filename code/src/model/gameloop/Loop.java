@@ -5,15 +5,15 @@ import static java.lang.Thread.sleep;
 
 
 public class Loop extends Observable implements Runnable {
-    private static final long DEFAULT_MILIS = 50;
-    private long milis  = 50;
+    private static final long DEFAULT_MILLIS = 50;
+    private long millis = 50;
     private int timer = 0;
     private boolean running = false;
 
-    public static long getDefaultMilis() {return DEFAULT_MILIS;}
+    public static long getDefaultMillis() {return DEFAULT_MILLIS;}
 
-    public long getMilis(){return milis;}
-    public void setMilis(long milis){this.milis = milis;}
+    public long getMillis(){return millis;}
+    public void setMillis(long millis){this.millis = millis;}
 
     public boolean isRunning(){return running;}
     public void setRunning(boolean run){running = run;}
@@ -31,7 +31,7 @@ public class Loop extends Observable implements Runnable {
     public void run() {
         while(isRunning()) {
             try {
-                sleep(milis);
+                sleep(millis);
                 timer++;
                 beep(timer);
             } catch (InterruptedException e) {

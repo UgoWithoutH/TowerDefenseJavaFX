@@ -4,10 +4,10 @@ import model.characters.tower.ClassicTower;
 import model.characters.tower.Tower;
 import model.gamelogic.GameState;
 import model.gamelogic.map.Map;
-import model.gamelogic.action.Buyer;
+import model.gamelogic.action.IBuyer;
 import view.map.DrawMap;
 
-public class BuyerTower implements Buyer {
+public class BuyerTower implements IBuyer {
     private GameState game;
     private Map gameMap;
     private DrawMap drawMap;

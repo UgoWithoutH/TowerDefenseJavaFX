@@ -5,8 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Coordinate {
 
-    //private int x;
-    //private int y;
     private IntegerProperty x = new SimpleIntegerProperty();
         public int getX() {return x.get();}
         public IntegerProperty xProperty() {return x;}
@@ -22,28 +20,12 @@ public class Coordinate {
     }
 
     public Coordinate(double x , double y){
-        var testX = (int) (getX()/64);
-        var testY = (int) (getY()/64);
+        var testX = getX()/64;
+        var testY = getY()/64;
 
         setX(testX);
         setY(testY);
     }
-
-    /*public int getTileX() {
-        return x;
-    }
-
-    public int getTileY() {
-        return y;
-    }
-
-    public void setTileX(int x) {
-        this.x = x;
-    }
-
-    public void setTileY(int y) {
-        this.y = y;
-    }*/
 
     public int getExactX() {
         return getX() * 64 + 32;
@@ -53,18 +35,7 @@ public class Coordinate {
         return getY() * 64 + 32;
     }
 
-    /*public void setExactX(int x) {
-        this.x = x;
-    }
-
-    public void setExactY(int y) {
-        this.y = y;
-    }*/
-
     public boolean equals(Coordinate obj) {
-        if (this.x == obj.x && this.y == obj.y) {
-            return true;
-        }
-        return false;
+        return this.x == obj.x && this.y == obj.y;
     }
 }

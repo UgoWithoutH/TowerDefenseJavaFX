@@ -1,6 +1,6 @@
 package model.gameloop;
 
-public interface Observer {
+public interface IObserver {
 
     void update(int timer);
 

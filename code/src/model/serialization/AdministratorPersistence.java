@@ -2,7 +2,7 @@ package model.serialization;
 
 import model.ScoreRanking;
 
-public abstract class AdministratorPersistence implements SaveStates, LoadStates{
+public abstract class AdministratorPersistence implements ISaveStates, ILoadStates {
     @Override
     public abstract void save(ScoreRanking scoreRanking);
 

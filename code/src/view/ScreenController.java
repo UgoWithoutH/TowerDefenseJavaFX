@@ -20,7 +20,7 @@ public class ScreenController {
     public ScreenController(Stage stage) {
         this.stage = stage;
         this.manager = new Manager(new ScoreRanking());
-        addAffichageMenu();
+        addMenuView();
     }
 
     public static Stage getStage(){return stage;}
@@ -46,11 +46,12 @@ public class ScreenController {
         stage.getScene().setRoot( screenMap.get(name) );
     }
 
-    private void addAffichageMenu(){
+
+    private void addMenuView(){
         try
         {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/MainMenu.fxml"));
-            Pane root = (Pane)loader.load();
+            Pane root = loader.load();
             ScreenController.addScreen("setup", root);
         }
         catch (IOException e)

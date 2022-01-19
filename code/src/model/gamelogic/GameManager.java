@@ -1,12 +1,12 @@
 package model.gamelogic;
 
+import model.gameloop.IObserver;
 import model.gameloop.Loop;
-import model.gameloop.Observer;
 import model.characters.Character;
 import model.gamelogic.map.Map;
-import model.gamelogic.action.Attacker;
-import model.gamelogic.action.Displacer;
-import model.gamelogic.action.Spawner;
+import model.gamelogic.action.IAttacker;
+import model.gamelogic.action.IDisplacer;
+import model.gamelogic.action.ISpawner;
 import model.gamelogic.action.character.SpawnerCharacter;
 import model.gamelogic.action.tower.AttackerTower;
 import view.map.DrawMap;
@@ -18,16 +18,17 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-public class GameManager implements Observer {
+
+public class GameManager implements IObserver {
 
     private Map gameMap;
     private GameState game;
     private Loop loop;
     private DrawMap drawMap;
-    private Displacer displacer;
+    private IDisplacer displacer;
     private AdministratorVictoryGameOver administratorVictoryGameOver;
-    private Spawner spawner;
-    private Attacker attacker;
+    private ISpawner spawner;
+    private IAttacker attacker;
 
     public GameManager(String pseudo, Map map) throws FileNotFoundException{
         this.gameMap = map;
@@ -71,7 +72,7 @@ public class GameManager implements Observer {
     @Override
     public void update(int timer) {
         if (loop.isRunning()) {
-            Updater.updateTimerSeconds(timer, loop.getDefaultMilis(), game);
+            Updater.updateTimerSeconds(timer, loop.getDefaultMillis(), game);
 
             administratorVictoryGameOver.verifyVictory();
 
