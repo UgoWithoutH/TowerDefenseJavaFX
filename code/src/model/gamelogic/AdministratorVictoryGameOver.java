@@ -5,6 +5,7 @@ import model.gameloop.Loop;
 import java.util.Scanner;
 
 public class AdministratorVictoryGameOver {
+
     private GameState game;
     private Loop loop;
     private Scanner enemyFile;

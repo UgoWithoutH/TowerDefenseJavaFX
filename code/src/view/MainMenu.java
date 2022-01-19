@@ -108,7 +108,7 @@ public class MainMenu {
             manager.setGameManager(gameManager);
             gameManager.setDrawMap(new DrawMap(gameManager.getGameMap()));
             FXMLLoader loader = new FXMLLoader(GAMEUI);
-            GridPane gamePane = new GridPane();
+            GridPane gridPane = new GridPane();
             //Stack Pane coeur
             ImageView imCoeur = new ImageView(new Image(String.valueOf(Objects.requireNonNull(getClass().getResource("/images/coeur.PNG")).toURI().toURL())));
             imCoeur.setFitHeight(50);
@@ -120,16 +120,16 @@ public class MainMenu {
             //Group tilemap
             tilemapGroup = new Group();
             tilemapGroup.getChildren().addAll(gameManager.getDrawMap(), stackPaneCoeur);
-            gamePane.add(tilemapGroup, 0, 0);
+            gridPane.add(tilemapGroup, 0, 0);
             //Hbox boutons game
             assert GAMEUI != null;
             HBox gameUI = loader.load(GAMEUI.openStream());
-            gamePane.add(gameUI, 0, 1);
+            gridPane.add(gameUI, 0, 1);
             gameController = loader.getController();
             gameController.setGameManager(gameManager);
             gameController.setScene(ScreenController.getStage().getScene());
 
-            ScreenController.addScreen("game", gamePane);
+            ScreenController.addScreen("game", gridPane);
             ScreenController.activate("game");
 
             listenerOnChangedVictoryAndGameOver();

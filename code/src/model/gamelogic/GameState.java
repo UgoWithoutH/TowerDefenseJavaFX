@@ -11,10 +11,10 @@ import java.util.Objects;
 
 public class GameState implements Comparable<GameState>{
 
-    private boolean speed = false;
-    private boolean removeCharacter = false;
     private final ObservableList<Tower> playerTowers = FXCollections.observableArrayList();
     private final ObservableList<Character> charactersAlive = FXCollections.observableArrayList();
+    private boolean speed = false;
+    private boolean removeCharacter = false;
     private StringProperty pseudo = new SimpleStringProperty();
         public String getPseudo() {return pseudo.get();}
         public StringProperty pseudoProperty() {return pseudo;}
