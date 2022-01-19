@@ -13,7 +13,7 @@ public class RemoverMonster implements IRemover {
     }
 
     /**
-     * Remove Characters in ObservableList<Characters> in GameState
+     * Remove Characters dans ObservableList<Characters> dans GameState
      * @param character Character (Monster)
      */
     @Override

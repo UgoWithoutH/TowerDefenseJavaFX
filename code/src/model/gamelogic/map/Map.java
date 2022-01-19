@@ -67,7 +67,10 @@ public class Map {
         this.map = map;
     }
 
-
+    /**
+     * Définit la path a prendre pour tout les Characters
+     * @return  ArrayList<Coordinate>
+     */
     public ArrayList<Coordinate> getPath() {
         ArrayList<Coordinate> pathXY = new ArrayList<>();
         boolean scanSwitch = false;
@@ -106,9 +109,9 @@ public class Map {
 
     /**
      * Set la valeur de la cellule
-     * @param xCord
-     * @param yCord
-     * @param updatedValue
+     * @param xCord int Position X
+     * @param yCord int Position Y
+     * @param updatedValue  int Valeur a remplacer
      */
     public void setMapNode(int xCord , int yCord , int updatedValue){
         this.map[yCord][xCord] = updatedValue;
@@ -116,9 +119,9 @@ public class Map {
 
     /**
      * Check si cellule disponible
-     * @param xCord
-     * @param yCord
-     * @return boolean
+     * @param xCord int Position X
+     * @param yCord int Position Y
+     * @return boolean Si disponible
      */
     public boolean nodeOpen(int xCord , int yCord){
         return map[yCord][xCord] == 0;

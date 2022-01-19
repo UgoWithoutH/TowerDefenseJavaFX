@@ -15,6 +15,9 @@ public class AdministratorVictoryGameOver {
         this.enemyFile = enemyFile;
     }
 
+    /**
+     * Verifie si l'Etat de la partie est une Victoire
+     */
     public void verifyVictory() {
         if (!enemyFile.hasNextLine() && game.getCharactersAlive().isEmpty() && loop.isRunning()) {
             loop.setRunning(false);
@@ -22,6 +25,10 @@ public class AdministratorVictoryGameOver {
         }
     }
 
+    /**
+     * Verifie si l'Etat de la partie est une Defaite
+     * @param value none
+     */
     public void verifyGameOver(boolean value){
         if(!value) return;
         game.setRemoveCharacter(true);

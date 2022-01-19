@@ -62,13 +62,19 @@ public class GameManager implements IObserver {
         this.drawMap = drawMap;
     }
 
-
+    /**
+     * Demarre la boucle de jeu
+     */
     public void start() {
         loop.setRunning(true);
         Thread boucleThread = new Thread(loop);
         boucleThread.start();
     }
 
+    /**
+     * Update a chaque Toure de Boucle
+     * @param timer int Timer de la boucle de Jeu
+     */
     @Override
     public void update(int timer) {
         if (loop.isRunning()) {

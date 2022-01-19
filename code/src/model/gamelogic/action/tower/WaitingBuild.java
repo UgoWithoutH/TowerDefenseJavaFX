@@ -11,6 +11,9 @@ public class WaitingBuild implements Runnable{
         tower = t;
     }
 
+    /**
+     * Verifie si la Tower est en construction et définit si elle est libre pour attacker
+     */
     @Override
     public void run() {
         try {

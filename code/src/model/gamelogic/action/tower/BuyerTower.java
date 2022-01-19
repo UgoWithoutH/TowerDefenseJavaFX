@@ -18,6 +18,11 @@ public class BuyerTower implements IBuyer {
         this.drawMap = drawMap;
     }
 
+    /**
+     * Achat et placement d'une Tower en fonction de la fenêtre
+     * @param xCords    double Position X sur la Fenetre
+     * @param yCords    double Position Y sur la Fenetre
+     */
     @Override
     public void buy(double xCords, double yCords) {
         int xTile = (int) (xCords / 64);

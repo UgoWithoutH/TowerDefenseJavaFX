@@ -5,7 +5,13 @@ public class Projectile{
     private final int startX;
     private final int startY;
 
-
+    /**
+     * Creer un Projectile de Tour avec une cible Character
+     * @param target    Character Cible
+     * @param towerX    int Position x de la Tour (Point de départ du Projectile)
+     * @param towerY    int Position y de la Tour (Point de départ du Projectile)
+     *
+     */
     public Projectile(Character target, int towerX, int towerY){
         this.target = target;
         startX = towerX;

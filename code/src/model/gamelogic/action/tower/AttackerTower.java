@@ -16,6 +16,10 @@ public class AttackerTower implements IAttacker {
     }
 
 
+    /**
+     * Verifie qu'elle monstre est dans la range de la Tour pour l'attaquer
+     * Si plusieurs monstre sont dans la range, la Tour attackera la Premier de la List Character
+     */
     public void attack() {
         Character target;
         WaitingBuild attackService;

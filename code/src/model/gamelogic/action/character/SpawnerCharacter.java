@@ -15,7 +15,7 @@ public class SpawnerCharacter implements ISpawner {
     /**
      *
      * @param game GameState
-     * @param scannerFile Scanner of Characters Files
+     * @param scannerFile Scanner pointant sur le fichier des Characters
      */
     public SpawnerCharacter(GameState game, Scanner scannerFile) {
         this.game = game;
@@ -24,7 +24,7 @@ public class SpawnerCharacter implements ISpawner {
 
     /**
      * Generation Characters in X timer
-     * @param timer int Loop Game
+     * @param timer int Timer de la Boucle de Jeu
      */
     public void spawnEnemy(int timer) {
 

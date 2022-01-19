@@ -67,7 +67,7 @@ public class importMap extends Map{
 
     /**
      * Fonction qui retourne la List de fichier conforme (extension uniquement)
-     * @return List nom
+     * @return List nom des Map disponible
      */
     public List listeMap() {
 

@@ -8,6 +8,10 @@ public class generationMap extends Map{
        setMap(generateMapArray());             //generation map
     }
 
+    /**
+     * Genere une map du jeux
+     * @return  int [][] Map
+     */
     public int[][] generateMapArray(){
 
         return new int[][]

@@ -71,32 +71,33 @@ public abstract class Character {
     public void setMovementSpeed(int movementSpeed){this.movementSpeed = movementSpeed;}
 
     /**
-     * Update Location of Characters (Monsters) by path
+     * Update de la Position, verifie si il est arrivé a la fin du chemin.
+     * Et update la direction qu'il doit prendre en fonction de sa position et du chemin definit
      */
     public void updateLocation() {
         if(pathFinished) return;
-        // Movement along the x axis
+        // Déplacement selon l'axe des x
         if (moveX) {
             setX(coordinate.getX() + movementSpeed);
-            // Arrived at a point of change in the path, change direction
+            // Arrivé à un point de changement dans le chemin, changer de direction
             if (coordinate.getX() == path.get(direction).getExactX()) {
                 moveX = false;
                 direction++;
-                // Crossing all changepoints, end of the path
+                // Traversée de tous les points de changement, fin du chemin
                 if (direction == path.size()) {
                     pathFinished = true;
                     dead = true;
                 }
             }
         }
-        // Movement along the y axis
+        // Déplacement selon l'axe des y
         else {
             if (coordinate.getY() < path.get(direction).getExactY()) {
                 setY(coordinate.getY() + movementSpeed);
             } else {
                 setY(coordinate.getY() - movementSpeed);
             }
-            // Reach the change point, change direction
+            // Atteindre le point de changement, changer de direction
             if (coordinate.getY() == path.get(direction).getExactY()) {
                 moveX = true;
                 direction++;
