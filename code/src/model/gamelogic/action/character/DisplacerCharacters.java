@@ -1,4 +1,4 @@
-package model.gamelogic.action.monster;
+package model.gamelogic.action.character;
 import model.characters.Character;
 import model.gamelogic.GameState;
 import model.gamelogic.action.Displacer;
@@ -33,8 +33,8 @@ public class DisplacerCharacters implements Displacer {
                 }
             }
             for (Character CharacterDelete : CharactersEnd) {
-                Remover remover = new RemoverMonster();
-                remover.remove(CharacterDelete,game);
+                Remover remover = new RemoverCharacter(game);
+                remover.remove(CharacterDelete);
             }
         }
         return true;

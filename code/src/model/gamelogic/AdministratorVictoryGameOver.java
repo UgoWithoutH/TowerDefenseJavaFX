@@ -1,24 +1,23 @@
 package model.gamelogic;
 
-import model.boucleJeu.Boucle;
-import model.gamelogic.action.game.CheckerGame;
+import model.boucleJeu.Loop;
 
 import java.util.Scanner;
 
 public class AdministratorVictoryGameOver {
     private GameState game;
-    private Boucle boucle;
-    private CheckerGame checker;
+    private Loop loop;
+    private Scanner enemyFile;
 
-    public AdministratorVictoryGameOver(GameState game, Scanner enemyFile, Boucle boucle) {
+    public AdministratorVictoryGameOver(GameState game, Scanner enemyFile, Loop boucle) {
         this.game = game;
-        this.boucle = boucle;
-        checker = new CheckerGame(game,enemyFile,boucle);
+        this.loop = boucle;
+        this.enemyFile = enemyFile;
     }
 
     public void verifyVictory() {
-        if (checker.checkVictory()) {
-            boucle.setRunning(false);
+        if (!enemyFile.hasNextLine() && game.getCharactersAlive().isEmpty() && loop.isRunning()) {
+            loop.setRunning(false);
             game.setVictory(true);
         }
     }
@@ -27,7 +26,7 @@ public class AdministratorVictoryGameOver {
         if(!value) return;
         game.setRemoveCharacter(true);
         game.getCharactersAlive().clear();
-        boucle.setRunning(false);
+        loop.setRunning(false);
         game.setGameOver(true);
     }
 }

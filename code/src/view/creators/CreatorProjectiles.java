@@ -18,7 +18,7 @@ import model.characters.monster.Monster;
 import model.characters.tower.Tower;
 import model.gamelogic.GameManager;
 import model.gamelogic.action.Remover;
-import model.gamelogic.action.monster.RemoverMonster;
+import model.gamelogic.action.character.RemoverCharacter;
 import model.gamelogic.action.states.Updater;
 
 public class CreatorProjectiles {
@@ -34,10 +34,6 @@ public class CreatorProjectiles {
     public CreatorProjectiles(GameManager gameManager, Tower tower, Group tilemapGroup){
         this.tilemapGroup = tilemapGroup;
         this.gameManager = gameManager;
-        addListener(tower);
-    }
-
-    public void addListener(Tower tower){
         tower.projectileProperty().addListener((observable, oldValue, newValue) -> createProjectiles(newValue));
     }
 
@@ -60,8 +56,8 @@ public class CreatorProjectiles {
                 if (projectile.getTarget().isDead()) {
                     Remover remover;
                     if(projectile.getTarget() instanceof Monster monster){
-                        remover = new RemoverMonster();
-                        remover.remove(monster,gameManager.getGame());
+                        remover = new RemoverCharacter(gameManager.getGame());
+                        remover.remove(monster);
                     }
                     Updater.updateStates(projectile.getTarget(), gameManager.getGame());
                 }

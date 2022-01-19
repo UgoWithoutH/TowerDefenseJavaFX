@@ -4,5 +4,5 @@ import model.characters.Character;
 import model.gamelogic.GameState;
 
 public interface Remover {
-    void remove(Character character, GameState game);
+    void remove(Character character);
 }

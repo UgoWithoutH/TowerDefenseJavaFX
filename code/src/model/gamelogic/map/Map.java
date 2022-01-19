@@ -7,13 +7,13 @@ import java.util.ArrayList;
 public class Map {
 
     private final String tileset = "/tileset/tile.png";
-    private int resolutionWidth; //Screen Resolution passed from main
-    private int resolutionHeight;
-    private final int tileLengthX;    //Length of tiles
+    private final int resolutionWidth;
+    private final int resolutionHeight;
+    private final int tileLengthX;
     private final int tileLengthY;
-    private final int offsetX;         //Offsets used for printing last tile row
+    private final int offsetX;
     private final int offsetY;
-    private final boolean offsetXFlag;//Used for painting the edge of the tilemap to avoid ArrayOutOfBoundsException
+    private final boolean offsetXFlag;
     private final boolean offsetYFlag;
     private int[][] map;
     private final String level1 = "/levels/level1.txt";
@@ -92,7 +92,6 @@ public class Map {
                 previousY = y;
             }
         }
-
 
         for (int x = 0; scanSwitch; x++) {
             if (x == tileLengthX) {

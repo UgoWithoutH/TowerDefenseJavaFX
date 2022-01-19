@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import model.boucleJeu.Boucle;
+import model.boucleJeu.Loop;
 import model.gamelogic.GameManager;
 import model.gamelogic.action.Buyer;
 import model.gamelogic.action.tower.BuyerTower;
@@ -57,7 +57,7 @@ public class Game {
 
     @FXML
     public void Speed(ActionEvent actionEvent) {
-        Boucle boucle = gameManager.getBoucle();
+        Loop boucle = gameManager.getLoop();
         if(!gameManager.getGame().isSpeed()){
             speed.setText("X1");
             gameManager.getGame().setSpeed(true);
@@ -72,12 +72,12 @@ public class Game {
 
     @FXML
     public void pauseOrRestart(ActionEvent actionEvent){
-        if(gameManager.getBoucle().isRunning()) {
+        if(gameManager.getLoop().isRunning()) {
             pauseRestart.setText("Restart");
-            gameManager.getBoucle().setRunning(false);
+            gameManager.getLoop().setRunning(false);
         } else {
             pauseRestart.setText("Stop");
-            gameManager.getBoucle().setRunning(true);
+            gameManager.getLoop().setRunning(true);
             gameManager.start();
         }
     }
@@ -98,7 +98,7 @@ public class Game {
         scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (constructTowers && gameManager.getBoucle().isRunning()) {
+                if (constructTowers && gameManager.getLoop().isRunning()) {
                     Buyer buyer = new BuyerTower(gameManager.getGame(),gameManager.getGameMap(),gameManager.getDrawMap());
                     buyer.buy(event.getX(), event.getY());
                     constructTowers = true;
@@ -115,7 +115,7 @@ public class Game {
      * @param actionEvent
      */
     public void giveUp(ActionEvent actionEvent) {
-        gameManager.getBoucle().setRunning(false);
+        gameManager.getLoop().setRunning(false);
 
         ScreenController.getManager().getScoreRanking().updateRanking(ScreenController.getManager().getGameManager().getGame());
         ScreenController.activate("setup");

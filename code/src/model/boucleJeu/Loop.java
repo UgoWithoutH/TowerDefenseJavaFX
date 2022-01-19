@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import static java.lang.Thread.sleep;
 
 
-public class Boucle extends Observable implements Runnable {
+public class Loop extends Observable implements Runnable {
     private static final long DEFAULT_MILIS = 50;
     private long milis  = 50;
     private int timer = 0;

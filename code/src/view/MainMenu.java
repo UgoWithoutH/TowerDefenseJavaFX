@@ -165,7 +165,7 @@ public class MainMenu {
             public void onChanged(Change<? extends Tower> change) {
                 var listTower = change.getList();
                 Tower tower = listTower.get(listTower.size() - 1);
-                Coordinate coordinateTower = tower.getCoords();
+                Coordinate coordinateTower = tower.getCoordinate();
                 createBuildProgressBar(tower);
                 new CreatorProjectiles(manager.getGameManager(),tower,tilemapGroup);
             }
@@ -180,7 +180,7 @@ public class MainMenu {
      */
     public void createBuildProgressBar(Tower t) {
         Group g = new Group();
-        Coordinate coordinateTower = t.getCoords();
+        Coordinate coordinateTower = t.getCoordinate();
         int seconds = manager.getGameManager().getGame().isSpeed() ? t.getBuildTimeSeconds() / 2 : t.getBuildTimeSeconds();
 
         double xCords = coordinateTower.getX() * 64;

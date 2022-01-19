@@ -1,4 +1,4 @@
-package model.gamelogic.action.monster;
+package model.gamelogic.action.character;
 
 import model.characters.monster.Basic;
 import model.characters.monster.Speed;
@@ -7,12 +7,12 @@ import model.gamelogic.action.Spawner;
 
 import java.util.Scanner;
 
-public class SpawnerMonster implements Spawner {
+public class SpawnerCharacter implements Spawner {
 
     private GameState game;
     private Scanner scannerFile;
 
-    public SpawnerMonster(GameState game, Scanner scannerFile) {
+    public SpawnerCharacter(GameState game, Scanner scannerFile) {
         this.game = game;
         this.scannerFile = scannerFile;
     }

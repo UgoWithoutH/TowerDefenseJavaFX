@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import model.Coordinate;
 import model.characters.Character;
 import model.characters.Projectile;
-import model.characters.monster.Monster;
 
 public abstract class Tower {
     private static int BUILD_TIME_SECONDS = 2;
@@ -16,14 +15,14 @@ public abstract class Tower {
         public Projectile getProjectile() {return projectile.get();}
         public ObjectProperty<Projectile> projectileProperty() {return projectile;}
         public void setProjectile(Projectile projectile) {this.projectile.set(projectile);}
-    private Coordinate coords;
+    private Coordinate coordinate;
     private boolean attacker = true;
     private boolean build = false;
 
 
 
     public Tower(int x , int y){
-        coords = new Coordinate(x , y);
+        coordinate = new Coordinate(x , y);
         attackDamage = 5;
         attackRange = 200;
     }
@@ -40,10 +39,10 @@ public abstract class Tower {
     }
 
     public int getX() {
-        return coords.getExactX();
+        return coordinate.getExactX();
     }
     public int getY() {
-        return coords.getExactY();
+        return coordinate.getExactY();
     }
 
     public int getAttackRange(){
@@ -58,8 +57,8 @@ public abstract class Tower {
         return DEFAULT_SELL_COST;
     }
 
-    public Coordinate getCoords(){
-        return coords;
+    public Coordinate getCoordinate(){
+        return coordinate;
     }
 
     public boolean isAttaker() {
@@ -71,7 +70,7 @@ public abstract class Tower {
 
 
     public void createProjectile(Character target){
-        setProjectile(new Projectile(target , coords.getExactX() , coords.getExactY()));
+        setProjectile(new Projectile(target , coordinate.getExactX() , coordinate.getExactY()));
     }
 
 }

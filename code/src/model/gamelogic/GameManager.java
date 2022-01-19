@@ -1,16 +1,16 @@
 package model.gamelogic;
 
-import model.boucleJeu.Boucle;
+import model.boucleJeu.Loop;
 import model.boucleJeu.Observateur;
 import model.characters.Character;
 import model.gamelogic.map.Map;
 import model.gamelogic.action.Attacker;
 import model.gamelogic.action.Displacer;
 import model.gamelogic.action.Spawner;
-import model.gamelogic.action.monster.SpawnerMonster;
+import model.gamelogic.action.character.SpawnerCharacter;
 import model.gamelogic.action.tower.AttackerTower;
 import view.map.DrawMap;
-import model.gamelogic.action.monster.DisplacerCharacters;
+import model.gamelogic.action.character.DisplacerCharacters;
 import model.gamelogic.action.states.Updater;
 
 import java.io.File;
@@ -22,10 +22,10 @@ public class GameManager implements Observateur {
 
     private Map gameMap;
     private GameState game;
-    private Boucle boucle;
+    private Loop loop;
     private DrawMap drawMap;
     private Displacer displacer;
-    private AdministratorVictoryGameOver gestionnaireGame;
+    private AdministratorVictoryGameOver administratorVictoryGameOver;
     private Spawner spawner;
     private Attacker attacker;
 
@@ -33,16 +33,16 @@ public class GameManager implements Observateur {
         this.gameMap = map;
         game = new GameState(pseudo);
         Character.setPath(gameMap.getPath());
-        boucle = new Boucle();
-        boucle.subscribe(this);
+        loop = new Loop();
+        loop.subscribe(this);
         displacer = new DisplacerCharacters(game);
         Scanner scannerMonster = new Scanner(new File(System.getProperty("user.dir")+ "/code/ressources/levels/level1.txt"));
-        gestionnaireGame = new AdministratorVictoryGameOver(game,scannerMonster,boucle);
-        spawner = new SpawnerMonster(game,scannerMonster);
+        administratorVictoryGameOver = new AdministratorVictoryGameOver(game,scannerMonster, loop);
+        spawner = new SpawnerCharacter(game,scannerMonster);
         attacker = new AttackerTower(game.getPlayerTowers(), game.getCharactersAlive());
     }
 
-    public Boucle getBoucle(){ return boucle; }
+    public Loop getLoop(){ return loop; }
 
     public DrawMap getDrawMap() {
         return drawMap;
@@ -63,21 +63,21 @@ public class GameManager implements Observateur {
 
 
     public void start() {
-        boucle.setRunning(true);
-        Thread boucleThread = new Thread(boucle);
+        loop.setRunning(true);
+        Thread boucleThread = new Thread(loop);
         boucleThread.start();
     }
 
     @Override
     public void update(int timer) {
-        if (boucle.isRunning()) {
-            Updater.updateTimerSeconds(timer, boucle.getDefaultMilis(), game);
+        if (loop.isRunning()) {
+            Updater.updateTimerSeconds(timer, loop.getDefaultMilis(), game);
 
-            gestionnaireGame.verifyVictory();
+            administratorVictoryGameOver.verifyVictory();
 
             spawner.spawnEnemy(timer);
 
-            gestionnaireGame.verifyGameOver(!displacer.updateLocations());
+            administratorVictoryGameOver.verifyGameOver(!displacer.updateLocations());
 
             attacker.attack();
         }
