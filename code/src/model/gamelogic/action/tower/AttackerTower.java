@@ -20,7 +20,7 @@ public class AttackerTower implements Attacker {
 
     public void attack() {
         Character target;
-        Waiting attackService;
+        WaitingBuild attackService;
 
         //if(game.isGameOver()) return;
 
@@ -35,7 +35,7 @@ public class AttackerTower implements Attacker {
                 while (iterator.hasNext()) {
                     target = iterator.next();
                     if (target.getX() < towerMaxXRange & target.getX() > towerMinXRange & target.getY() > towerMinYRange & target.getY() < towerMaxYRange) {
-                        attackService = new Waiting(tower);
+                        attackService = new WaitingBuild(tower);
                         Thread t = new Thread(attackService::run);
                         t.start();
                         if (tower.isBuild()) {

@@ -5,11 +5,12 @@ import model.gamelogic.GameState;
 
 import java.io.*;
 
-public class GestionairePersistance {
+public class AdministratorPersistenceBinary extends AdministratorPersistence{
 
     private static final File fileSerialization = new File(System.getProperty("user.dir") + "/code/ressources/serialization/saveScores.ser");
 
-    public static void saveStates(ScoreRanking scoreRanking) {
+    @Override
+    public void save(ScoreRanking scoreRanking) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileSerialization))) {
                 ScoreRankingSerializable srs = new ScoreRankingSerializable();
                 StateSerializable gameStateSerialization;
@@ -30,7 +31,8 @@ public class GestionairePersistance {
         }
     }
 
-    public static void loadStates(ScoreRanking scoreRanking) {
+    @Override
+    public void load(ScoreRanking scoreRanking) {
         if(fileSerialization.length() == 0) return;
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileSerialization))) {

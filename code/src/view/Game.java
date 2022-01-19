@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import model.boucleJeu.Loop;
+import model.gameloop.Loop;
 import model.gamelogic.GameManager;
 import model.gamelogic.action.Buyer;
 import model.gamelogic.action.tower.BuyerTower;
@@ -45,43 +45,6 @@ public class Game {
         }
     }
 
-    /**
-     * Button ON/OFF Buy Tower
-     *
-     * @param actionEvent
-     */
-    @FXML
-    public void buyTower(ActionEvent actionEvent) {
-        constructTowers = true;
-    }
-
-    @FXML
-    public void Speed(ActionEvent actionEvent) {
-        Loop boucle = gameManager.getLoop();
-        if(!gameManager.getGame().isSpeed()){
-            speed.setText("X1");
-            gameManager.getGame().setSpeed(true);
-            boucle.setMilis(boucle.getMilis()/2);
-        }
-        else{
-            speed.setText("X2");
-            gameManager.getGame().setSpeed(false);
-            boucle.setMilis(boucle.getMilis()*2);
-        }
-    }
-
-    @FXML
-    public void pauseOrRestart(ActionEvent actionEvent){
-        if(gameManager.getLoop().isRunning()) {
-            pauseRestart.setText("Restart");
-            gameManager.getLoop().setRunning(false);
-        } else {
-            pauseRestart.setText("Stop");
-            gameManager.getLoop().setRunning(true);
-            gameManager.start();
-        }
-    }
-
     public GameManager getGameManager() {
         return gameManager;
     }
@@ -91,7 +54,6 @@ public class Game {
         textScore.textProperty().bind(gameManager.getGame().scoreProperty().asString());
         coins.textProperty().bind(gameManager.getGame().coinsProperty().asString());
     }
-
 
     public void setScene(Scene scene) {
         this.scene = scene;
@@ -107,13 +69,44 @@ public class Game {
         });
     }
 
-
     /**
-     * Todo
-     *  ne pas seulement changer de Vue mais aussi mettre fin a la partie
+     * Button ON/OFF Buy Tower
      *
      * @param actionEvent
      */
+    @FXML
+    private void buyTower(ActionEvent actionEvent) {
+        constructTowers = true;
+    }
+
+    @FXML
+    private void speed(ActionEvent actionEvent) {
+        Loop boucle = gameManager.getLoop();
+        if(!gameManager.getGame().isSpeed()){
+            speed.setText("X1");
+            gameManager.getGame().setSpeed(true);
+            boucle.setMilis(boucle.getMilis()/2);
+        }
+        else{
+            speed.setText("X2");
+            gameManager.getGame().setSpeed(false);
+            boucle.setMilis(boucle.getMilis()*2);
+        }
+    }
+
+    @FXML
+    private void pauseOrRestart(ActionEvent actionEvent){
+        if(gameManager.getLoop().isRunning()) {
+            pauseRestart.setText("Restart");
+            gameManager.getLoop().setRunning(false);
+        } else {
+            pauseRestart.setText("Stop");
+            gameManager.getLoop().setRunning(true);
+            gameManager.start();
+        }
+    }
+
+    @FXML
     public void giveUp(ActionEvent actionEvent) {
         gameManager.getLoop().setRunning(false);
 

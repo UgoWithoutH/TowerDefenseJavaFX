@@ -11,7 +11,7 @@
       <Button mnemonicParsing="false" text="GiveUp" onAction="#giveUp"/>
       <Button fx:id="buytower" mnemonicParsing="false" onAction="#buyTower"/>
       <Button fx:id="pauseRestart" mnemonicParsing="false" text="Stop" onAction="#pauseOrRestart"/>
-      <Button fx:id="speed" mnemonicParsing="false" text="X2" onAction="#Speed"/>
+      <Button fx:id="speed" mnemonicParsing="false" text="X2" onAction="#speed"/>
       <Label fx:id="textScore"/>
       <Label text="monnaie : "/>
       <Label fx:id="coins"/>

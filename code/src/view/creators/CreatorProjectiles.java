@@ -18,7 +18,7 @@ import model.characters.monster.Monster;
 import model.characters.tower.Tower;
 import model.gamelogic.GameManager;
 import model.gamelogic.action.Remover;
-import model.gamelogic.action.character.RemoverCharacter;
+import model.gamelogic.action.character.monster.RemoverMonster;
 import model.gamelogic.action.states.Updater;
 
 public class CreatorProjectiles {
@@ -56,7 +56,7 @@ public class CreatorProjectiles {
                 if (projectile.getTarget().isDead()) {
                     Remover remover;
                     if(projectile.getTarget() instanceof Monster monster){
-                        remover = new RemoverCharacter(gameManager.getGame());
+                        remover = new RemoverMonster(gameManager.getGame());
                         remover.remove(monster);
                     }
                     Updater.updateStates(projectile.getTarget(), gameManager.getGame());

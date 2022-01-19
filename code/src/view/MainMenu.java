@@ -41,16 +41,16 @@ import java.net.URL;
 
 public class MainMenu {
 
-    private Game gameController;
-    private Group tilemapGroup;
-    private Manager manager = ScreenController.getManager();
-    public static final URL GAMEUI = GameManager.class.getResource("/fxml/Game.fxml");
     @FXML
     private ListView scoreList;
     @FXML
     private TextField pseudoField;
     @FXML
     private TextField nbScores;
+    public static final URL GAMEUI = GameManager.class.getResource("/fxml/Game.fxml");
+    private Game gameController;
+    private Group tilemapGroup;
+    private Manager manager = ScreenController.getManager();
 
     @FXML
     public void initialize() {
@@ -96,7 +96,8 @@ public class MainMenu {
     /**
      * Start Window and Game
      */
-    public void startNewGame() {
+    @FXML
+    public void startNewGame(ActionEvent actionEvent) {
         try {
             if(pseudoField.getText() == null){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -141,8 +142,6 @@ public class MainMenu {
         }
     }
 
-    public void option() {}
-
     private void listenerOnChangedVictoryAndGameOver() {
         GameManager gameManager = manager.getGameManager();
         gameManager.getGame().victoryProperty().addListener(new ChangeListener<Boolean>() {
@@ -173,15 +172,10 @@ public class MainMenu {
         new CreatorMonsters(manager.getGameManager(),tilemapGroup);
     }
 
-    /** todo
-     *   lorsque la boucle est arrété il faut STOP le build
-     *
-     * @param t
-     */
-    public void createBuildProgressBar(Tower t) {
+    private void createBuildProgressBar(Tower tower) {
         Group g = new Group();
-        Coordinate coordinateTower = t.getCoordinate();
-        int seconds = manager.getGameManager().getGame().isSpeed() ? t.getBuildTimeSeconds() / 2 : t.getBuildTimeSeconds();
+        Coordinate coordinateTower = tower.getCoordinate();
+        int seconds = manager.getGameManager().getGame().isSpeed() ? tower.getBuildTimeSeconds() / 2 : tower.getBuildTimeSeconds();
 
         double xCords = coordinateTower.getX() * 64;
         double yCords = coordinateTower.getY() * 64;
@@ -206,7 +200,8 @@ public class MainMenu {
     }
 
 
-    public void exitGame() {
+    @FXML
+    private void exitGame() {
         System.exit(1);
     }
 
@@ -215,7 +210,7 @@ public class MainMenu {
      *
      * @param game
      */
-    public void gameOverOrVictory(GameState game) {
+    private void gameOverOrVictory(GameState game) {
         manager.getScoreRanking().updateRanking(game);
         Label l = new Label();
         if(game.isVictory()){
@@ -244,7 +239,4 @@ public class MainMenu {
         l.setAlignment(Pos.CENTER);
         tilemapGroup.getChildren().add(sp);
     }
-
-
-
 }

@@ -1,15 +1,15 @@
-package model.boucleJeu;
+package model.gameloop;
 
 import java.util.LinkedList;
 
 public abstract class Observable {
-    private LinkedList<Observateur> observateurs = new LinkedList<>();
+    private LinkedList<Observer> observateurs = new LinkedList<>();
 
-    public void subscribe(Observateur listener){
+    public void subscribe(Observer listener){
         observateurs.add(listener);
     }
 
-    public void unsubscribe(Observateur listener){
+    public void unsubscribe(Observer listener){
         observateurs.remove(listener);
     }
 

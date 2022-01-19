@@ -4,13 +4,15 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
-import model.serialization.GestionairePersistance;
+import model.serialization.AdministratorPersistence;
+import model.serialization.AdministratorPersistenceBinary;
 import model.gamelogic.GameManager;
 import view.ScreenController;
 
 public class Manager {
     private GameManager gameManager;
     private ScoreRanking scoreRanking;
+    private AdministratorPersistence administratorPersistence;
     private StringProperty pseudo = new SimpleStringProperty();
         public String getPseudo() {return pseudo.get();}
         public StringProperty pseudoProperty() {return pseudo;}
@@ -18,13 +20,14 @@ public class Manager {
 
     public Manager(ScoreRanking scoreRanking){
         this.scoreRanking=scoreRanking;
+        administratorPersistence = new AdministratorPersistenceBinary();
         ScreenController.getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                GestionairePersistance.saveStates(scoreRanking);
+                administratorPersistence.save(scoreRanking);
             }
         });
-        GestionairePersistance.loadStates(scoreRanking);
+        administratorPersistence.load(scoreRanking);
     }
 
     public GameManager getGameManager() {return gameManager;}

@@ -1,14 +1,14 @@
-package model.gamelogic.action.character;
+package model.gamelogic.action.character.monster;
 
 import model.characters.Character;
 import model.characters.monster.Monster;
 import model.gamelogic.GameState;
 import model.gamelogic.action.Remover;
 
-public class RemoverCharacter implements Remover {
+public class RemoverMonster implements Remover {
     private GameState game;
 
-    public RemoverCharacter(GameState game) {
+    public RemoverMonster(GameState game) {
         this.game = game;
     }
 

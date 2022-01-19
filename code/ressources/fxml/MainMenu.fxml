@@ -23,7 +23,6 @@
         <Label fx:id="mainText" alignment="TOP_CENTER" text="Tower Defense" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <VBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
             <Button fx:id="newGameButton" onAction="#startNewGame" prefHeight="35" prefWidth="120" text="New Game" />
-            <Button fx:id="optionsButton" onAction="#option" prefHeight="35" prefWidth="120" text="Options" />
             <Button fx:id="exitButton" onAction="#exitGame" prefHeight="35" prefWidth="120" text="Exit" />
         </VBox>
       <columnConstraints>
@@ -45,7 +44,7 @@
         <ListView fx:id="scoreList" maxHeight="300" maxWidth="300" prefHeight="300" prefWidth="300">
         </ListView>
         <HBox>
-            <Label text="Nombre de score maximum : "/>
+            <Label text="Maximum number of scores : "/>
             <TextField fx:id="nbScores" prefWidth="50"/>
         </HBox>
 

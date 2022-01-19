@@ -1,7 +1,7 @@
 package model.gamelogic;
 
-import model.boucleJeu.Loop;
-import model.boucleJeu.Observateur;
+import model.gameloop.Loop;
+import model.gameloop.Observer;
 import model.characters.Character;
 import model.gamelogic.map.Map;
 import model.gamelogic.action.Attacker;
@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-public class GameManager implements Observateur {
+public class GameManager implements Observer {
 
     private Map gameMap;
     private GameState game;

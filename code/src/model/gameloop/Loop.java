@@ -1,4 +1,4 @@
-package model.boucleJeu;
+package model.gameloop;
 
 import javafx.application.Platform;
 import static java.lang.Thread.sleep;

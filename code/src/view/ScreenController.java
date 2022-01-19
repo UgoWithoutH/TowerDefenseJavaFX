@@ -38,7 +38,7 @@ public class ScreenController {
         screenMap.put(name, pane);
     }
 
-    protected void removeScreen(String name){
+    private void removeScreen(String name){
         screenMap.remove(name);
     }
 
@@ -46,7 +46,7 @@ public class ScreenController {
         stage.getScene().setRoot( screenMap.get(name) );
     }
 
-    private static void addAffichageMenu(){
+    private void addAffichageMenu(){
         try
         {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/MainMenu.fxml"));

@@ -1,6 +1,6 @@
 package model.gamelogic;
 
-import model.boucleJeu.Loop;
+import model.gameloop.Loop;
 
 import java.util.Scanner;
 

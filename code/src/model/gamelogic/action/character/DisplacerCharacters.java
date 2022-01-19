@@ -3,6 +3,7 @@ import model.characters.Character;
 import model.gamelogic.GameState;
 import model.gamelogic.action.Displacer;
 import model.gamelogic.action.Remover;
+import model.gamelogic.action.character.monster.RemoverMonster;
 import model.gamelogic.action.states.Updater;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class DisplacerCharacters implements Displacer {
                 }
             }
             for (Character CharacterDelete : CharactersEnd) {
-                Remover remover = new RemoverCharacter(game);
+                Remover remover = new RemoverMonster(game);
                 remover.remove(CharacterDelete);
             }
         }

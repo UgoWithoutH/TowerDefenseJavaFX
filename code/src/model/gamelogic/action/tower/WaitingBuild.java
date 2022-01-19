@@ -4,10 +4,10 @@ import model.characters.tower.Tower;
 
 import static java.lang.Thread.sleep;
 
-public class Waiting implements Runnable{
+public class WaitingBuild implements Runnable{
     private Tower tower;
 
-    public Waiting(Tower t){
+    public WaitingBuild(Tower t){
         tower = t;
     }
 
