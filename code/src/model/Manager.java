@@ -21,12 +21,7 @@ public class Manager {
     public Manager(ScoreRanking scoreRanking){
         this.scoreRanking=scoreRanking;
         administratorPersistence = new AdministratorPersistenceBinary();
-        ScreenController.getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                administratorPersistence.save(scoreRanking);
-            }
-        });
+        ScreenController.getStage().setOnCloseRequest(event -> administratorPersistence.save(scoreRanking));
         administratorPersistence.load(scoreRanking);
     }
 
