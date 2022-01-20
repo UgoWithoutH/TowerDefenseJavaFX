@@ -15,8 +15,6 @@ import model.gamelogic.GameState;
 import java.io.IOException;
 import java.net.URL;
 
-import static java.lang.Thread.sleep;
-
 public class MainMenu {
 
     @FXML
@@ -85,8 +83,8 @@ public class MainMenu {
                 alert.showAndWait();
                 return;
             }
-            FXMLLoader loader = new FXMLLoader(GAMEUI);
             assert GAMEUI != null;
+            FXMLLoader loader = new FXMLLoader(GAMEUI);
             loader.load();
         } catch (IOException ex) {
             ex.printStackTrace();

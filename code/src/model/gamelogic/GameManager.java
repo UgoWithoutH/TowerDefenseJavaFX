@@ -10,11 +10,8 @@ import model.gamelogic.action.IDisplacer;
 import model.gamelogic.action.ISpawner;
 import model.gamelogic.action.character.SpawnerCharacter;
 import model.gamelogic.action.tower.AttackerTower;
-import view.map.DrawMap;
 import model.gamelogic.action.character.DisplacerCharacters;
 import model.gamelogic.action.states.Updater;
-
-import java.io.FileNotFoundException;
 
 
 public class GameManager implements IObserver {
