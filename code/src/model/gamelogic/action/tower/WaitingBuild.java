@@ -7,6 +7,10 @@ import static java.lang.Thread.sleep;
 public class WaitingBuild implements Runnable{
     private Tower tower;
 
+    /**
+     * Cree une attente pour une construction de Tour
+     * @param t
+     */
     public WaitingBuild(Tower t){
         tower = t;
     }

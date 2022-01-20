@@ -10,9 +10,20 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    /**
+     * Dimension de la fenêtre X
+     */
     public final static int RESOLUTION_X = 1216;
+    /**
+     * Dimension de la fenêtre Y
+     */
     public final static int RESOLUTION_Y = 672;
 
+    /**
+     * Demarrage de la fenêtre JavaFX
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception{
         stage.setTitle("Tower Defense");
@@ -23,7 +34,7 @@ public class Main extends Application {
         new ScreenController(stage);
 
         /**
-         * Premier affichage de fenétre !!
+         * Premier affichage de fenêtre !!
          */
         try {
             stage.setScene(new Scene(FXMLLoader.load((Main.class.getResource("/fxml/MainMenu.fxml")))));
@@ -34,11 +45,18 @@ public class Main extends Application {
         stage.show();
     }
 
+    /**
+     * Fermeture de la Fenêtre JavaFX
+     */
     @Override
     public void stop(){
         System.out.println("Window is closing");
     }
 
+    /**
+     * Fonction de départ de l'application
+     * @param args  String[] arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

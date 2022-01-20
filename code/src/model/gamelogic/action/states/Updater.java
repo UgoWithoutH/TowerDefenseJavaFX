@@ -6,7 +6,7 @@ import model.gamelogic.GameState;
 public class Updater {
 
     /**
-     *
+     * Met a Jour le score en fonction de la position des Characters
      * @param character Character
      * @param game  GameState
      */
@@ -21,7 +21,7 @@ public class Updater {
     }
 
     /**
-     *
+     * Met a jour le Timer du Jeu par rapport a un timer (Boucle de jeu)
      * @param timer int Boucle de Jeu
      * @param millis    long
      * @param game  GameState
