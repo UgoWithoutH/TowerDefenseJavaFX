@@ -76,8 +76,8 @@ public abstract class Character {
     public void setMovementSpeed(int movementSpeed){this.movementSpeed = movementSpeed;}
 
     /**
-     * Modifie de la Position, vérifie s'il est arrivé à la fin du chemin.
-     * modifie également la direction qu'il doit prendre en fonction de sa position et du chemin définit
+     * Modifie la Position, vérifie s'il est arrivé à la fin du chemin.
+     * Modifie également la direction qu'il doit prendre en fonction de sa position et du chemin définit
      */
     public void updateLocation() {
         if(pathFinished) return;
