@@ -1,17 +1,15 @@
 package model.gamelogic;
 
-import model.gamelogic.action.level.Level;
+import model.gamelogic.action.ILevel;
 import model.gameloop.Loop;
-
-import java.util.Scanner;
 
 public class AdministratorVictoryGameOver {
 
     private GameState game;
     private Loop loop;
-    private Level enemyFile;
+    private ILevel enemyFile;
 
-    public AdministratorVictoryGameOver(GameState game, Level level, Loop boucle) {
+    public AdministratorVictoryGameOver(GameState game, ILevel level, Loop boucle) {
         this.game = game;
         this.loop = boucle;
         this.enemyFile=level;
@@ -21,9 +19,11 @@ public class AdministratorVictoryGameOver {
      * Verifie si l'Etat de la partie est une Victoire
      */
     public void verifyVictory() {
-        if (!enemyFile.getLevelFile().hasNextLine() && game.getCharactersAlive().isEmpty() && loop.isRunning()) {
+        if(enemyFile instanceof AdministratorLevel administratorLevel) {
+            if (!administratorLevel.getLevelFile().hasNextLine() && game.getCharactersAlive().isEmpty() && loop.isRunning()) {
                 loop.setRunning(false);
                 game.setVictory(true);
+            }
         }
     }
 

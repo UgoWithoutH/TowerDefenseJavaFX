@@ -1,18 +1,17 @@
-package model.gamelogic.action.level;
+package model.gamelogic;
 
-import model.gamelogic.GameState;
 import model.gamelogic.action.ILevel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Level implements ILevel{
+public class AdministratorLevel implements ILevel{
     private GameState game;
     private int level;
     private Scanner levelFile;
 
-    public Level(GameState game) {
+    public AdministratorLevel(GameState game) {
         this.game = game;
         this.level = game.getLevel();
         setFileLevel(level);

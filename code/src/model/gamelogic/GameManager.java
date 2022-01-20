@@ -1,7 +1,6 @@
 package model.gamelogic;
 
 import model.gamelogic.action.ILevel;
-import model.gamelogic.action.level.Level;
 import model.gameloop.IObserver;
 import model.gameloop.Loop;
 import model.characters.Character;
@@ -16,8 +15,6 @@ import model.gamelogic.action.character.DisplacerCharacters;
 import model.gamelogic.action.states.Updater;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 
 
 public class GameManager implements IObserver {
@@ -39,12 +36,9 @@ public class GameManager implements IObserver {
         loop = new Loop();
         loop.subscribe(this);
         displacer = new DisplacerCharacters(game);
-
-
-        levelNext = new Level(game);
-        administratorVictoryGameOver = new AdministratorVictoryGameOver(game, (Level) levelNext, loop);
-        spawner = new SpawnerCharacter(game, (Level) levelNext);
-
+        levelNext = new AdministratorLevel(game);
+        administratorVictoryGameOver = new AdministratorVictoryGameOver(game, levelNext, loop);
+        spawner = new SpawnerCharacter(game, levelNext);
         attacker = new AttackerTower(game.getPlayerTowers(), game.getCharactersAlive());
     }
 
