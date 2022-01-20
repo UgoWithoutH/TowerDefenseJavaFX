@@ -295,7 +295,7 @@
 											"top": 804,
 											"width": 131.5380859375,
 											"height": 13,
-											"text": "Observateur"
+											"text": "IObserver"
 										},
 										{
 											"_type": "LabelView",
@@ -491,7 +491,7 @@
 											"_parent": {
 												"$ref": "AAAAAAF+RA+oszGguT8="
 											},
-											"font": "Arial;13;1",
+											"font": "Arial;13;3",
 											"left": 1205,
 											"top": 703,
 											"width": 231.9560546875,
@@ -568,7 +568,7 @@
 											"top": 726,
 											"width": 231.9560546875,
 											"height": 13,
-											"text": "-observateurs: LinkedList<Observateur>",
+											"text": "-observatory: LinkedList<Observateur>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -602,7 +602,7 @@
 											"top": 749,
 											"width": 231.9560546875,
 											"height": 13,
-											"text": "+subscribe(listener: Observateur)",
+											"text": "+subscribe(listener: IObserver)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -619,7 +619,7 @@
 											"top": 764,
 											"width": 231.9560546875,
 											"height": 13,
-											"text": "+unsubscribe(listener: Observateur)",
+											"text": "+unsubscribe(listener: IObserver)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -636,7 +636,7 @@
 											"top": 779,
 											"width": 231.9560546875,
 											"height": 13,
-											"text": "+notifier(timer: int)",
+											"text": "+notify(timer: int)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -9749,7 +9749,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 753,
-									"top": 1333,
+									"top": 1341,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -9770,7 +9770,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 738,
-									"top": 1333,
+									"top": 1341,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -9791,7 +9791,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 783,
-									"top": 1334,
+									"top": 1342,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -9874,7 +9874,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1218,
-									"top": 1027,
+									"top": 1031,
 									"width": 40.83447265625,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -9895,8 +9895,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1237,
-									"top": 1013,
+									"left": 1236,
+									"top": 1017,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -9915,7 +9915,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1237,
-									"top": 1055,
+									"top": 1058,
 									"width": 7.22998046875,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -9966,7 +9966,7 @@
 								"$ref": "AAAAAAF+RBWsSjMozo4="
 							},
 							"lineStyle": 1,
-							"points": "1151:1683;768:1680;768:1000;1263:1051",
+							"points": "1151:1683;768:1680;768:1016;1263:1054",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF+bw46JqIQsRg="
@@ -13652,12 +13652,12 @@
 										"$ref": "AAAAAAF+b1HVbWeKw1I="
 									},
 									"font": "Arial;13;0",
-									"left": 1766,
-									"top": 1429,
+									"left": 1791,
+									"top": 1439,
 									"width": 58.1572265625,
 									"height": 13,
-									"alpha": -1.5805571521420299,
-									"distance": 31.064449134018133,
+									"alpha": -0.8059303148225225,
+									"distance": 36.6742416417845,
 									"hostEdge": {
 										"$ref": "AAAAAAF+b1HVbWeMh5w="
 									},
@@ -27003,7 +27003,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF+RA5mWTFYhd4="
 							},
-							"name": "Observateur",
+							"name": "IObserver",
 							"operations": [
 								{
 									"_type": "UMLOperation",
@@ -27072,7 +27072,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF+RA+osjGd7bg="
 									},
-									"name": "observateurs",
+									"name": "observatory",
 									"visibility": "private",
 									"type": "LinkedList<Observateur>"
 								}
@@ -27126,7 +27126,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF+RA+osjGd7bg="
 									},
-									"name": "notifier",
+									"name": "notify",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -27139,7 +27139,8 @@
 										}
 									]
 								}
-							]
+							],
+							"isAbstract": true
 						},
 						{
 							"_type": "UMLClass",

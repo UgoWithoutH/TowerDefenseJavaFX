@@ -48,6 +48,6 @@ public class Loop extends Observable implements Runnable {
     }
 
     public void beep(int timer) {
-        Platform.runLater(() -> notifier(timer));
+        Platform.runLater(() -> notify(timer));
     }
 }
