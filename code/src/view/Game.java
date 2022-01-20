@@ -141,7 +141,9 @@ public class Game {
                 for (int i = 3; i >= 0; i--) {
                     final int tmp = i;
                     Platform.runLater(() -> counter.setText(String.valueOf(tmp)));
-                    sleep(1000);
+                    if(i != 0){
+                        sleep(1000);
+                    }
                 }
                 Timeline task = new Timeline(
                         new KeyFrame(
