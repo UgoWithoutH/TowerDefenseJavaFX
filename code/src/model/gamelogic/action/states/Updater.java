@@ -3,6 +3,9 @@ package model.gamelogic.action.states;
 import model.characters.Character;
 import model.gamelogic.GameState;
 
+/**
+ * Classe mettant à jour des informations de la partie
+ */
 public class Updater {
 
     /**
@@ -11,7 +14,6 @@ public class Updater {
      * @param game  GameState
      */
     public static void updateStates(Character character, GameState game) {
-
         if (character.isPathFinished()) {
             game.setLives((game.getLives()) - 1);
         } else {

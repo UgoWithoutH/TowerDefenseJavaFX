@@ -9,6 +9,9 @@ import model.characters.monster.Monster;
 import model.characters.monster.Speed;
 import model.gamelogic.GameManager;
 
+/**
+ * Créé visuellement les monstres
+ */
 public class CreatorMonsters {
 
     private GameManager gameManager;

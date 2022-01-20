@@ -34,6 +34,7 @@ public class ScoreRanking {
      * @param gameState GameState
      */
     public void updateRanking(GameState gameState) {
+
         if(getNumberScores() == 0){
             rankingObservable.clear();
             return;

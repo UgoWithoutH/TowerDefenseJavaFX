@@ -1,5 +1,8 @@
 package model.characters.monster;
 
+/**
+ * Monstre rapide
+ */
 public class Speed extends Monster{
 
     private static final int DEFAULT_MOVEMENT_SPEED = 4;

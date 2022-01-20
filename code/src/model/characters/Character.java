@@ -4,6 +4,9 @@ import model.Coordinate;
 
 import java.util.ArrayList;
 
+/**
+ * Caractère (ennemis)
+ */
 public abstract class Character {
     private static ArrayList<Coordinate> path;
     private Coordinate coordinate;

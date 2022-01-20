@@ -5,6 +5,9 @@ import model.characters.monster.Monster;
 import model.gamelogic.GameState;
 import model.gamelogic.action.IRemover;
 
+/**
+ * Classe pour supprimer des monstres
+ */
 public class RemoverMonster implements IRemover {
     private GameState game;
 

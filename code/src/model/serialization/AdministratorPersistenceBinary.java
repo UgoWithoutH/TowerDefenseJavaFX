@@ -5,6 +5,9 @@ import model.gamelogic.GameState;
 
 import java.io.*;
 
+/**
+ * Gère la persistance des données en binaire
+ */
 public class AdministratorPersistenceBinary extends AdministratorPersistence{
 
     /**

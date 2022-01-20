@@ -5,6 +5,9 @@ import model.gamelogic.map.Map;
 
 import java.nio.ByteBuffer;
 
+/**
+ * Carte visuelle
+ */
 public class DrawMap extends ImageView {
     private Map map;
 

@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Rang des scores sérializable
+ */
 public class ScoreRankingSerializable implements Serializable {
 
     @Serial

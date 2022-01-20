@@ -1,7 +1,7 @@
 package model.characters.monster;
 
 /**
- * Monster basique
+ * Monstre basique
  */
 public class Basic extends Monster {
 

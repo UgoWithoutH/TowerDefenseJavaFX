@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Classe permettant de générer une Map
+ */
 public class ImportMap extends Map{
 
     public ImportMap(int mapWidth, int mapHeight) {

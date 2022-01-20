@@ -1,5 +1,8 @@
 package model.gamelogic.map;
 
+/**
+ * Classe permettant de générer une Map
+ */
 public class GenerationMap extends Map{
 
     /**

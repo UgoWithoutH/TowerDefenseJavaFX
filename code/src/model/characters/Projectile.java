@@ -1,5 +1,8 @@
 package model.characters;
 
+/**
+ * Projectile d'une tour
+ */
 public class Projectile{
     private final Character target;
     private final int startX;
@@ -25,7 +28,6 @@ public class Projectile{
     public int getEndX(){
         return target.getX();
     }
-
     public int getEndY(){
         return target.getY();
     }
@@ -33,7 +35,6 @@ public class Projectile{
     public int getStartX(){
         return startX;
     }
-
     public int getStartY(){
         return startY;
     }

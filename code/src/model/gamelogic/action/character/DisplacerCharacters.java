@@ -10,6 +10,9 @@ import model.gamelogic.action.states.Updater;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Déplaceur de caractères
+ */
 public class DisplacerCharacters implements IDisplacer {
 
     private GameState game;

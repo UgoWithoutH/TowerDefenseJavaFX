@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Gère les niveaux de la partie
+ */
 public class AdministratorLevel implements ILevel{
     private GameState game;
     private int level;

@@ -6,6 +6,9 @@ import model.gamelogic.GameState;
 import model.gamelogic.map.Map;
 import model.gamelogic.action.IBuyer;
 
+/**
+ * Class permettant d'acheter des tours
+ */
 public class BuyerTower implements IBuyer {
     private GameState game;
     private Map gameMap;

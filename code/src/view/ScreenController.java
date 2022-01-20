@@ -10,10 +10,12 @@ import model.ScoreRanking;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Gère les vues
+ */
 public class ScreenController {
 
     private static HashMap<String, Pane> screenMap = new HashMap<>();
-
     private static Stage stage;
     private static Manager manager;
 
@@ -38,10 +40,18 @@ public class ScreenController {
         screenMap.put(name, pane);
     }
 
+    /**
+     * Supprimer une vue
+     * @param name
+     */
     private void removeScreen(String name){
         screenMap.remove(name);
     }
 
+    /**
+     * Activer une vue
+     * @param name
+     */
     public static void activate(String name){
         stage.getScene().setRoot( screenMap.get(name) );
     }

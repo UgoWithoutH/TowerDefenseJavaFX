@@ -3,6 +3,9 @@ package model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+/**
+ * Coordonnées
+ */
 public class Coordinate {
 
     private IntegerProperty x = new SimpleIntegerProperty();

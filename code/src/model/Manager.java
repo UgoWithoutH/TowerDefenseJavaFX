@@ -7,6 +7,9 @@ import model.serialization.AdministratorPersistenceBinary;
 import model.gamelogic.GameManager;
 import view.ScreenController;
 
+/**
+ * Gestion de l'application
+ */
 public class Manager {
     private GameManager gameManager;
     private ScoreRanking scoreRanking;

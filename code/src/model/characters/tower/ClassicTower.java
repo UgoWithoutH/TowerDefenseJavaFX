@@ -1,5 +1,8 @@
 package model.characters.tower;
 
+/**
+ * Tour classique
+ */
 public class ClassicTower extends Tower {
 
     /**

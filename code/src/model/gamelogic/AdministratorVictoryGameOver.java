@@ -3,6 +3,9 @@ package model.gamelogic;
 import model.gamelogic.action.ILevel;
 import model.gameloop.Loop;
 
+/**
+ * Classe permettant de vérifier la victoire ou la partie perdu
+ */
 public class AdministratorVictoryGameOver {
 
     private GameState game;

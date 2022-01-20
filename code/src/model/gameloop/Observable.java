@@ -2,6 +2,9 @@ package model.gameloop;
 
 import java.util.LinkedList;
 
+/**
+ * Classe Observable
+ */
 public abstract class Observable {
     private LinkedList<IObserver> observatory = new LinkedList<>();
 

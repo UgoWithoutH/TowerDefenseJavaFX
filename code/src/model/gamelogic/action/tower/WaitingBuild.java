@@ -4,6 +4,9 @@ import model.characters.tower.Tower;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * Classe permettant de faire attendre la tour durant le temps de construction
+ */
 public class WaitingBuild implements Runnable{
     private Tower tower;
 

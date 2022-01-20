@@ -6,6 +6,9 @@ import model.characters.monster.Monster;
 import model.characters.tower.Tower;
 import model.gamelogic.action.IAttacker;
 
+/**
+ * Classe permettant aux tours d'attaquer
+ */
 public class AttackerTower implements IAttacker {
     private ObservableList<Tower> listTower;
     private ObservableList<Character> listCharacter;

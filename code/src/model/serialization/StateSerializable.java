@@ -2,6 +2,9 @@ package model.serialization;
 
 import java.io.Serializable;
 
+/**
+ * State sérialisable
+ */
 public class StateSerializable implements Serializable {
 
     private String pseudo;

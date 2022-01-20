@@ -4,6 +4,9 @@ import model.Coordinate;
 
 import java.util.ArrayList;
 
+/**
+ * carte
+ */
 public class Map {
 
     private final String tileset = "/tileset/tile.png";

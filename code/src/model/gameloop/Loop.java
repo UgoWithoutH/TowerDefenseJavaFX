@@ -3,7 +3,9 @@ package model.gameloop;
 import javafx.application.Platform;
 import static java.lang.Thread.sleep;
 
-
+/**
+ * Boucle de jeu
+ */
 public class Loop extends Observable implements Runnable {
     private static final long DEFAULT_MILLIS = 50;
     private long millis = 50;

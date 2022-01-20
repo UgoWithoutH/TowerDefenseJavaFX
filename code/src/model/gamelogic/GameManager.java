@@ -13,7 +13,9 @@ import model.gamelogic.action.tower.AttackerTower;
 import model.gamelogic.action.character.DisplacerCharacters;
 import model.gamelogic.action.states.Updater;
 
-
+/**
+ * Classe qui gère la partie
+ */
 public class GameManager implements IObserver {
 
     private Map gameMap;

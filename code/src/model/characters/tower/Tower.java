@@ -6,6 +6,9 @@ import model.Coordinate;
 import model.characters.Character;
 import model.characters.Projectile;
 
+/**
+ * Tour
+ */
 public abstract class Tower {
     private static final int BUILD_TIME_SECONDS = 2; //Temps de construction
     private static final int DEFAULT_SELL_COST = 25; //Prix de construction

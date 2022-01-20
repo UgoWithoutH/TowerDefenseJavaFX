@@ -19,6 +19,9 @@ import model.gamelogic.action.IRemover;
 import model.gamelogic.action.character.monster.RemoverMonster;
 import model.gamelogic.action.states.Updater;
 
+/**
+ * Créé visuellement les projectiles
+ */
 public class CreatorProjectiles {
 
     private ObjectProperty<Projectile> projectile = new SimpleObjectProperty<>();

@@ -8,7 +8,9 @@ import model.characters.tower.Tower;
 
 import java.util.Objects;
 
-
+/**
+ * States relatifs à la partie
+ */
 public class GameState implements Comparable<GameState>{
 
     private final ObservableList<Tower> playerTowers = FXCollections.observableArrayList();
