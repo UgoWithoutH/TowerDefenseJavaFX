@@ -15,6 +15,11 @@ public abstract class Character {
     private boolean pathFinished;
     private int movementSpeed;
 
+    /**
+     * Définit les valeurs Basic d'un character
+     * @param healthPoints  int Nombre de Point de Vie
+     * @param movementSpeed int Vitesse
+     */
     public Character(int healthPoints, int movementSpeed) {
         pathFinished = false;
         moveX = true;

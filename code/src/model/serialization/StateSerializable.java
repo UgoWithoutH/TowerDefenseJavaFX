@@ -10,6 +10,14 @@ public class StateSerializable implements Serializable {
     private int time;
     private boolean victory;
 
+    /**
+     * Données de la partie qui seront Serialisé
+     * @param pseudo    String
+     * @param level int
+     * @param score int
+     * @param time  int
+     * @param victory   boolean
+     */
     public StateSerializable(String pseudo, int level, int score, int time, boolean victory){
         this.pseudo = pseudo;
         this.level = level;

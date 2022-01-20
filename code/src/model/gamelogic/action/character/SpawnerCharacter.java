@@ -14,7 +14,7 @@ public class SpawnerCharacter implements ISpawner {
     private ILevel level;
 
     /**
-     *
+     *Creation de génération des ennemies en fonction des Level recupérés
      * @param game GameState
      * @param level Level pointant sur le fichier des Characters
      */

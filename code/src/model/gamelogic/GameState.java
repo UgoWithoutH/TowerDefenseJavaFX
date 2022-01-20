@@ -48,6 +48,10 @@ public class GameState implements Comparable<GameState>{
         public IntegerProperty scoreProperty() {return score;}
         public void setScore(int score) {this.score.set(score);}
 
+    /**
+     * Ressources du Player et Scores de la Partie
+     * @param pseudo    String Pseudo
+     */
     public GameState(String pseudo){
         setPseudo(pseudo);
         setTimeSeconds(0);

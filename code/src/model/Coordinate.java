@@ -14,23 +14,28 @@ public class Coordinate {
         public IntegerProperty yProperty() {return y;}
         public void setY(int y) {this.y.set(y);}
 
+    /**
+     * Coordonee sur la map
+     * @param x int Position X
+     * @param y int Position Y
+     */
     public Coordinate(int x , int y){
         setX(x);
         setY(y);
     }
 
-    public Coordinate(double x , double y){
-        var testX = getX()/64;
-        var testY = getY()/64;
-
-        setX(testX);
-        setY(testY);
-    }
-
+    /**
+     * Accède a la position X exacte sur la fenêtre
+     * @return int Position X
+     */
     public int getExactX() {
         return getX() * 64 + 32;
     }
 
+    /**
+     * Accède a la position Y exacte sur la fenêtre
+     * @return  int Position Y
+     */
     public int getExactY() {
         return getY() * 64 + 32;
     }

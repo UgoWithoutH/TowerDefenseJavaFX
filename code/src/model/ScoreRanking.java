@@ -4,9 +4,11 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.gamelogic.GameState;
-
 import java.util.Collections;
 
+/**
+ * Classe Score et Ranking permettant de classer le resultat en fonction du score obtenu
+ */
 public class ScoreRanking {
     private final ObservableList<GameState> rankingObservable = FXCollections.observableArrayList();
 
@@ -19,12 +21,15 @@ public class ScoreRanking {
         public IntegerProperty numberScoresProperty() {return numberScores;}
         public void setNumberScores(int numberScores) {this.numberScores.set(numberScores);}
 
+    /**
+     * Set le score de base au lancement de la Partie
+     */
     public ScoreRanking() {
         setNumberScores(10);
     }
 
     /**
-     * Met a jour le Classement une fois que la partie est terminé
+     * Met a jour le Classement une fois que la partie est terminée
      * Prépare aussi la persistence
      * @param gameState GameState
      */

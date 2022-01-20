@@ -16,8 +16,12 @@ public class Map {
     private final boolean offsetXFlag;
     private final boolean offsetYFlag;
     private int[][] map;
-    private final String level1 = "/levels/level1.txt";
 
+    /**
+     * Creation d'une Map a partir d'un int[][]
+     * @param mapWidth  int Largeur du Tableau
+     * @param mapHeight int Longueur du Tableau
+     */
     public Map(int mapWidth , int mapHeight) {
         resolutionWidth = mapWidth;
         resolutionHeight = mapHeight;

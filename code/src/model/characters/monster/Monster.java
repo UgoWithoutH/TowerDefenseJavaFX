@@ -4,6 +4,9 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import model.characters.Character;
 
+/**
+ * Définit un Monster a partir d'un Character
+ */
 public class Monster extends Character {
 
     /**

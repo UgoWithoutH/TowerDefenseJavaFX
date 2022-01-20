@@ -2,8 +2,6 @@ package model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.event.EventHandler;
-import javafx.stage.WindowEvent;
 import model.serialization.AdministratorPersistence;
 import model.serialization.AdministratorPersistenceBinary;
 import model.gamelogic.GameManager;
@@ -18,6 +16,7 @@ public class Manager {
         public StringProperty pseudoProperty() {return pseudo;}
         public void setPseudo(String pseudo) {this.pseudo.set(pseudo);}
 
+
     public Manager(ScoreRanking scoreRanking){
         this.scoreRanking=scoreRanking;
         administratorPersistence = new AdministratorPersistenceBinary();
@@ -25,6 +24,9 @@ public class Manager {
         administratorPersistence.load(scoreRanking);
     }
 
+    /**
+     * Sauvegarde le Score de la partie
+     */
     public void saveStates(){
         administratorPersistence.save(scoreRanking);
     }

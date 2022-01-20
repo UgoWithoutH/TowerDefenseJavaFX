@@ -29,7 +29,12 @@ public class GameManager implements IObserver {
     private IAttacker attacker;
     private ILevel levelNext;
 
-    public GameManager(String pseudo, Map map) throws FileNotFoundException{
+    /**
+     * Creation d'un gameManager et de tout ses éléments
+     * @param pseudo    String Pseudo representant le Player
+     * @param map   Map a dessiner
+     */
+    public GameManager(String pseudo, Map map){
         this.gameMap = map;
         game = new GameState(pseudo);
         Character.setPath(gameMap.getPath());

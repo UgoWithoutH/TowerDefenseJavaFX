@@ -7,7 +7,13 @@ import model.characters.Character;
 import model.characters.Projectile;
 
 public abstract class Tower {
+    /**
+     * Temps de construction
+     */
     private static final int BUILD_TIME_SECONDS = 2;
+    /**
+     * Prix de construction
+     */
     private static final int DEFAULT_SELL_COST = 25;
     private int attackDamage;
     private int attackRange;
@@ -20,7 +26,11 @@ public abstract class Tower {
     private boolean build = false;
 
 
-
+    /**
+     * Creation d'une Tower a une position X et Y sur la map
+     * @param x int position X sur la map
+     * @param y int position Y sur la map
+     */
     public Tower(int x , int y){
         coordinate = new Coordinate(x , y);
         attackDamage = 5;

@@ -10,6 +10,11 @@ public class AttackerTower implements IAttacker {
     private ObservableList<Tower> listTower;
     private ObservableList<Character> listCharacter;
 
+    /**
+     * Cree le systeme d'attaque des Tours sur les Characters
+     * @param listTower
+     * @param listCharacter
+     */
     public AttackerTower(ObservableList<Tower> listTower, ObservableList<Character> listCharacter) {
         this.listTower = listTower;
         this.listCharacter = listCharacter;
