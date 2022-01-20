@@ -13,9 +13,7 @@
       <Button fx:id="pauseRestart" mnemonicParsing="false" text="Stop" onAction="#pauseOrRestart"/>
       <Button fx:id="speed" mnemonicParsing="false" text="X2" onAction="#speed"/>
       <Label fx:id="textScore"/>
-      <Label text="monnaie : "/>
       <Label fx:id="coins"/>
       <StackPane fx:id="coeur"/>
-      <Label text="Level : "/>
       <Label fx:id="level"/>
 </HBox>

@@ -1,5 +1,6 @@
 package view;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -54,9 +55,9 @@ public class Game {
 
     public void setGameManager(GameManager gameManager) {
         this.gameManager = gameManager;
-        textScore.textProperty().bind(gameManager.getGame().scoreProperty().asString());
-        coins.textProperty().bind(gameManager.getGame().coinsProperty().asString());
-        level.textProperty().bind(gameManager.getGame().levelProperty().asString());
+        textScore.textProperty().bind(Bindings.format("Score : %s",gameManager.getGame().scoreProperty().asString()));
+        coins.textProperty().bind(Bindings.format("Coins : %s",gameManager.getGame().coinsProperty().asString()));
+        level.textProperty().bind(Bindings.format("Level : %s",gameManager.getGame().levelProperty().asString()));
     }
 
     /**

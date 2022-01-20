@@ -76,13 +76,15 @@ public class GameState implements Comparable<GameState>{
 
     @Override
     public int compareTo(GameState g) {
+        int coeff = g.isGameOver() ? 100 : 1;
+
         if(this.getPseudo().compareTo(g.getPseudo()) == 0) {
-            return ((this.getLevel() - g.getLevel()) +
+            return ((this.getLevel() - g.getLevel()*coeff) +
                     (this.getScore() - g.getScore()) +
                     (this.getTimeSeconds()) - g.getTimeSeconds());
         }
         else{
-            return ((this.getLevel() - g.getLevel()) +
+            return ((this.getLevel() - g.getLevel()*coeff) +
                     (this.getScore() - g.getScore()) +
                     (this.getTimeSeconds()) - g.getTimeSeconds() +
                     this.getPseudo().compareTo(g.getPseudo()));

@@ -21,10 +21,7 @@ public class Manager {
     public Manager(ScoreRanking scoreRanking){
         this.scoreRanking=scoreRanking;
         administratorPersistence = new AdministratorPersistenceBinary();
-        ScreenController.getStage().setOnCloseRequest(event -> {
-            gameManager.getLoop().setRunning(false);
-            saveStates();
-        });
+        ScreenController.getStage().setOnCloseRequest(event -> saveStates());
         administratorPersistence.load(scoreRanking);
     }
 
