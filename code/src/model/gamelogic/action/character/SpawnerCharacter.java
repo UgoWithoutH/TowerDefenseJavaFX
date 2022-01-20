@@ -27,7 +27,7 @@ public class SpawnerCharacter implements ISpawner {
      * Generation Characters in X timer
      * @param timer int Timer de la Boucle de Jeu
      */
-    public void spawnEnemy(int timer) {
+    public void spawn(int timer) {
         if (level instanceof AdministratorLevel administratorLevel) {
             Scanner scannerFile = administratorLevel.getLevelFile();
             if (timer % 40 == 0 && scannerFile.hasNextLine()) {

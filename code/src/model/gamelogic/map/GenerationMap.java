@@ -1,13 +1,13 @@
 package model.gamelogic.map;
 
-public class generationMap extends Map{
+public class GenerationMap extends Map{
 
     /**
      * Génère une map par tableau
      * @param mapWidth  int Largeur du Tableau
      * @param mapHeight int Longueur du Tableau
      */
-    public generationMap(int mapWidth, int mapHeight) {
+    public GenerationMap(int mapWidth, int mapHeight) {
         super(mapWidth, mapHeight);
        setMap(generateMapArray());
     }

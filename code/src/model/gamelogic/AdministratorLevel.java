@@ -14,7 +14,7 @@ public class AdministratorLevel implements ILevel{
     public AdministratorLevel(GameState game) {
         this.game = game;
         this.level = game.getLevel();
-        setFileLevel(level);
+        setLevelFile(level);
     }
 
     public Scanner getLevelFile() {
@@ -27,7 +27,7 @@ public class AdministratorLevel implements ILevel{
      * @param level int Level a charger
      * @return  boolean true si disponible
      */
-    public boolean setFileLevel(int level){
+    public boolean setLevelFile(int level){
         Scanner scannerMonster = null;
         try {
             scannerMonster = new Scanner(new File(System.getProperty("user.dir") + "/code/ressources/levels/level"+level+".txt"));
@@ -45,7 +45,7 @@ public class AdministratorLevel implements ILevel{
     @Override
     public boolean nextLevel() {
         this.level++;
-        if(setFileLevel(this.level)){
+        if(setLevelFile(this.level)){
             this.game.setLevel(this.level);
             return true;
         }

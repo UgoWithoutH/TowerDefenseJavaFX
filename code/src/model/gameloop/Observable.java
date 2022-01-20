@@ -17,7 +17,7 @@ public abstract class Observable {
      * Notification de tout Observer sur la boucle
      * @param timer
      */
-    public void notify(int timer){
+    protected void notify(int timer){
         for(var observer : observatory){
             observer.update(timer);
         }

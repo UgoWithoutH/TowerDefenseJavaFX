@@ -49,10 +49,6 @@ public class GameManager implements IObserver {
 
     public Loop getLoop(){ return loop; }
 
-    public DrawMap getDrawMap() {
-        return drawMap;
-    }
-
     public GameState getGame() {
         return game;
     }
@@ -62,9 +58,8 @@ public class GameManager implements IObserver {
     }
 
 
-    public void setDrawMap(DrawMap drawMap) {
-        this.drawMap = drawMap;
-    }
+    public DrawMap getDrawMap() {return drawMap;}
+    public void setDrawMap(DrawMap drawMap) {this.drawMap = drawMap;}
 
     /**
      * Démarre la boucle de jeu
@@ -86,7 +81,7 @@ public class GameManager implements IObserver {
 
             administratorVictoryGameOver.verifyVictory();
 
-            spawner.spawnEnemy(timer);
+            spawner.spawn(timer);
 
             administratorVictoryGameOver.verifyGameOver(!displacer.updateLocations());
 

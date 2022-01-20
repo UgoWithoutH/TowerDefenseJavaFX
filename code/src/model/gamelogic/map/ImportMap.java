@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class importMap extends Map{
+public class ImportMap extends Map{
 
-    public importMap(int mapWidth, int mapHeight) {
+    public ImportMap(int mapWidth, int mapHeight) {
         super(mapWidth, mapHeight);
         setMap(loadMap());
     }

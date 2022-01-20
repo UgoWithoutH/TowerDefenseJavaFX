@@ -1,5 +1,6 @@
 package model.gamelogic.action.character;
 import model.characters.Character;
+import model.characters.monster.Monster;
 import model.gamelogic.GameState;
 import model.gamelogic.action.IDisplacer;
 import model.gamelogic.action.IRemover;
@@ -12,6 +13,7 @@ import java.util.Iterator;
 public class DisplacerCharacters implements IDisplacer {
 
     private GameState game;
+    private IRemover remover;
 
     public DisplacerCharacters(GameState game) {this.game = game;}
 
@@ -21,7 +23,7 @@ public class DisplacerCharacters implements IDisplacer {
      */
     @Override
     public boolean updateLocations() {
-        ArrayList<Character> CharactersEnd = new ArrayList<>();
+        ArrayList<Character> charactersEnd = new ArrayList<>();
         var listCharacters = game.getCharactersAlive();
         if (!listCharacters.isEmpty()) {
             Iterator<Character> characterIterator = listCharacters.iterator();
@@ -31,15 +33,17 @@ public class DisplacerCharacters implements IDisplacer {
                 character.updateLocation();
                 if (character.isPathFinished()) {
                     Updater.updateStates(character, game);
-                    CharactersEnd.add(character);
+                    charactersEnd.add(character);
                     if (game.getLives() == 0) {
                         return false;
                     }
                 }
             }
-            for (Character CharacterDelete : CharactersEnd) {
-                IRemover remover = new RemoverMonster(game);
-                remover.remove(CharacterDelete);
+            for (Character characterDelete : charactersEnd) {
+                if(characterDelete instanceof Monster){
+                    remover = new RemoverMonster(game);
+                }
+                remover.remove(characterDelete);
             }
         }
         return true;
