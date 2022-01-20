@@ -42,7 +42,7 @@ public class CreatorMonsters {
     }
 
     /**
-     * Cree la Vue du Monstre
+     * Créé la Vue du Monstre
      * @param monster   Monster
      */
     private void createMonster(Monster monster){

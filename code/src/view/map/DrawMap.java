@@ -63,6 +63,11 @@ public class DrawMap extends ImageView {
         this.setImage(paintedMap);
     }
 
+    /**
+     * retourne les tuiles graphiques sous forme d'image
+     * @param tiles
+     * @return
+     */
     public Image loadTileSet(String tiles){
         return new Image(tiles);
     }

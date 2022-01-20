@@ -67,7 +67,7 @@ public class GameManager implements IObserver {
     }
 
     /**
-     * Demarre la boucle de jeu
+     * Démarre la boucle de jeu
      */
     public void start() {
         loop.setRunning(true);
@@ -76,7 +76,7 @@ public class GameManager implements IObserver {
     }
 
     /**
-     * Update a chaque tour de Boucle
+     * Update à chaque tour de boucle
      * @param timer int Timer de la boucle de Jeu
      */
     @Override

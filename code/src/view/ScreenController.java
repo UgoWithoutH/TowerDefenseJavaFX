@@ -30,7 +30,7 @@ public class ScreenController {
     public static void setManager(Manager manager) {ScreenController.manager = manager;}
 
     /**
-     * Fonction a ajouté une fois que toutes les propriétés de la page sont correctement chargé
+     * Fonction à ajouter une fois que toutes les propriétés de la page sont correctement chargées
      * @param name
      * @param pane
      */

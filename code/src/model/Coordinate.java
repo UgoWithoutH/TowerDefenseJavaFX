@@ -15,7 +15,7 @@ public class Coordinate {
         public void setY(int y) {this.y.set(y);}
 
     /**
-     * Coordonee sur la map
+     * Coordonée sur la map
      * @param x int Position X
      * @param y int Position Y
      */

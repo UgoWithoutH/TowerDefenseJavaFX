@@ -27,7 +27,7 @@ public abstract class Tower {
 
 
     /**
-     * Creation d'une Tower a une position X et Y sur la map
+     * Création d'une Tower à une position X et Y sur la map
      * @param x int position X sur la map
      * @param y int position Y sur la map
      */
@@ -79,7 +79,7 @@ public abstract class Tower {
     }
 
     /**
-     * Cree un projetctile et cible un  Character (Monster)
+     * Créé un projetctile et cible un Character
      * @param target Character ciblé
      */
     public void createProjectile(Character target){

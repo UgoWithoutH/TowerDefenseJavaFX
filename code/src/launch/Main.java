@@ -20,7 +20,7 @@ public class Main extends Application {
     public final static int RESOLUTION_Y = 672;
 
     /**
-     * Demarrage de la fenêtre JavaFX
+     * Démarrage de la fenêtre JavaFX
      * @param stage
      * @throws Exception
      */
@@ -46,17 +46,13 @@ public class Main extends Application {
     }
 
     /**
-     * Fermeture de la Fenêtre JavaFX
+     * Fermeture de la fenêtre JavaFX
      */
     @Override
     public void stop(){
         System.out.println("Window is closing");
     }
 
-    /**
-     * Fonction de départ de l'application
-     * @param args  String[] arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }

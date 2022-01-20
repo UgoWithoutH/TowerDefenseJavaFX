@@ -11,7 +11,7 @@ public class StateSerializable implements Serializable {
     private boolean victory;
 
     /**
-     * Données de la partie qui seront Serialisé
+     * Données de la partie qui seront Serialisées
      * @param pseudo    String
      * @param level int
      * @param score int

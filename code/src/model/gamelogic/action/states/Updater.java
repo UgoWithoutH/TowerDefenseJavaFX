@@ -21,8 +21,8 @@ public class Updater {
     }
 
     /**
-     * Met a jour le Timer du Jeu par rapport a un timer (Boucle de jeu)
-     * @param timer int Boucle de Jeu
+     * Met a jour le timer du jeu par rapport à un timer (boucle de jeu)
+     * @param timer int
      * @param millis    long
      * @param game  GameState
      */

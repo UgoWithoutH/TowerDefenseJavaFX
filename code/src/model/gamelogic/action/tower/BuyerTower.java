@@ -13,7 +13,7 @@ public class BuyerTower implements IBuyer {
     private DrawMap drawMap;
 
     /**
-     * Cree les Service d'achat de tour sur la Map
+     * Créé les services d'achat de tour sur la Map
      * @param game  GamesState
      * @param gameMap   Map
      * @param drawMap   DrawMap

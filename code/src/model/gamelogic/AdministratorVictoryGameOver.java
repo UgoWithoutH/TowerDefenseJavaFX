@@ -16,7 +16,7 @@ public class AdministratorVictoryGameOver {
     }
 
     /**
-     * Verifie si l'Etat de la partie est une Victoire
+     * Vérifie si l'état de la partie est une victoire
      */
     public void verifyVictory() {
         if(enemyFile instanceof AdministratorLevel administratorLevel) {

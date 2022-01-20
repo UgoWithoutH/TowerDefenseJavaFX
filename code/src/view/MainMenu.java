@@ -54,7 +54,7 @@ public class MainMenu {
     private Manager manager = ScreenController.getManager();
 
     /**
-     * Initialize fenetre Menu, Cellfactory
+     * Initialise fenêtre Menu, Cellfactory
      */
     @FXML
     public void initialize() {
@@ -97,7 +97,7 @@ public class MainMenu {
     }
 
     /**
-     * Start Window and Game
+     * Débute la partie et intialise la vue de la partie
      */
     @FXML
     public void startNewGame() {
@@ -153,6 +153,11 @@ public class MainMenu {
         }
     }
 
+    /**
+     * Animation du compteur de début de partie
+     * @param counter
+     * @param gameManager
+     */
     private void animationTime(Label counter, GameManager gameManager){
         Thread thread = new Thread(() -> {
             try {
@@ -184,7 +189,7 @@ public class MainMenu {
     }
 
     /**
-     *
+     * Ajoute les listener sur la victoire ou la gameOver de la partie
      */
     private void listenerOnChangedVictoryAndGameOver() {
         GameManager gameManager = manager.getGameManager();
@@ -207,7 +212,7 @@ public class MainMenu {
     }
 
     /**
-     * Creer une Progress Bar de Tower
+     * Creer une progress bar de Tower lors de construction d'une Tower
      * @param tower Tower
      */
     private void createBuildProgressBar(Tower tower) {
@@ -248,7 +253,7 @@ public class MainMenu {
     }
 
     /**
-     * Fenetre GameOver
+     * Fenêtre GameOver
      *
      * @param game
      */

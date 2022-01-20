@@ -35,7 +35,7 @@ public class Game {
     private boolean constructTowers = false;
 
     /**
-     * Initialize la vue d'une partie
+     * initialise des éléments de la vue de la partie
      */
     @FXML
     public void initialize() {
@@ -61,7 +61,7 @@ public class Game {
     }
 
     /**
-     * Recupere l'event, la position du click pour construire une Tower
+     * Récupère l'event, la position du click pour construire une Tower
      * @param scene
      */
     public void setScene(Scene scene) {

@@ -3,7 +3,7 @@ package model.gamelogic.map;
 public class generationMap extends Map{
 
     /**
-     * Genere une map par tableau
+     * Génère une map par tableau
      * @param mapWidth  int Largeur du Tableau
      * @param mapHeight int Longueur du Tableau
      */
@@ -13,7 +13,7 @@ public class generationMap extends Map{
     }
 
     /**
-     * Genere une map du jeux
+     * Génère une map du jeu
      * @return  int [][] Map
      */
     public int[][] generateMapArray(){

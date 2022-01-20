@@ -13,7 +13,7 @@ public class AdministratorPersistenceBinary extends AdministratorPersistence{
     private static final File fileSerialization = new File(System.getProperty("user.dir") + "/code/ressources/serialization/saveScores.ser");
 
     /**
-     * Sauvegarde de tous les Scores
+     * Sauvegarde de tout les Scores
      * @param scoreRanking  ScoreRanking
      */
     @Override
@@ -38,7 +38,7 @@ public class AdministratorPersistenceBinary extends AdministratorPersistence{
     }
 
     /**
-     * Chargement de tous les Scores sauvegardé
+     * Chargement de tout les Scores sauvegardés
      * @param scoreRanking
      */
     @Override

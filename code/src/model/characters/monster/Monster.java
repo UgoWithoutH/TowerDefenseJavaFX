@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import model.characters.Character;
 
 /**
- * Définit un Monster a partir d'un Character
+ * Définit un Monster à partir d'un Character
  */
 public class Monster extends Character {
 
@@ -28,7 +28,7 @@ public class Monster extends Character {
     }
 
     /**
-     *  Dommage Recus
+     *  Dommages reçus
      * @param damage int Valeur des dégats
      */
     public void takeDamage(int damage) {

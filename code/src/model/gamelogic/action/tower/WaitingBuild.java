@@ -8,7 +8,7 @@ public class WaitingBuild implements Runnable{
     private Tower tower;
 
     /**
-     * Cree une attente pour une construction de Tour
+     * Créé une attente pour une construction de Tour
      * @param t
      */
     public WaitingBuild(Tower t){
@@ -16,7 +16,7 @@ public class WaitingBuild implements Runnable{
     }
 
     /**
-     * Verifie si la Tower est en construction et définit si elle est libre pour attacker
+     * Vérifie si la Tower est en construction et définit si elle est libre pour attaquer
      */
     @Override
     public void run() {

@@ -11,7 +11,7 @@ public class AttackerTower implements IAttacker {
     private ObservableList<Character> listCharacter;
 
     /**
-     * Cree le systeme d'attaque des Tours sur les Characters
+     * Créé le système d'attaque des Tours sur les Characters
      * @param listTower
      * @param listCharacter
      */
@@ -22,8 +22,8 @@ public class AttackerTower implements IAttacker {
 
 
     /**
-     * Verifie qu'elle monstre est dans la range de la Tour pour l'attaquer
-     * Si plusieurs monstre sont dans la range, la Tour attackera la Premier de la List Character
+     * Verifie quel monstre est dans la portée de la Tour pour l'attaquer
+     * Si plusieurs monstres sont dans la portée, la Tour attaquera le premier Character de la liste
      */
     public void attack() {
         Character target;

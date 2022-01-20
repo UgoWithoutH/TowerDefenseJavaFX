@@ -16,7 +16,7 @@ public class DisplacerCharacters implements IDisplacer {
     public DisplacerCharacters(GameState game) {this.game = game;}
 
     /**
-     * Update Location de tout les Character dans Observable List -> GameState
+     * Modifie la position de tous les Character dans Observable List -> GameState
      * @return
      */
     @Override
