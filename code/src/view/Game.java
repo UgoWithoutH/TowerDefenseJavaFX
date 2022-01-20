@@ -67,7 +67,7 @@ public class Game {
         try {
             GameManager gameManager = new GameManager(manager.getPseudo(), new ImportMap(1216, 608));
             manager.setGameManager(gameManager);
-            gameManager.setDrawMap(new DrawMap(gameManager.getGameMap()));
+            DrawMap drawMap = new DrawMap(gameManager.getGameMap());
 
             //Stack Pane coeur
             ImageView imCoeur = null;
@@ -99,7 +99,7 @@ public class Game {
 
             //Group tilemap
             tileMapGroup = new Group();
-            tileMapGroup.getChildren().addAll(gameManager.getDrawMap(), stackPaneCoeur, stackPaneCounter);
+            tileMapGroup.getChildren().addAll(drawMap, stackPaneCoeur, stackPaneCounter);
             gridPane.add(tileMapGroup, 0, 0);
 
             ScreenController.addScreen("game", gridPane);
@@ -111,9 +111,11 @@ public class Game {
             //Evénement de click -> build tower
             ScreenController.getStage().getScene().setOnMouseClicked(event -> {
                         if (constructTowers && gameManager.getLoop().isRunning()) {
-                            IBuyer buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap(), gameManager.getDrawMap());
-                            buyer.buy(event.getX(), event.getY());
-                            constructTowers = true;
+                            IBuyer buyer = new BuyerTower(gameManager.getGame(), gameManager.getGameMap());
+                            if(buyer.buy(event.getX(), event.getY())){
+                                drawMap.draw();
+                            }
+                            constructTowers = false;
                         }
                     }
             );

@@ -22,7 +22,6 @@ public class GameManager implements IObserver {
     private Map gameMap;
     private GameState game;
     private Loop loop;
-    private DrawMap drawMap;
     private IDisplacer displacer;
     private AdministratorVictoryGameOver administratorVictoryGameOver;
     private ISpawner spawner;
@@ -53,13 +52,7 @@ public class GameManager implements IObserver {
         return game;
     }
 
-    public Map getGameMap() {
-        return gameMap;
-    }
-
-
-    public DrawMap getDrawMap() {return drawMap;}
-    public void setDrawMap(DrawMap drawMap) {this.drawMap = drawMap;}
+    public Map getGameMap() {return gameMap;}
 
     /**
      * Démarre la boucle de jeu

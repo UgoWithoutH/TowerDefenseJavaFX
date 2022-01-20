@@ -1,5 +1,7 @@
 package model.gamelogic.map;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import model.Coordinate;
 
 import java.util.ArrayList;
